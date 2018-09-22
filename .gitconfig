@@ -1,0 +1,63 @@
+[user]
+	name = Tran Tam
+	email = tam.tran@employmenthero.com
+[alias]
+    # @see https://git.wiki.kernel.org/index.php/Aliases
+    aliases = config --get-regexp alias
+    base = rebase -i HEAD~1
+    b = branch
+    coma = commit --amend
+    ci = commit
+    cl = clone
+    co = checkout
+    cp = cherry-pick
+    dc = diff --cached
+    diff = diff --word-diff
+    diffe = diff HEAD~1
+    grep = grep -Ii
+    f = "!git ls-files | grep -i"
+    ls = ls-files
+    root = rev-parse --show-toplevel
+    st = status
+    search="git rev-list --all | xargs git grep -F"
+    # [Ref](https://stackoverflow.com/questions/17558221/how-can-i-view-the-output-of-git-show-in-a-diff-viewer-like-meld-kdiff3-etc)
+    showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+    tt = status
+    what = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+    who = shortlog -s --
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+
+    tehe = log --graph --oneline --decorate --date=relative --name-status
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit
+    tree-f = log --graph --abbrev-commit --decorate --date=relative --all
+    tree = log --graph --oneline --decorate --date=relative --all
+    files = "!f() { if [ $# -eq 0 ]; then git show --name-status --oneline HEAD; else git show --name-status --oneline $1..HEAD; fi; }; f"
+[http]
+    postBuffer = 524288000
+[diff]
+    tool = bc3
+[core]
+    editor = vim
+	excludesfile = /Users/zealot/.gitignore_global
+    # pager = sed 's/\\t/    /g' | less
+[color]
+    ui = true
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[help]
+    autocorrect = 1
+[status]
+    submodule = 1
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[magithub]
+	online = false
+[magithub "status"]
+	includeStatusHeader = false
+	includePullRequestsSection = false
+	includeIssuesSection = false
