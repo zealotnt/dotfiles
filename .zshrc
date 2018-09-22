@@ -124,39 +124,18 @@ ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 # Message color.
 ZSH_COMMAND_TIME_COLOR="cyan"
 
-source ~/.bashrc-func
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-export BUNDLE_GEM__FURY__IO=1wfZPE-kQpWqwWvXXKF0NksQS2G7CAytIw
-export NPM_TOKEN=f3fc9589-7e41-4a22-9e22-b414f1f99683
-export EH_NPM_TOKEN=d59aa4c3-28c9-4af0-b827-cb11a453855e
-
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# lazy loading nvm
-alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> My stuff here >>>>>>>>>>>>>>>>>>>>>>>>>>>
+# =========== prepare for the env
+# Change PROMPT a bit
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info)
 %{$fg[cyan]%}$%{$reset_color%} '
 
-# fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-
 export EDITOR="subl"
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-export STAGING_CLUSTER=solomon.ehrocks.com
-export PRODUCTION_CLUSTER=david.ehrocks.com
-
 export GOPATH=~/go
 export GOBIN=~/go/bin
-
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 
+# =========== load real stuff here
 # complete -C aws_completer aws
 
 # disable share command history
@@ -164,6 +143,9 @@ export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 unsetopt inc_append_history
 unsetopt share_history
 
+autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.bashrc-func
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # zprof

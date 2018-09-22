@@ -9,8 +9,10 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
 	platform='freebsd'
 fi
 
+export NVM_DIR="$HOME/.nvm"
 
 alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'
+alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 alias ll='exa -alh'
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
