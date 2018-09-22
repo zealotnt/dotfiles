@@ -1,0 +1,470 @@
+#!/bin/bash
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> Setting things up >>>>>>>>>>>>>>>>>>>>>>>>>>>
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+	platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+	platform='freebsd'
+fi
+
+
+alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'
+alias ll='exa -alh'
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
+if [[ $platform == 'linux' ]]; then
+	# Overwrite the tree command, make it cooperate with less
+	tree() {
+		/usr/bin/tree -C $@ | less
+	}
+
+	# Overwrite the subl method, support the `mtsearchStr` utility
+	subl() {
+		/usr/bin/subl $(sed 's/^\(.*\):\([0-9]*\):.*/\1:\2/' <<< $1)
+	}
+fi
+
+stw() {
+	args=$@
+	if [[ $args* == which* ]]; then
+		echo "1"
+		subl $($@)
+	else
+		echo "2"
+		subl $(which $@)
+	fi
+}
+# Overide the rsync method, automatically create folder, archive mode, verbose, use relative path name, show progress
+# [Ref1](http://stackoverflow.com/questions/9242135/how-to-force-rsync-to-create-destination-folder)
+# [Ref2](http://stackoverflow.com/questions/12314451/accessing-bash-command-line-args-vs)
+rsync() {
+	/usr/bin/rsync -avRP $*
+}
+
+# Overwrite pwd method, make it always specify the -P flag
+pwd() {
+	/bin/pwd -P
+}
+
+# Overide nautilus app, make it open current directory if no argument is passed
+nautilus() {
+	if [[ $# == 0 ]]; then
+		echo "No argument"
+		/usr/bin/nautilus .
+	else
+		# if has any argument, call nautilus as normal
+		/usr/bin/nautilus $@
+	fi
+}
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> End Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+alias copy="tr -d '\n' | pbcopy"
+mtdu() {
+	# https://unix.stackexchange.com/questions/4681/how-do-you-sort-du-output-by-size
+	du -h -d 1 | sort -h
+}
+
+mtless() {
+	less -M -N -R $@
+}
+
+cdpwd() {
+	cd $(pwd)
+}
+
+cdreal() {
+	cdpwd
+}
+
+mtconfirm () {
+	# call with a prompt string or use a default
+	read -r -p "${1:-Are you sure? [y/N]} " response
+	case $response in
+	# Any `yes` or `y`
+	[yY][eE][sS]|[yY])
+		true
+		;;
+	*)  false
+		;;
+	esac
+}
+
+mtPATHAppendPath() {
+	if [[ $# != 1 ]]; then
+		echo "Usage:"
+		echo " $FUNCNAME <directory path to append to PATH>"
+		return
+	fi
+
+	appendPath=$1
+	if [[ ! -d $appendPath ]]; then
+		echo "$appendPath not found !!!"
+		return
+	fi
+
+	export PATH=$PATH:$appendPath
+	echo -e "**************CURRENT_PATH*****************"
+	echo -e "$PATH"
+	echo -e "*******************************************"
+}
+
+mtPATHRemovePath() {
+	if [[ $# != 1 ]]; then
+		echo "Usage:"
+		echo " $FUNCNAME <directory to remove from PATH>"
+		return
+	fi
+
+	removed_path=:$1
+	export PATH=${PATH/$removed_path/}
+	echo -e "**************CURRENT_PATH*****************"
+	echo -e "$PATH"
+	echo -e "*******************************************"
+}
+
+mtSetTitle(){
+	if [[ -z "$ORIG" ]]; then
+		ORIG=$PS1
+	fi
+	TITLE="\[\e]2;$*\a\]"
+	PS1=${ORIG}${TITLE}
+}
+
+mtstatoctal() {
+	if [ $# == 1 ]; then
+		stat -c "%a %n" $1
+	else
+		stat -c "%a %n" *
+	fi
+}
+
+mtscpFunc() {
+	scp -rp $1 root@192.168.100.15:$2
+}
+
+mtfindUSB() {
+	ls /dev/ | grep -E '(ttyUSB|ttyACM)'
+}
+
+mteditBash() {
+	res=$(egrep "User's Constant" ~/.bashrc -n)
+	# Only get the first result
+	subl ~/.bashrc:$(sed 's/^\([0-9]*\):.*/\1/' <<< $res | head -n 1)
+	subl ~/.bashrc-func
+	subl ~/.zshrc
+}
+
+mtapplyBash() {
+	source ~/.bashrc
+	source ~/.zshrc
+}
+
+mtsaveBash() {
+	echo "Copy ~/.bashrc to Dropbox folder: "
+	colordiff $DROPBOX_BASHRC_FILE_PATH ~/.bashrc
+	if [[ $? == 0 ]]; then
+		echo "No diff, no need to save"
+		return 1
+	fi
+	echo "This script going to overwrite the Dropbox bashrc file"
+	mtconfirm && (cp ~/.bashrc $DROPBOX_BASHRC_FILE_PATH; echo "File updated") || echo "Abort update"
+}
+
+mtunmount_all() {
+	sudo umount /dev/sdc*
+	sudo umount /dev/mmcblk*
+}
+
+mtwanip() {
+if [ $# == 1 ]; then
+	dig +short $1
+else
+	dig +short myip.opendns.com @resolver1.opendns.com
+fi
+}
+
+mtsearchHistory() {
+	history | grep "$1"
+}
+
+mtsearchStr() {
+	usage() {
+		echo "Usage: "
+		echo "  $FUNCNAME <pattern>                 -> search pattern in all files"
+		echo "  $FUNCNAME <pattern> <file_types>    -> search pattern in all files"
+	}
+
+	case $# in
+	1)
+		echo -e "${KYEL}${KBOLD}"
+		echo -e "***********************************************"
+		echo -e "Search pattern \"$1\" in all file_types"
+		echo -e "***********************************************"
+		echo -e "${KRESET}"
+		egrep "$1" -R ./* -n
+		;;
+	2)
+		echo -e "${KYEL}${KBOLD}"
+		echo -e "***********************************************"
+		echo -e "Search pattern \"$1\" in \"$2\" file_types"
+		echo -e "***********************************************"
+		echo -e "${KRESET}"
+		grep -E $1 ./ -r --include \*.$2
+		;;
+	*)  usage
+		;;
+	esac
+}
+
+mtsearchFile() {
+	usage() {
+		echo "Usage: "
+		echo "  $FUNCNAME <pattern>                 -> search file with file's name pattern recursively"
+	}
+
+	case $# in
+	1)
+		echo -e "${KYEL}${KBOLD}"
+		echo -e "***********************************************"
+		echo -e "Search file's name pattern \"$1\" recursively"
+		echo -e "***********************************************"
+		echo -e "${KRESET}"
+		find . -name $1
+		;;
+	*)  usage
+		;;
+	esac
+}
+
+mtrename() {
+	usage() {
+		echo "Usage: "
+		echo "  $FUNCNAME <file-name>                 -> replace space in <file-name> with _"
+	}
+
+	case $# in
+	1)
+		echo -e "${KYEL}${KBOLD}"
+		echo -e "***********************************************"
+		echo -e "Replace filename which contain \"$1\" with _"
+		echo -e "***********************************************"
+		echo -e "${KRESET}"
+		rename "s/\s+/_/g" $1
+		;;
+	*)  usage
+		;;
+	esac
+}
+
+mtopenConsole() {
+	usage() {
+		echo "Usage: "
+		echo "  $FUNCNAME <com-port>                 -> open <com-port> with 115200 baudrate"
+	}
+
+	case $# in
+	1)
+		picocom -b 115200 $1
+		;;
+	*)  usage
+		;;
+	esac
+
+}
+###############################################################################
+### WebDev Scripts
+###############################################################################
+#############################
+# Monolithic developments
+#############################
+mtwebDockerStart() {
+	docker-machine start default
+	docker-machine env
+	eval $(docker-machine env)
+}
+
+mtwebDockerRmAllCtn() {
+	usage() {
+		echo "Usage: "
+		echo "  $FUNCNAME [-e]"
+		echo "      -e: Remove all exited container"
+	}
+
+	case $# in
+	0)  echo "Stoping all container"
+		docker stop $(docker ps -a -q)
+		echo "Remove all suspended container"
+		docker rm $(docker ps -a -q)
+		;;
+	1)  case $1 in
+		-e) echo "Remove all exited container"
+			docker rm $(docker ps -aqf status=exited)
+			;;
+		*)  usage
+			;;
+		esac
+		;;
+	*)  usage
+		;;
+	esac
+}
+
+mtwebDockerStopAllCtn() {
+	echo "Stoping all container"
+	docker stop $(docker ps -a -q)
+}
+
+#############################
+# Microservice developments
+#############################
+MICROSERVICE_PRJ_PATH=~/workspace_pif-store/piflab-api-microservice
+
+mtwebMicroCompose() {
+	cd $MICROSERVICE_PRJ_PATH
+	# Start db_product
+	docker-compose up
+}
+
+mtwebDockerBash() {
+	docker exec -it $(docker ps -a -q -f "name=$1") bash
+}
+
+
+#############################
+# Golang developments
+#############################
+GOLANG_TEST_PATH=~/workspace_pif-store/golang
+
+mtgolangDoc() {
+	godoc -http=:6060
+}
+
+mtgolangStartTest() {
+	cd $GOLANG_TEST_PATH
+	export $(cat .env)
+	cd $GOLANG_TEST_PATH/src/test
+	echo "Ready for golang tweaking"
+}
+
+alias webLAMP="/opt/lampp/manager-linux-x64.run"
+alias prettyjson='python -m json.tool'
+
+#############################
+# Git macro, Extend git commands
+#############################
+cdgit() {
+	cd $(git root)
+}
+
+changeGitEmail() {
+git filter-branch --env-filter '
+WRONG_EMAIL="tam.tran@employmenthero.com"
+NEW_EMAIL="tranminhtam.10192@gmail.com"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$WRONG_EMAIL" ]
+then
+	export GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$WRONG_EMAIL" ]
+then
+	export GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+}
+
+cdwork () {
+	echo "Move to $(realpath ~/cdwork) and appear as ~/cdwork"
+	cd ~/cdwork
+	cdpwd
+}
+
+lnwork () {
+	DIR=`pwd`
+
+	if [ $# -ne 1 ]; then
+		printf "Usage:\n\t $FUNCNAME <path-to-make-workdir-symlink>\n"
+		return
+	fi
+
+	args=$1
+	# Check if the user wants to set the alsolute path
+	if [[ $args == /* ]]; then
+		path_set=$args
+	# Else it is relative path
+	else
+		# Remove dot if any
+		args="${args//.}"
+
+		# if user input something like `lnwork ./somedir`, it is still capable
+		if [[ $args == /* ]]; then
+			path_set=$DIR$args
+		else
+			path_set=$DIR/$args
+		fi
+	fi
+
+	echo "Set ~/cdwork to $path_set"
+	rm ~/cdwork
+	ln -s $path_set ~/cdwork
+}
+
+##################
+### Python utility path
+mtPATHAppendPath ~/workspace_python/utility/
+mtUsePython2() {
+	sudo rm /usr/bin/python
+	sudo ln -s /usr/bin/python2.7 /usr/bin/python
+}
+
+mtUsePython3() {
+	sudo rm /usr/bin/python
+	sudo ln -s /usr/bin/python3.5 /usr/bin/python
+}
+
+mtPythonSitePackages() {
+	usage() {
+		printf "Usage:\t $1 <site-packages path print option>\n"
+		printf "\t\t1: Global site-packages (\"dist-packages\") directories are listed in sys.path\n"
+		printf "\t\t2: a more concise list run getsitepackages from the site module in Python code\n"
+		printf "\t\t3: The per user site-packages directory (PEP 370) is where Python installs your local packages\n"
+		printf "\t\tFor more info, [ref](https://stackoverflow.com/questions/122327/how-do-i-find-the-location-of-my-python-site-packages-directory)\n"
+		return
+	}
+	case $1 in
+	1)	python -m site
+		;;
+	2)	python -c "import site; print(site.getsitepackages())"
+		;;
+	3)	python -m site --user-site
+		;;
+	*)  usage $FUNCNAME
+		;;
+	esac
+}
+
+benchZsh() {
+	time zsh -i -c exit
+}
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> Employment Hero scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
+herostag() {
+	hero $@ --context $STAGING_CLUSTER
+}
+
+heroprod() {
+	hero $@ --context $PRODUCTION_CLUSTER
+}
+
+##################
+### K8s scripts
+mtkubectlRestartPod() {
+	if [ $# -ne 1 ]; then
+		printf "Usage:\t $1 <pod-id>\n"
+		return
+	fi
+
+	kubectl get pod $1 -o yaml |\
+	kubectl replace --grace-period=1 --force  -f -
+}
