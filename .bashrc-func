@@ -11,7 +11,6 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 
-alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 alias ll='exa -alh'
 
@@ -61,8 +60,13 @@ nautilus() {
 	fi
 }
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> End Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+if [[ $platform == 'linux' ]]; then
+	alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'
+	alias copy=scl
+else
+	alias copy="tr -d '\n' | pbcopy"
+fi
 
-alias copy="tr -d '\n' | pbcopy"
 mtdu() {
 	# https://unix.stackexchange.com/questions/4681/how-do-you-sort-du-output-by-size
 	du -h -d 1 | sort -h
