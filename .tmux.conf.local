@@ -251,8 +251,15 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# don't allow tmux to change name of pane
+set-option -g allow-rename off
+
 # increase history size
 set -g history-limit 100000
+
+# remove the waiting time of after C-hjkl
+# https://superuser.com/questions/325110/how-to-turn-down-the-timeout-between-prefix-key-and-command-key-in-tmux
+set-option repeat-time 0
 
 # start with mouse mode enabled
 set -g mouse "on"
@@ -298,5 +305,8 @@ bind -n C-5 select-window -t :=5
 bind -n S-Left  previous-window
 bind -n S-Right next-window
 
+# overrides the window navigation in original gpakosz's tmux
+unbind C-h
+unbind C-l
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

@@ -130,24 +130,28 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 
-export EDITOR="subl"
+export EDITOR="nvim"
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+DISABLE_AUTO_TITLE=true
 
 # =========== load real stuff here
 # complete -C aws_completer aws
 
 # disable share command history
 # https://superuser.com/questions/1245273/iterm2-version-3-individual-history-per-tab
-unsetopt inc_append_history
-unsetopt share_history
+# unsetopt inc_append_history
+# unsetopt share_history
 
 autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.bashrc-func
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(hub alias -s)"
+alias vim="nvim"
+alias vi="nvim"
 
 # zprof

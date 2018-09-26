@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=( .bashrc .bashrc-func .gitconfig .tmux.conf.local .zshrc)
+FILES=( .bashrc .bashrc-func .gitconfig .tmux.conf.local .zshrc .pryrc)
 for file in  "${FILES[@]}"
 do
 	echo "Backing up $file"
