@@ -127,7 +127,7 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> My stuff here >>>>>>>>>>>>>>>>>>>>>>>>>>>
 # =========== prepare for the env
 # Change PROMPT a bit
-PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info)
+PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 
 export EDITOR="subl"
