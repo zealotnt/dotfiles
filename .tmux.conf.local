@@ -292,7 +292,6 @@ unbind C-z
 bind -n C-k send-keys C-l\; run-shell "sleep 0.2"\; clear-history
 bind -n C-z resize-pane -Z
 bind -n C-q copy-mode
-bind -n C-] command-prompt -p "(search down)" "send -X search-forward \"%%%\""
 
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
