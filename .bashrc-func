@@ -466,11 +466,13 @@ heroprod() {
 ##################
 ### K8s scripts
 mtkubectlRestartPod() {
-	if [ $# -ne 1 ]; then
-		printf "Usage:\t $1 <pod-id>\n"
+	if ! { [ $# -eq 1 ] || [ $# -eq 3 ] }; then
+		# https://unix.stackexchange.com/questions/247187/bash-if-not-multiple-conditions-without-subshell
+		printf "Usage:\t $1 <pod-id> (for default namespace, or)\n"
+		printf "      \t $1 <pod-id> -n <namespace>\n"
 		return
 	fi
 
-	kubectl get pod $1 -o yaml |\
+	kubectl get pod $@ -o yaml |\
 	kubectl replace --grace-period=1 --force  -f -
 }

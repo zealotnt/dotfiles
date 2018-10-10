@@ -10,6 +10,9 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-open'
 
 # -- navigation ----------------------------------------------------------------
 
@@ -48,20 +51,20 @@ tmux_conf_new_session_prompt=false
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
 #  - false (default)
-tmux_conf_theme_24b_colour=false
+tmux_conf_theme_24b_colour=true
 
 # window style
-tmux_conf_theme_window_fg='default'
-tmux_conf_theme_window_bg='default'
+tmux_conf_theme_window_fg='colour247'
+tmux_conf_theme_window_bg='colour236'
 
 # highlight focused pane (tmux >= 2.1), possible values are:
 #   - true
 #   - false (default)
-tmux_conf_theme_highlight_focused_pane=false
+tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
-tmux_conf_theme_focused_pane_fg='default'
-tmux_conf_theme_focused_pane_bg='#0087d7'               # light blue
+tmux_conf_theme_focused_pane_fg='colour250'
+tmux_conf_theme_focused_pane_bg='black'
 
 # pane border style, possible values are:
 #   - thin (default)
@@ -164,7 +167,9 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#(/bin/bash ~/.tmux/kube.tmux 250 red cyan) #{prefix}#{pairing} , %R , %d %b | #{username}#{root} | #{hostname} '
+# refs
+# https://stackoverflow.com/questions/38260190/how-to-make-tmux-display-time-in-a-different-time-zone
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} , #(/bin/bash ~/.tmux/kube.tmux 250 red cyan) , %d %b #(TZ="Asia/Bangkok" date +%%H:%%M:%%S ) +07 , #(TZ="UTC" date +%%H:%%M:%%S ) UTC , | #{username}#{root} | #{hostname} '
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -251,7 +256,8 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
-# don't allow tmux to change name of pane
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Overwrite the .tmux.conf settings
 set-option -g allow-rename off
 
 # increase history size
@@ -259,7 +265,7 @@ set -g history-limit 100000
 
 # remove the waiting time of after C-hjkl
 # https://superuser.com/questions/325110/how-to-turn-down-the-timeout-between-prefix-key-and-command-key-in-tmux
-set-option repeat-time 0
+# set-option -g repeat-time 0
 
 # start with mouse mode enabled
 set -g mouse "on"
@@ -289,10 +295,20 @@ set -g visual-activity on
 
 unbind C-z
 
-bind -n C-k send-keys C-l\; run-shell "sleep 0.2"\; clear-history
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Overwrite the .tmux.conf key binding
+bind -r C-h select-pane -L # move left
+bind -r C-l select-pane -R # move right
+bind -r C-j select-pane -D # move down
+bind -r C-k select-pane -U # move up
+bind -n C-l send-keys C-l # don't clear historyp
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# My own stuff
+# clear both screen and history
+bind -r C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history
 bind -n C-z resize-pane -Z
 bind -n C-q copy-mode
-
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
 bind -n C-1 select-window -t :=1
@@ -300,12 +316,21 @@ bind -n C-2 select-window -t :=2
 bind -n C-3 select-window -t :=3
 bind -n C-4 select-window -t :=4
 bind -n C-5 select-window -t :=5
-
+bind -n C-6 select-window -t :=6
+bind -n C-7 select-window -t :=7
+bind -n C-8 select-window -t :=8
+# Shift+left/right to move between windows
 bind -n S-Left  previous-window
 bind -n S-Right next-window
 
-# overrides the window navigation in original gpakosz's tmux
-unbind C-h
-unbind C-l
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# tmux-resurrect:
+# enable: restoring pane contents
+# https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_pane_contents.md
+set -g @resurrect-capture-pane-contents 'on'
+# changing key-binding
+set -g @resurrect-save 'S'
+set -g @resurrect-restore 'R'
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
