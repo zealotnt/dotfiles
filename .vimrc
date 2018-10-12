@@ -172,6 +172,13 @@ let g:gitgutter_sign_modified_removed = '·'
 "========================================================
 " CONFIG MISC
 "========================================================
+" Edit vimr configuration file
+nnoremap confe :e $MYVIMRC<CR>
+nnoremap <leader>ve :e $MYVIMRC<CR>
+" Reload vims configuration file
+nnoremap confr :source $MYVIMRC<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR>
+
 " Auto pair
 let g:AutoPairsMultilineClose = 0
 let g:indentLine_enabled = 0
