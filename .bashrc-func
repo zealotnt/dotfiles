@@ -420,7 +420,6 @@ lnwork () {
 
 ##################
 ### Python utility path
-mtPATHAppendPath ~/workspace_python/utility/
 mtUsePython2() {
 	sudo rm /usr/bin/python
 	sudo ln -s /usr/bin/python2.7 /usr/bin/python

@@ -283,10 +283,9 @@ set -g mode-keys vi
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
 # unbind C-a
-# unbind C-b
-# bind C-b send-keys -X cursor-left
-# set -g prefix C-q
-# bind C-a send-prefix
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
 
 # move status line to top
 #set -g status-position top
@@ -313,8 +312,8 @@ bind l select-pane -R  # move right
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # My own stuff
 # clear both screen and history
-bind C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history
-bind -n C-z resize-pane -Z
+bind C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history\; run-shell "tmux display \"History cleared\""
+bind -n M-f resize-pane -Z
 bind -n C-q copy-mode
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux

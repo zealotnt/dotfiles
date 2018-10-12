@@ -79,6 +79,7 @@ plugins=(
   command-time
   sublime
   zsh-completions
+  zsh-autosuggestions
   helm
   kubectl
 )
@@ -153,5 +154,16 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(hub alias -s)"
 alias vim="nvim"
 alias vi="nvim"
+
+# https://nuclearsquid.com/writings/edit-long-commands/
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+# Emacs style
+# zle -N edit-command-line
+# bindkey '^xe' edit-command-line
+# bindkey '^x^e' edit-command-line
+# Vi style:
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # zprof
