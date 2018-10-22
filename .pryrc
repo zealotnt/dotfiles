@@ -1,14 +1,14 @@
 #!/bin/ruby
 # https://gist.github.com/justin808/1fe1dfbecc00a18e7f2a
 # Using these pry gems
-# gem "pry"
-# gem "pry-rails"
-# gem "pry-byebug"
-# gem "pry-stack_explorer"
-# gem "pry-doc"
-# gem "pry-state"
-# gem "pry-toys"
-# gem "pry-rescue"
+# gem install "pry"
+# gem install "pry-rails"
+# gem install "pry-byebug"
+# gem install "pry-stack_explorer"
+# gem install "pry-doc"
+# gem install "pry-state"
+# gem install "pry-toys"
+# gem install "pry-rescue"
 
 # Fix for Zeus: see https://github.com/burke/zeus/issues/466#issuecomment-60242431
 if defined?(::Rails) && Rails.env
@@ -82,7 +82,7 @@ Pry.config.commands.alias_command "hr", "hist -r", desc: "hist -r <command numbe
 
 if defined?(PryByebug)
    def pry_debug
-     Pry.commands.alias_command 't', 'show-stack'
+     # Pry.commands.alias_command 't', 'show-stack'
      Pry.commands.alias_command 's', 'step'
      Pry.commands.alias_command 'n', 'next'
      Pry.commands.alias_command 'c', 'continue'
@@ -110,7 +110,7 @@ if defined?(PryByebug)
    # Longer shortcuts
    Pry.commands.alias_command 'ff', 'frame'
 
-   Pry.commands.alias_command 'sss', 'show-stack'
+   # Pry.commands.alias_command 'sss', 'show-stack'
    Pry.commands.alias_command 'ss', 'step'
    Pry.commands.alias_command 'nn', 'next'
    Pry.commands.alias_command 'cc', 'continue'

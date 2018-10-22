@@ -176,4 +176,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
+setopt ignoreeof
+
 # zprof
