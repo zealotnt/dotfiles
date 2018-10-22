@@ -1,7 +1,8 @@
 #!/bin/bash
 
-FILES=( .bashrc .bashrc-func .gitconfig .tmux.conf.local .zshrc .pryrc)
-for file in  "${FILES[@]}"
+# Make sure $MYDOTFILES is exported at .zshrc
+
+for file in  "${MYDOTFILES[@]}"
 do
 	echo "Backing up $file"
 	mv ~/$file ~/$file.bak

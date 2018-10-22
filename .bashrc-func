@@ -158,10 +158,8 @@ mteditBash() {
 	# res=$(egrep "User's Constant" ~/.bashrc -n)
 	# Only get the first result
 	# subl ~/.bashrc:$(sed 's/^\([0-9]*\):.*/\1/' <<< $res | head -n 1)
-	subl -n ~/.bashrc ~/.bashrc-func \
-		~/.zshrc ~/.zshenv \
-		~/.tmux.conf ~/.tmux.conf.local \
-		~/dotfiles/.vimrc
+	# subl ${FILES[@]}
+	subl -n ~/dotfiles
 }
 
 mtapplyBash() {

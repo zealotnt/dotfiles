@@ -82,6 +82,7 @@ plugins=(
   zsh-autosuggestions
   helm
   kubectl
+  alias-tips
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -138,6 +139,15 @@ export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 DISABLE_AUTO_TITLE=true
+MYDOTFILES=(
+  .bashrc
+  .bashrc-func
+  .gitconfig
+  .tmux.conf.local
+  .zshrc
+  .pryrc
+  .gitignore_global
+)
 
 # =========== load real stuff here
 # complete -C aws_completer aws

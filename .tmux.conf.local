@@ -313,8 +313,11 @@ bind l select-pane -R  # move right
 # My own stuff
 # clear both screen and history
 bind C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history\; run-shell "tmux display \"History cleared\""
-bind -n M-f resize-pane -Z
+bind C-m resize-pane -Z
+bind m resize-pane -Z
 bind -n C-q copy-mode
+bind q copy-mode
+
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
 bind -n C-1 select-window -t :=1

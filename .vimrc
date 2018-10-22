@@ -172,6 +172,10 @@ let g:gitgutter_sign_modified_removed = '·'
 "========================================================
 " CONFIG MISC
 "========================================================
+" Add more tab navigation hotkey
+nnoremap <M-h> :tabprevious<CR>
+nnoremap <M-l> :tabnext<CR>
+
 " Edit vimr configuration file
 nnoremap confe :e $MYVIMRC<CR>
 nnoremap <leader>ve :e $MYVIMRC<CR>
@@ -264,6 +268,7 @@ map <silent> <leader>ls <ESC>:NERDTreeToggle<CR>
 map <silent> <leader>rev :NERDTreeFind<CR>
 let NERDTreeMapOpenSplit = 'x'
 let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeShowHidden=1
 "========================================================
 " MAPPING RSPEC
 "========================================================
