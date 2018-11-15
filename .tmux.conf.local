@@ -318,6 +318,9 @@ bind m resize-pane -Z
 bind -n C-q copy-mode
 bind q copy-mode
 
+bind-key -T copy-mode-vi d send-keys -X halfpage-down
+bind-key -T copy-mode-vi u send-keys -X halfpage-up
+
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
 bind -n C-1 select-window -t :=1

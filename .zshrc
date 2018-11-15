@@ -160,6 +160,7 @@ MYDOTFILES=(
 autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.bashrc-func
+source ~/dotfiles/.custom_completions.sh
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(hub alias -s)"
 alias vim="nvim"

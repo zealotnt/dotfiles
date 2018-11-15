@@ -46,8 +46,11 @@ rsync() {
 
 # Overwrite pwd method, make it always specify the -P flag
 pwd() {
+	# -P      Display the physical current working directory (all symbolic links resolved).
 	/bin/pwd -P
 }
+
+alias pwdcp="pwd | copy"
 
 # Overide nautilus app, make it open current directory if no argument is passed
 nautilus() {
@@ -159,7 +162,7 @@ mteditBash() {
 	# Only get the first result
 	# subl ~/.bashrc:$(sed 's/^\([0-9]*\):.*/\1/' <<< $res | head -n 1)
 	# subl ${FILES[@]}
-	subl -n ~/dotfiles
+	subl -n ~/dotfiles ~/.tmux.conf
 }
 
 mtapplyBash() {
