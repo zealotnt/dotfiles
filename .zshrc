@@ -132,9 +132,11 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 
+export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 export EDITOR="nvim"
 export GOPATH=~/go
 export GOBIN=~/go/bin
+export PATH=$PATH:/usr/local/bin # fix alacrity PATH issue
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
