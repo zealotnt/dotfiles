@@ -258,7 +258,8 @@ map <c-p> <ESC>:Files<CR>
 map <c-o> <ESC>:Tags<CR>
 map <c-h> <ESC>:History<CR>
 map <silent> <leader>/ <ESC>:BLines<CR>
-map <leader>ag <ESC>:Ag<space>
+" map <leader>ag <ESC>:Ag<space>
+map <leader>ag <ESC>:Ag<CR>
 map <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), fzf#vim#layout(expand("<bang>0")))<cr>
 map <silent> <leader>mm <ESC>:Commands<CR>
 "========================================================
@@ -295,7 +296,7 @@ nmap ga <Plug>(EasyAlign)
 "========================================================
 map <silent> gb :Gblame<CR>
 map <silent> ghub :Gbrowse<CR>
-map <silent> gt :call TimeLapse() <cr>
+" map <silent> gt :call TimeLapse() <cr>
 "========================================================
 " MAPPING MISC
 "========================================================
