@@ -132,6 +132,14 @@ endfunction "}}}
 "========================================================
 " CONFIG MISC
 "========================================================
+" Add more keys for cursor movement
+nnoremap L $
+nnoremap H 0
+vnoremap L $
+vnoremap H 0
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
+
 " Add more tab navigation hotkey
 nnoremap <M-h> :tabprevious<CR>
 nnoremap <M-l> :tabnext<CR>

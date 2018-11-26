@@ -162,7 +162,7 @@ mteditBash() {
 	# Only get the first result
 	# subl ~/.bashrc:$(sed 's/^\([0-9]*\):.*/\1/' <<< $res | head -n 1)
 	# subl ${FILES[@]}
-	subl -n ~/dotfiles ~/.tmux.conf
+	$EDITOR -n ~/dotfiles ~/.tmux.conf
 }
 
 mtapplyBash() {
