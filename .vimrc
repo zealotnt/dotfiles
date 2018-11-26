@@ -1,50 +1,43 @@
 "========================================================
 " INSTALL PLUGINS
-"
 "========================================================
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 filetype off
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-rails'
 Plug 'jacoborus/tender.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'elixir-lang/vim-elixir'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'matze/vim-move'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-clang'
 Plug 'w0rp/ale'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'carlitux/deoplete-ternjs'
 Plug 'fatih/vim-go'
+" Plug 'mrkn/vim-cruby'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'brooth/far.vim'
+Plug 'kristijanhusak/vim-carbon-now-sh'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'majutsushi/tagbar'
 call plug#end()
+"========================================================
+" EDITOR CONFIGS
+"========================================================
 syntax on
 filetype on
 filetype indent on
@@ -55,13 +48,11 @@ set ruler
 set linespace=1
 set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h13
 let g:auto_ctags = 1
-set wrap linebreak nolist
 set breakindent
 set nofoldenable
 set tags=./tags;,tags;
 set ruler
 set number
-set wrap linebreak nolist
 set expandtab
 set autoindent
 set clipboard=unnamed
@@ -73,8 +64,6 @@ set laststatus=2
 set encoding=utf8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
 set background=dark
-set textwidth=80
-set relativenumber
 set bs=2 tabstop=2 shiftwidth=2 softtabstop=2
 colorscheme tender
 if (has("termguicolors"))
@@ -87,22 +76,6 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 let mapleader = ","
 "========================================================
-" CONFIG AIRLINE
-"========================================================
-" let g:Powerline_symbols = 'fancy'
-" let g:airline_powerline_fonts = 1
-let g:airline_symbols = {}
-if !exists('g:airline_symbols')
-endif
-let g:airline_symbols.space = "\ua0"
-let s:spc = g:airline_symbols.space
-let g:airline_theme = 'tender'
-function! AirlineInit()
-  let g:airline_section_a = airline#section#create(['%{toupper(mode())}'])
-  let g:airline_section_b = airline#section#create([''])
-  let g:airline_section_z = airline#section#create(['%p%%'])
-endfunction
-"========================================================
 " CONFIG ALE
 "========================================================
 let g:ale_fixers = {
@@ -112,7 +85,6 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 let g:ale_lint_on_text_changed="never"
-let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -121,6 +93,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 map <silent> <leader>ln :ALENext<CR>
 map <silent> <leader>lp :ALEPrevious<CR>
+highlight SignColumn guibg=255
 "========================================================
 " CONFIG DEOPLETE
 "========================================================
@@ -157,19 +130,6 @@ let col = col('.') - 1
 return ! col || getline('.')[col - 1] =~? '\s'
 endfunction "}}}
 "========================================================
-" CONFIG GITGUTTER
-"========================================================
-" let g:gitgutter_sign_added = '+'
-" let g:gitgutter_sign_modified = '*'
-" let g:gitgutter_sign_removed = '-'
-" let g:gitgutter_sign_removed_first_line = '-'
-" let g:gitgutter_sign_modified_removed = '_'
-let g:gitgutter_sign_added = '·'
-let g:gitgutter_sign_modified = '·'
-let g:gitgutter_sign_removed = '·'
-let g:gitgutter_sign_removed_first_line = '·'
-let g:gitgutter_sign_modified_removed = '·'
-"========================================================
 " CONFIG MISC
 "========================================================
 " Add more tab navigation hotkey
@@ -199,19 +159,15 @@ if has("autocmd")
   autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
   autocmd FileType go set tabstop=8 shiftwidth=8 softtabstop=8
   autocmd FileType xml set equalprg=xmllint\ --format\ -
-  autocmd VimEnter * call AirlineInit()
   autocmd BufWritePre * StripWhitespace
-  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-  autocmd FileType markdown set textwidth=80
-  autocmd FileType markdown set formatoptions-=t
-  autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 endif
-let g:webdevicons_enable_ctrlp = 1
 let g:move_key_modifier = 'C'
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.eex,*.html.erb"
 let g:jsx_ext_required = 0
 let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules'
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git --ignore node_modules -l -g ""'
+let g:fzf_preview_source=" --preview='bat {}'"
+
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
@@ -222,46 +178,12 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 "========================================================
-" FUNCTIONS
-"========================================================
-" Update ruby ctags
-function! URT()
-  return system('ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)')
-endfunction
-function! UET()
-  return system('ctags -R --languages=elixir --exclude=.git --exclude=log .')
-endfunction
-" Toogle indents
-function! IndentGuideToggle()
-  let g:indent_guide_displayed = get(g:, 'indent_guide_displayed', '0')
-  if g:indent_guide_displayed=='0'
-    let g:indent_guide_displayed = '1'
-    execute 'IndentLinesEnable'
-    set colorcolumn=+1
-  else
-    let g:indent_guide_displayed = '0'
-    execute 'IndentLinesDisable'
-    set colorcolumn=0
-  endif
-endfunction
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-"========================================================
 " MAPPING FZF
 "========================================================
-map <c-p> <ESC>:Files<CR>
-map <c-o> <ESC>:Tags<CR>
-map <c-h> <ESC>:History<CR>
+map <c-p> <ESC>:call fzf#vim#files('.', {'options': g:fzf_preview_source})<CR>
 map <silent> <leader>/ <ESC>:BLines<CR>
-" map <leader>ag <ESC>:Ag<space>
-map <leader>ag <ESC>:Ag<CR>
-map <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), fzf#vim#layout(expand("<bang>0")))<cr>
-map <silent> <leader>mm <ESC>:Commands<CR>
+map <leader>ag <ESC>:Ag<space>
+map <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), {'options': '--exact'})<cr>
 "========================================================
 " MAPPING NERDTree
 "========================================================
@@ -294,28 +216,59 @@ nmap ga <Plug>(EasyAlign)
 "========================================================
 " MAPPING GIT
 "========================================================
-map <silent> gb :Gblame<CR>
-map <silent> ghub :Gbrowse<CR>
-" map <silent> gt :call TimeLapse() <cr>
+"map <silent> <leader>gt :call TimeLapse() <cr>
+"========================================================
+" BOOKMARKS
+"========================================================
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_highlight_lines = 1
+
+function! BookmarkItem(line)
+  let lnr = split(v:val, ":")
+  return lnr[0].":".lnr[1].":0"."\t".join(lnr[2:], ":")
+endfunction
+function! BookmarksFZF()
+    call fzf#vim#ag('', {'source': map(bm#location_list(), 'BookmarkItem(v:val)'), 'down': '30%', 'options': '--prompt "Bookmarks  >>>  "'})
+endfunction
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nmap mm :BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mn :BookmarkNext<CR>
+    nmap mp :BookmarkPrev<CR>
+    nmap ma <ESC>:call BookmarksFZF()<CR>
+    nmap mc :BookmarkClear<CR>
+    nmap mx :BookmarkClearAll<CR>
+    nmap mkk :BookmarkMoveUp
+    nmap mjj :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mkk
+    unmap mjj
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+map ma <ESC>:call BookmarksFZF()<CR>
 "========================================================
 " MAPPING MISC
 "========================================================
-map <silent> <leader>urt <ESC>:call URT()<CR>
-map <silent> <leader>uet <ESC>:call UET()<CR>
 nnoremap <silent> <CR> <ESC>:noh<CR>
-map <silent> <leader>i <ESC>:call IndentGuideToggle()<CR>
 map <silent> <leader>' cs'"
 map <silent> <leader>" cs"'
-map <silent> <leader><leader> <C-^><CR>
 map <silent> <leader>u :UndotreeToggle<CR>
-map <silent> <space>h <C-W><C-H>
-map <silent> <space>j <C-W><C-J>
-map <silent> <space>k <C-W><C-K>
-map <silent> <space>l <C-W><C-L>
+map <silent> <C-h> <ESC>:TmuxNavigateLeft<CR>
+map <silent> <C-l> <ESC>:TmuxNavigateRight<CR>
+map <silent> <C-k> <ESC>:TmuxNavigateUp<CR>
+map <silent> <C-j> <ESC>:TmuxNavigateDown<CR>
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 map <silent> <leader>path :let @+=@%<CR>
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 noremap <silent> <expr> ^ (v:count == 0 ? 'g^' : '^')
@@ -324,5 +277,6 @@ if has("nvim")
   tnoremap <c-e> <C-\><C-n>
 end
 nmap <silent> <leader>t :TagbarToggle<CR>
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/lib/clang'
+"========================================================
+" MACHINE CONFIGS
+"========================================================
