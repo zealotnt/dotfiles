@@ -50,8 +50,6 @@ pwd() {
 	/bin/pwd -P
 }
 
-alias pwdcp="pwd | copy"
-
 # Overide nautilus app, make it open current directory if no argument is passed
 nautilus() {
 	if [[ $# == 0 ]]; then
@@ -85,6 +83,11 @@ cdpwd() {
 
 cdreal() {
 	cdpwd
+}
+
+alias pwdcp="pwd | copy"
+realpathcp() {
+	realpath $@ | copy
 }
 
 mtconfirm () {
@@ -478,3 +481,13 @@ mtkubectlRestartPod() {
 	kubectl get pod $@ -o yaml |\
 	kubectl replace --grace-period=1 --force  -f -
 }
+
+stripK8sIp() {
+	awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
+}
+
+mtStripIp() {
+	echo $@ | stripK8sIp
+}
+
+alias kgnop="kgno | stripK8sIp"

@@ -83,6 +83,7 @@ plugins=(
   helm
   kubectl
   alias-tips
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh

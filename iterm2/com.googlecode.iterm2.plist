@@ -797,11 +797,11 @@
 			<key>Normal Font</key>
 			<string>InconsolataNerdFontCompleteM-Medium 14</string>
 			<key>Option Key Sends</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>Prompt Before Closing 2</key>
 			<false/>
 			<key>Right Option Key Sends</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>Rows</key>
 			<integer>25</integer>
 			<key>Screen</key>
@@ -838,6 +838,8 @@
 			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
+			<key>Thin Strokes</key>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
@@ -862,6 +864,8 @@
 			<string>/Users/zealot</string>
 		</dict>
 	</array>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
+	<true/>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
@@ -1030,7 +1034,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.2.3</string>
+	<string>3.2.6</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
