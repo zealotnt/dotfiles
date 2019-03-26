@@ -370,6 +370,19 @@ cdgit() {
 	cd $(git root)
 }
 
+# circleci aliases
+function ci() {
+  open https://circleci.com/gh/Thinkei/workflows/$1
+}
+
+function cio() {
+  ci `basename $(pwd)`
+}
+
+function cc() {
+  ci `basename $(pwd)`/tree/"${$(git rev-parse --abbrev-ref HEAD)//\//%2F}"
+}
+
 changeGitEmail() {
 git filter-branch --env-filter '
 WRONG_EMAIL="tam.tran@employmenthero.com"
