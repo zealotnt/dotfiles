@@ -83,6 +83,18 @@ plugins=(
   kubectl
   alias-tips
   autojump
+  z
+  web-search
+  urltools
+  rails
+  rake
+  rake-fast
+  copybuffer
+  copydir
+  copyfile
+  colorize
+  colored-man-pages
+  extract
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -335,6 +335,11 @@ bind -n C-8 select-window -t :=8
 bind -n S-Left  previous-window
 bind -n S-Right next-window
 
+bind -n M-h select-pane -L  # move left
+bind -n M-j select-pane -D  # move down
+bind -n M-k select-pane -U  # move up
+bind -n M-l select-pane -R  # move right
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # tmux-resurrect:
 # enable: restoring pane contents
