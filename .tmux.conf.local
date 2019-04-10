@@ -11,7 +11,6 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-open'
 set -g @plugin 'tmux-plugins/tmux-logging'
 
@@ -339,6 +338,10 @@ bind -n M-h select-pane -L  # move left
 bind -n M-j select-pane -D  # move down
 bind -n M-k select-pane -U  # move up
 bind -n M-l select-pane -R  # move right
+
+# reverse the default tmux search function
+bind-key    -T copy-mode-vi ?                 command-prompt -p "(search down)" "send -X search-forward \"%%%\""
+bind-key    -T copy-mode-vi /                 command-prompt -p "(search up)" "send -X search-backward \"%%%\""
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # tmux-resurrect:
