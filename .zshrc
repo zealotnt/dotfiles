@@ -140,6 +140,8 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> My stuff here >>>>>>>>>>>>>>>>>>>>>>>>>>>
 # =========== prepare for the env
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
+
 # Change PROMPT a bit
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '

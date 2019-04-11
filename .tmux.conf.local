@@ -308,12 +308,18 @@ bind j select-pane -D  # move down
 bind k select-pane -U  # move up
 bind l select-pane -R  # move right
 
+bind -n M-h select-pane -L  # move left
+bind -n M-j select-pane -D  # move down
+bind -n M-k select-pane -U  # move up
+bind -n M-l select-pane -R  # move right
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # My own stuff
 # clear both screen and history
 bind C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history\; run-shell "tmux display \"History cleared\""
 bind C-m resize-pane -Z
 bind m resize-pane -Z
+bind -n M-m resize-pane -Z
 bind -n C-q copy-mode
 bind q copy-mode
 
@@ -333,11 +339,6 @@ bind -n C-8 select-window -t :=8
 # Shift+left/right to move between windows
 bind -n S-Left  previous-window
 bind -n S-Right next-window
-
-bind -n M-h select-pane -L  # move left
-bind -n M-j select-pane -D  # move down
-bind -n M-k select-pane -U  # move up
-bind -n M-l select-pane -R  # move right
 
 # reverse the default tmux search function
 bind-key    -T copy-mode-vi ?                 command-prompt -p "(search down)" "send -X search-forward \"%%%\""
