@@ -60,6 +60,8 @@ nautilus() {
 		/usr/bin/nautilus $@
 	fi
 }
+
+alias remove_whitespace="find -name \"* *\" -type f | rename 's/ /_/g'"
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> End Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 if [[ $platform == 'linux' ]]; then
 	alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'

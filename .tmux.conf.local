@@ -256,6 +256,10 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# word separators for automatic word selection
+setw -g word-separators ' @"=()[]'
+setw -ag word-separators "'"
+
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Overwrite the .tmux.conf settings
 set-option -g allow-rename off

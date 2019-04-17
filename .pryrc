@@ -1,4 +1,5 @@
 #!/bin/ruby
+# coding: utf-8
 # https://gist.github.com/justin808/1fe1dfbecc00a18e7f2a
 # Using these pry gems
 # gem install "pry"
@@ -75,10 +76,43 @@ end
 Pry.config.color = true
 Pry.config.prompt = Pry::NAV_PROMPT
 
+# http://rocket-science.ru/hacking/2018/10/27/pry-with-whistles
+# === EDITOR ===
+Pry.editor = 'vi'
+Pry.config.editor = 'vi'
+
+# === PROMPT ===
+# Pry.prompt = [ ->(obj, nest_level, _) { "✎ " }, ->(obj, nest_level, _) { "#{' ' * nest_level}  " } ]
+
+# === COLORS ===
+unless ENV['PRY_BW']
+  Pry.color = true
+  Pry.config.theme = "railscasts"
+  Pry.config.prompt = PryRails::RAILS_PROMPT if defined?(PryRails::RAILS_PROMPT)
+  Pry.config.prompt ||= Pry.prompt
+end
+
+# === HISTORY ===
+Pry.config.history.should_save = true
+Pry::Commands.command /^$/, "repeat last command" do
+  _pry_.run_command Pry.history.to_a.last
+end
+
 Pry.config.commands.alias_command "h", "hist -T 20", desc: "Last 20 commands"
 Pry.config.commands.alias_command "hg", "hist -T 20 -G", desc: "Up to 20 commands matching expression"
 Pry.config.commands.alias_command "hG", "hist -G", desc: "Commands matching expression ever used"
 Pry.config.commands.alias_command "hr", "hist -r", desc: "hist -r <command number> to run a command"
+
+# === Listing config ===
+# Better colors - by default the headings for methods are too 
+# similar to method name colors leading to a "soup"
+# These colors are optimized for use with Solarized scheme 
+# for your terminal
+Pry.config.ls.separator = "\n" # new lines between methods
+Pry.config.ls.heading_color = :magenta
+Pry.config.ls.public_method_color = :green
+Pry.config.ls.protected_method_color = :yellow
+Pry.config.ls.private_method_color = :bright_black
 
 if defined?(PryByebug)
    def pry_debug
@@ -125,12 +159,36 @@ if defined?(::Rails) && Rails.env && Rails.env.test? && ENV["PRY_LONG"].blank?
   pry_debug
 end
 
+# == PLUGINS ===
+# awesome_print gem: great syntax colorized printing
+# look at ~/.aprc for more settings for awesome_print
 begin
   require 'awesome_print'
-  # Pry.config.print = proc { |output, value| output.puts value.ai }
+  # The following line enables awesome_print for all pry output,
+  # and it also enables paging
+  Pry.config.print = proc {|output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)}
+
+  # If you want awesome_print without automatic pagination, use the line below
+  module AwesomePrint
+    Formatter.prepend(Module.new do
+      def awesome_self(object, type)
+        if type == :string && @options[:string_limit] && object.inspect.to_s.length > @options[:string_limit]
+          colorize(object.inspect.to_s[0..@options[:string_limit]] + "...", type)
+        else
+          super(object, type)
+        end
+      end
+    end)
+  end
+
+  AwesomePrint.defaults = {
+    :string_limit => 80,
+    :indent => 2,
+    :multiline => true
+  }
   AwesomePrint.pry!
 rescue LoadError => err
-  puts "no awesome_print :("
+  puts "gem install awesome_print  # <-- highly recommended"
 end
 
 my_hook = Pry::Hooks.new.add_hook(:before_session, :add_dirs_to_load_path) do
@@ -159,6 +217,7 @@ if defined?(RbReadline)
   def RbReadline.rl_reverse_search_history(sign, key)
     rl_insert_text  `cat ~/.pry_history | fzf --tac |  tr '\n' ' '`
   end
+  Readline.basic_word_break_characters = " \t\n`><=.;|&{("
 end
 
 puts "Loaded ~/.pryrc"

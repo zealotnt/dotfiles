@@ -142,6 +142,15 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 # =========== prepare for the env
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
 
+### LESS ###
+# Enable syntax-highlighting in less.
+# brew install source-highlight
+# First, add these two lines to ~/.bashrc
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
+alias less='less -m -N -g -i -J --underline-special --SILENT'
+alias more='less'
+
 # Change PROMPT a bit
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
