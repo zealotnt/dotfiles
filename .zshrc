@@ -142,6 +142,8 @@ ZSH_COMMAND_TIME_COLOR="cyan"
 # =========== prepare for the env
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
 
+export PYTHONSTARTUP=~/.startup.py
+
 ### LESS ###
 # Enable syntax-highlighting in less.
 # brew install source-highlight

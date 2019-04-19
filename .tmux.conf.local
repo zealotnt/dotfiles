@@ -300,12 +300,6 @@ set -g visual-activity off
 unbind C-z
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# Overwrite the .tmux.conf key binding
-bind -r C-h select-pane -L # move left
-bind -r C-l select-pane -R # move right
-bind -r C-j select-pane -D # move down
-bind -r C-k select-pane -U # move up
-bind -n C-l send-keys C-l # don't clear historyp
 # don't allow the switching pane repeatable
 bind h select-pane -L  # move left
 bind j select-pane -D  # move down

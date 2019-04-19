@@ -49,7 +49,11 @@ set linespace=1
 set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h13
 let g:auto_ctags = 1
 set breakindent
+set foldmethod=indent
+set foldmethod=indent
+set foldnestmax=10
 set nofoldenable
+set foldlevel=2
 set tags=./tags;,tags;
 set ruler
 set number
