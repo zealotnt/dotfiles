@@ -125,6 +125,9 @@ if defined?(PryByebug)
      Pry.commands.alias_command 'd', 'down'
      Pry.commands.alias_command 'b', 'break'
      Pry.commands.alias_command 'w', 'whereami'
+     Pry.commands.alias_command ':q', 'exit-program'
+     Pry.commands.alias_command 'quit', 'exit-program' # make it same with byebug
+     Pry.commands.alias_command 'exit', 'exit-program' # make it same with byebug
 
      puts "Debugging Shortcuts"
      puts 'w  :  whereami'
@@ -138,6 +141,8 @@ if defined?(PryByebug)
      puts 'u  :  up'
      puts 'd  :  down'
      puts 'b  :  break'
+     puts ':q :  exit-program'
+     puts 'quit :  exit-program'
      ""
    end
 
