@@ -284,8 +284,6 @@ set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
 set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
 unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
@@ -296,8 +294,6 @@ bind C-a send-prefix
 # disable activity tracking
 set -g monitor-activity off
 set -g visual-activity off
-
-unbind C-z
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # don't allow the switching pane repeatable
@@ -321,8 +317,8 @@ bind -n M-m resize-pane -Z
 bind -n C-q copy-mode
 bind q copy-mode
 
-bind-key -T copy-mode-vi d send-keys -X halfpage-down
-bind-key -T copy-mode-vi u send-keys -X halfpage-up
+bind -T copy-mode-vi d send-keys -X halfpage-down
+bind -T copy-mode-vi u send-keys -X halfpage-up
 
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
@@ -339,8 +335,8 @@ bind -n S-Left  previous-window
 bind -n S-Right next-window
 
 # reverse the default tmux search function
-bind-key    -T copy-mode-vi ?                 command-prompt -p "(search down)" "send -X search-forward \"%%%\""
-bind-key    -T copy-mode-vi /                 command-prompt -p "(search up)" "send -X search-backward \"%%%\""
+bind -T copy-mode-vi ?                 command-prompt -p "(search down)" "send -X search-forward \"%%%\""
+bind -T copy-mode-vi /                 command-prompt -p "(search up)" "send -X search-backward \"%%%\""
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # tmux-resurrect:
@@ -353,3 +349,6 @@ set -g @resurrect-restore 'R'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
+
+unbind a
+unbind C-z
