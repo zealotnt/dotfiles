@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-# zmodload zsh/zprof
+# boolean: true/false
+RUN_PROFILING=false
+if [ "$RUN_PROFILING" = true ]; then zmodload zsh/zprof; fi
 # set -x
 
 # If you come from bash you might have to change your $PATH.
@@ -132,7 +134,7 @@ source $ZSH/oh-my-zsh.sh
 # ZSH-Command-Time
 # https://github.com/popstas/zsh-command-time
 # If command execution time above min. time, plugins will not output time.
-ZSH_COMMAND_TIME_MIN_SECONDS=3
+ZSH_COMMAND_TIME_MIN_SECONDS=1
 # Message to display (set to "" for disable).
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 # Message color.
@@ -174,6 +176,8 @@ MYDOTFILES=(
   .zshrc
   .pryrc
   .gitignore_global
+  .editrc
+  .sandboxrc
 )
 
 # =========== load real stuff here
@@ -188,7 +192,8 @@ autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.bashrc-func
 source ~/dotfiles/.custom_completions.sh
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+source ~/dotfiles/sandboxd/sandboxd
+
 eval "$(hub alias -s)"
 alias vim="nvim"
 alias vi="nvim"
@@ -207,4 +212,4 @@ bindkey -M vicmd v edit-command-line
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof
 
-# zprof
+if [ "$RUN_PROFILING" = true ]; then zprof; fi

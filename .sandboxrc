@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# https://github.com/benvan/sandboxd
+
+export NVM_DIR="$HOME/.nvm"
+
+sandbox_init_nvm(){
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+sandbox_init_rbenv() {
+   if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi 
+}
+
+# create hooks for commands 'nvm', 'node' and 'nodemon'
+sandbox_hook nvm node
+sandbox_hook nvm nodemon
+
+sandbox_hook rbenv ruby
+sandbox_hook rbenv pry
+sandbox_hook rbenv irb
+sandbox_hook rbenv bundle
+sandbox_hook rbenv rake
+
