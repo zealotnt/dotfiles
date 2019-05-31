@@ -1,0 +1,4 @@
+# https://coderwall.com/p/addvog/move-cursor-to-prev-next-word-in-irb-pry-vi-style
+
+bind "\eb" vi-prev-word
+bind "\ef" vi-next-word

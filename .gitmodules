@@ -1,0 +1,4 @@
+[submodule "sandboxd"]
+	path = sandboxd
+	url = https://github.com/benvan/sandboxd
+	branch = master

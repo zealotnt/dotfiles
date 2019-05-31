@@ -268,3 +268,7 @@ def more_help
   ""
  end
  puts "Run 'more_help' to see tips"
+
+def refresh_gem
+  Gem.clear_paths
+end

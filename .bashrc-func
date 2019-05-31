@@ -437,6 +437,20 @@ lnwork () {
 	ln -s $path_set ~/cdwork
 }
 
+lgad () {
+    # loop grep awk do
+    # $1: command
+    # $2: grep string
+    # $3: awk position; default: $1
+    # $4: command do to each ite
+
+    # https://unix.stackexchange.com/questions/444946/how-can-we-run-a-command-stored-in-a-variable
+    eval "$1" | grep $2 | for i in $(awk '{print $1}');
+    do
+      eval "$3"
+    done
+}
+
 ##################
 ### Python utility path
 mtUsePython2() {
