@@ -165,8 +165,14 @@ export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:/usr/local/bin # fix alacrity PATH issue
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
+export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
+fi
+
 DISABLE_AUTO_TITLE=true
 MYDOTFILES=(
   .bashrc
@@ -193,6 +199,7 @@ autoload -Uz compinit && compinit -i
 source ~/.bashrc-func
 source ~/dotfiles/.custom_completions.sh
 source ~/dotfiles/sandboxd/sandboxd
+source ~/.helmenv/helmenv.sh
 
 eval "$(hub alias -s)"
 alias vim="nvim"

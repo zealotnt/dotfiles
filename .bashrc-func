@@ -14,6 +14,13 @@ export NVM_DIR="$HOME/.nvm"
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 alias ll='exa -alh'
 
+# make MAC prefers GNU's coreutils
+# https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias readlink='greadlink '
+  alias find='gfind '
+fi
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
 if [[ $platform == 'linux' ]]; then
 	# Overwrite the tree command, make it cooperate with less

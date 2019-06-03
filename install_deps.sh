@@ -14,3 +14,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # zsh-plugins
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/djui/alias-tips.git ~/.oh-my-zsh/custom/plugins/alias-tips
+
+# other utils
+git clone https://github.com/alexppg/helmenv.git ~/.helmenv
+
