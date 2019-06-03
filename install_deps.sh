@@ -19,3 +19,5 @@ git clone https://github.com/djui/alias-tips.git ~/.oh-my-zsh/custom/plugins/ali
 # other utils
 git clone https://github.com/alexppg/helmenv.git ~/.helmenv
 
+source ~/dotfile/install.sh
+
