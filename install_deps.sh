@@ -21,3 +21,6 @@ git clone https://github.com/alexppg/helmenv.git ~/.helmenv
 
 source ~/dotfile/install.sh
 
+git submodule init
+git submodule update
+
