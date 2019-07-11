@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # insstall oh-my-tmux: gpakosz/.tmux
-git clone https://github.com/gpakosz/.tmux.git ~/
+git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 # install tpm for tmux
