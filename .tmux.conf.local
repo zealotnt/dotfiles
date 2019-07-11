@@ -29,7 +29,7 @@ set -g @plugin 'tmux-plugins/tmux-open'
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -44,7 +44,7 @@ tmux_conf_new_pane_reconnect_ssh=false
 # prompt for session name when creating a new session, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_session_prompt=false
+tmux_conf_new_session_prompt=true
 
 
 # -- display -------------------------------------------------------------------
@@ -264,6 +264,11 @@ setw -ag word-separators "'"
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Overwrite the .tmux.conf settings
 set-option -g allow-rename off
+setw -g automatic-rename off
+
+# default in .tmux.conf is like this, we dont want to clear history
+# bind -n C-l send-keys C-l \; run 'sleep 0.1' \; clear-history
+bind -n C-l send-keys C-l
 
 # increase history size
 set -g history-limit 100000
@@ -338,6 +343,12 @@ bind -n S-Right next-window
 # reverse the default tmux search function
 bind -T copy-mode-vi ?                 command-prompt -p "(search down)" "send -X search-forward \"%%%\""
 bind -T copy-mode-vi /                 command-prompt -p "(search up)" "send -X search-backward \"%%%\""
+
+# change resize value
+bind -r H resize-pane -L 8
+bind -r J resize-pane -D 4
+bind -r K resize-pane -U 4
+bind -r L resize-pane -R 8
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # tmux-resurrect:

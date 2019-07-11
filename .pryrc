@@ -94,6 +94,7 @@ end
 
 # === HISTORY ===
 Pry.config.history.should_save = true
+# Hit Enter to repeat last command
 Pry::Commands.command /^$/, "repeat last command" do
   _pry_.run_command Pry.history.to_a.last
 end
@@ -104,9 +105,9 @@ Pry.config.commands.alias_command "hG", "hist -G", desc: "Commands matching expr
 Pry.config.commands.alias_command "hr", "hist -r", desc: "hist -r <command number> to run a command"
 
 # === Listing config ===
-# Better colors - by default the headings for methods are too 
+# Better colors - by default the headings for methods are too
 # similar to method name colors leading to a "soup"
-# These colors are optimized for use with Solarized scheme 
+# These colors are optimized for use with Solarized scheme
 # for your terminal
 Pry.config.ls.separator = "\n" # new lines between methods
 Pry.config.ls.heading_color = :magenta
@@ -207,11 +208,6 @@ my_hook = Pry::Hooks.new.add_hook(:before_session, :add_dirs_to_load_path) do
     end
   end
   puts "Added #{ dirs_added.join(", ") } to load path in ~/.pryrc." if dirs_added.present?
-end
-
-# Hit Enter to repeat last command
-Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
 end
 
 my_hook.exec_hook(:before_session)

@@ -22,6 +22,7 @@
     search="git rev-list --all | xargs git grep -F"
     # [Ref](https://stackoverflow.com/questions/17558221/how-can-i-view-the-output-of-git-show-in-a-diff-viewer-like-meld-kdiff3-etc)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+    stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
     tt = status
     what = show -s --pretty='tformat:%h (%s, %ad)' --date=short
     who = shortlog -s --

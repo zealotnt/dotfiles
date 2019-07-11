@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Make sure $MYDOTFILES is exported at .zshrc
+# Sync my-dot-files.sh
+. ~/dotfiles/my-dot-files.sh
 
 for file in  "${MYDOTFILES[@]}"
 do

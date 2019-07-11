@@ -173,19 +173,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
 fi
 
+. ~/dotfiles/my-dot-files.sh
 DISABLE_AUTO_TITLE=true
-MYDOTFILES=(
-  .bashrc
-  .bashrc-func
-  .gitconfig
-  .tmux.conf.local
-  .zshrc
-  .pryrc
-  .gitignore_global
-  .editrc
-  .sandboxrc
-)
-
 # =========== load real stuff here
 # complete -C aws_completer aws
 
