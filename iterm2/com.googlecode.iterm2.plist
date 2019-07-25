@@ -18,8 +18,12 @@
 	<string>manual</string>
 	<key>Default Bookmark Guid</key>
 	<string>439664DE-DA90-4000-A37F-386FA8A2D515</string>
+	<key>DimBackgroundWindows</key>
+	<false/>
 	<key>DimInactiveSplitPanes</key>
 	<true/>
+	<key>DimOnlyText</key>
+	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
 	<key>EnableDivisionView</key>
@@ -594,6 +598,13 @@
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[27;5;56~</string>
+				</dict>
+				<key>0x6d-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x6d</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>

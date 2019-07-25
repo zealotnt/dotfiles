@@ -19,4 +19,8 @@ sandbox_hook nvm hero
 
 sandbox_hook rbenv bundle
 sandbox_hook rbenv ruby
+# sandbox_hook rbenv rails
+# sandbox_hook rbenv pry
+# sandbox_hook rbenv irb
+# sandbox_hook rbenv rake
 

@@ -323,6 +323,7 @@ bind -n M-m resize-pane -Z
 bind -n C-q copy-mode
 bind q copy-mode
 
+bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
 
