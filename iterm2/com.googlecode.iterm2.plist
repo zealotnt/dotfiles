@@ -543,12 +543,26 @@
 					<key>Text</key>
 					<string>0x1f</string>
 				</dict>
+				<key>0x31-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;49~</string>
+				</dict>
 				<key>0x31-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[27;5;49~</string>
+				</dict>
+				<key>0x32-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;50~</string>
 				</dict>
 				<key>0x32-0x40000</key>
 				<dict>
@@ -557,12 +571,26 @@
 					<key>Text</key>
 					<string>[27;5;50~</string>
 				</dict>
+				<key>0x33-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;51~</string>
+				</dict>
 				<key>0x33-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[27;5;51~</string>
+				</dict>
+				<key>0x34-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;52~</string>
 				</dict>
 				<key>0x34-0x40000</key>
 				<dict>
@@ -571,12 +599,26 @@
 					<key>Text</key>
 					<string>[27;5;52~</string>
 				</dict>
+				<key>0x35-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;53~</string>
+				</dict>
 				<key>0x35-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[27;5;53~</string>
+				</dict>
+				<key>0x36-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;54~</string>
 				</dict>
 				<key>0x36-0x40000</key>
 				<dict>
@@ -585,12 +627,26 @@
 					<key>Text</key>
 					<string>[27;5;54~</string>
 				</dict>
+				<key>0x37-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;55~</string>
+				</dict>
 				<key>0x37-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[27;5;55~</string>
+				</dict>
+				<key>0x38-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[27;5;56~</string>
 				</dict>
 				<key>0x38-0x40000</key>
 				<dict>
@@ -1056,6 +1112,8 @@
 	<true/>
 	<key>StretchTabsToFillBar</key>
 	<false/>
+	<key>SwitchTabModifier</key>
+	<integer>9</integer>
 	<key>TabStyle</key>
 	<integer>0</integer>
 	<key>TabStyleWithAutomaticOption</key>
