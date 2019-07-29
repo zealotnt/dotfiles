@@ -55,12 +55,47 @@
 			<key>Text</key>
 			<string>0x1b 0x66</string>
 		</dict>
+		<key>0x68-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Text</key>
+			<string>0x01 0x68</string>
+		</dict>
+		<key>0x6a-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Text</key>
+			<string>0x01 0x6a</string>
+		</dict>
+		<key>0x6b-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Text</key>
+			<string>0x01 0x6b</string>
+		</dict>
+		<key>0x6c-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Text</key>
+			<string>0x01 0x6c</string>
+		</dict>
 		<key>0x77-0x80000</key>
 		<dict>
 			<key>Action</key>
 			<integer>11</integer>
 			<key>Text</key>
 			<string>0x1B 0x08</string>
+		</dict>
+		<key>0x78-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Text</key>
+			<string>0x01 0x78</string>
 		</dict>
 		<key>0x7a-0x100000</key>
 		<dict>
@@ -536,6 +571,13 @@
 			</array>
 			<key>Keyboard Map</key>
 			<dict>
+				<key>0x2d-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x2d</string>
+				</dict>
 				<key>0x2d-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -655,12 +697,26 @@
 					<key>Text</key>
 					<string>[27;5;56~</string>
 				</dict>
+				<key>0x5f-0x120000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x5f</string>
+				</dict>
 				<key>0x6d-0x100000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x01 0x6d</string>
+				</dict>
+				<key>0x6e-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>11</integer>
+					<key>Text</key>
+					<string>0x01 0x63</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
