@@ -14,6 +14,11 @@ export NVM_DIR="$HOME/.nvm"
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
 alias ll='exa -alh'
 
+# https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
+alias cur='date +"%Y%m%d-%H%M%S"'
+alias curtime='date +"%H%M%S"'
+alias curdate='date +"%Y%m%d"'
+
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -499,10 +504,12 @@ benchZsh() {
 herostag() {
 	hero $@ --context $STAGING_CLUSTER
 }
+alias heroclistag='herocli --server hero2.staging.ehrocks.com:443'
 
 heroprod() {
 	hero $@ --context $PRODUCTION_CLUSTER
 }
+alias herocliprod='herocli --server hero2.ehrocks.com:443'
 
 ##################
 ### K8s scripts

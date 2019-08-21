@@ -133,7 +133,7 @@ source $ZSH/oh-my-zsh.sh
 
 # ZSH-Command-Time
 # https://github.com/popstas/zsh-command-time
-# If command execution time above min. time, plugins will not output time.
+# If command execution time above min. time, plugins will output time.
 ZSH_COMMAND_TIME_MIN_SECONDS=1
 # Message to display (set to "" for disable).
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
