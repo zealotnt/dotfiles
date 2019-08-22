@@ -12,6 +12,10 @@ sandbox_init_rbenv() {
    if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 }
 
+sandbox_init_keychain() {
+    eval $(keychain --eval --agents ssh ~/.ssh/keys/git-self-host.pri  ~/.ssh/keys/eh_ed25519.pri)
+}
+
 # create hooks for commands 'nvm', 'node' and 'nodemon'
 sandbox_hook nvm node
 sandbox_hook nvm nodemon
@@ -19,6 +23,9 @@ sandbox_hook nvm hero
 
 sandbox_hook rbenv bundle
 sandbox_hook rbenv ruby
+
+sandbox_hook keychain ssh
+
 # sandbox_hook rbenv rails
 # sandbox_hook rbenv pry
 # sandbox_hook rbenv irb
