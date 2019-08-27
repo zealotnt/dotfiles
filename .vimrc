@@ -59,7 +59,7 @@ set ruler
 set number
 set expandtab
 set autoindent
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set splitright
 set splitbelow
 set ttyfast

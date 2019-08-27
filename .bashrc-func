@@ -18,6 +18,10 @@ alias ll='exa -alh'
 alias cur='date +"%Y%m%d-%H%M%S"'
 alias curtime='date +"%H%M%S"'
 alias curdate='date +"%Y%m%d"'
+alias kctx='kubectx'
+alias kns='kubens'
+alias open='xdg-open'
+alias ]='open'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
@@ -504,12 +508,12 @@ benchZsh() {
 herostag() {
 	hero $@ --context $STAGING_CLUSTER
 }
-alias heroclistag='herocli --server hero2.staging.ehrocks.com:443'
+alias heroclistag='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_STG herocli --server hero2.staging.ehrocks.com:443'
 
 heroprod() {
 	hero $@ --context $PRODUCTION_CLUSTER
 }
-alias herocliprod='herocli --server hero2.ehrocks.com:443'
+alias herocliprod='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PRD herocli --server hero2.ehrocks.com:443'
 
 ##################
 ### K8s scripts
