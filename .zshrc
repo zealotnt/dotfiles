@@ -163,6 +163,7 @@ export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 export EDITOR="nvim"
 export GOPATH=~/go
 export GOBIN=~/go/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/bin # fix alacrity PATH issue
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.bin:$PATH"

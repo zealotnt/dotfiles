@@ -28,8 +28,29 @@
  */
 
 /*
+ * 20190827: map MAC key bindings
+ * ref:
+ *    - https://github.com/linuxmint/gtk/blob/master/gtk/gtk-keys.css.mac
+ *    - https://www.reddit.com/r/gnome/comments/7q6rmd/macosstyle_keybindings/
+ */
+
+/*
  * Bindings for GtkTextView and GtkEntry
  */
+@binding-set gtk-mac-cmd-c
+{
+  bind "<super>x" { "cut-clipboard" () };
+  bind "<super>c" { "copy-clipboard" () };
+  bind "<super>v" { "paste-clipboard" () };
+}
+
+@binding-set gtk-mac-alt-delete
+{
+  bind "<alt>Delete" { "delete-from-cursor" (word-ends, 1) };
+  bind "<alt>KP_Delete" { "delete-from-cursor" (word-ends, 1) };
+  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) };
+}
+
 @binding-set gtk-emacs-text-entry
 {
   bind "<ctrl>b" { "move-cursor" (logical-positions, -1, 0) };
@@ -48,6 +69,8 @@
   bind "<shift><ctrl>e" { "move-cursor" (paragraph-ends, 1, 1) };
 
   /*bind "<ctrl>w" { "cut-clipboard" () };*/
+  unbind "<ctrl>w";
+
   bind "<ctrl>y" { "paste-clipboard" () };
 
   bind "<ctrl>d" { "delete-from-cursor" (chars, 1) };
@@ -67,6 +90,10 @@
 
   bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
   /*bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) };*/
+  unbind "<ctrl>w";
+
+  /* MAC Bindings */
+  bind "<super>a" { "select-all" (1) };
 }
 
 /*
@@ -81,6 +108,9 @@
 
   bind "<ctrl>space" { "set-anchor" () };
   bind "<ctrl>KP_Space" { "set-anchor" () };
+
+  /* MAC Bindings */
+  bind "<super>a" { "select-all" (1) };
 }
 
 /*
@@ -105,11 +135,11 @@
 }
 
 entry {
-  -gtk-key-bindings: gtk-emacs-text-entry;
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-mac-cmd-c, gtk-mac-alt-delete;
 }
 
 textview {
-  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view;
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view, gtk-mac-cmd-c, gtk-mac-alt-delete;
 }
 
 treeview {
