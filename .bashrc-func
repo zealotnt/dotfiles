@@ -12,7 +12,18 @@ fi
 export NVM_DIR="$HOME/.nvm"
 
 alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
-alias ll='exa -alh'
+
+
+unalias ll
+ll() {
+  EXA=$(which exa)
+  $EXA -alh $@
+}
+
+lr() {
+  EXA=$(which exa)
+  $EXA -t=modified -l -snew $@
+}
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 alias cur='date +"%Y%m%d-%H%M%S"'
@@ -75,6 +86,32 @@ nautilus() {
 		# if has any argument, call nautilus as normal
 		/usr/bin/nautilus $@
 	fi
+}
+
+em() {
+  if [[ "$@" == "" ]]; then
+    emacsclient -create-frame --alternate-editor="" . > /dev/null 2>&1 &
+  else
+    emacsclient -create-frame --alternate-editor="" "$@" > /dev/null 2>&1 &
+  fi
+}
+
+e() {
+  if [[ "$@" == "" ]]; then
+    emacsclient -nw -create-frame --alternate-editor="" .
+  else
+    emacsclient -nw -create-frame --alternate-editor="" "$@"
+  fi
+}
+
+flash_ergo() {
+	if [[ $# == 0 ]]; then
+		echo "Specified ergodox hex firmware please"
+    return
+	fi
+
+  TEENSY_CLI=$(which teensy_loader_cli)
+  sudo $TEENSY_CLI --mcu=atmega32u4 -w -v $1
 }
 
 alias remove_whitespace="find -name \"* *\" -type f | rename 's/ /_/g'"
