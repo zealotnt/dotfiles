@@ -268,6 +268,11 @@ setw -g automatic-rename off
 
 # default in .tmux.conf is like this, we dont want to clear history
 # bind -n C-l send-keys C-l \; run 'sleep 0.1' \; clear-history
+# in .tmux.conf, it binds C-l with next-window, C-h with previous-window, we move it to C-n/p
+unbind C-l
+unbind C-h
+bind -r C-p previous-window # select previous window
+bind -r C-n next-window     # select next window
 bind -n C-l send-keys C-l
 
 # increase history size
