@@ -160,7 +160,7 @@ PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[y
 %{$fg[cyan]%}$%{$reset_color%} '
 
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
-export EDITOR="nvim"
+export EDITOR="emacsclient -nw -create-frame"
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:/usr/local/go/bin

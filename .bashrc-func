@@ -34,6 +34,7 @@ alias kns='kubens'
 alias open='xdg-open'
 alias ]='open'
 alias -g G='| grep --color'
+alias histPry='e ~/.pry_history'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities

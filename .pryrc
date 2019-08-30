@@ -10,6 +10,8 @@
 # gem install "pry-state"
 # gem install "pry-toys"
 # gem install "pry-rescue"
+# gem install "awesome_print"
+# gem install "binding_of_caller"
 
 # Fix for Zeus: see https://github.com/burke/zeus/issues/466#issuecomment-60242431
 if defined?(::Rails) && Rails.env
@@ -74,15 +76,13 @@ end
 
 
 Pry.config.color = true
-Pry.config.prompt = Pry::NAV_PROMPT
 
 # http://rocket-science.ru/hacking/2018/10/27/pry-with-whistles
 # === EDITOR ===
-Pry.editor = 'vi'
-Pry.config.editor = 'vi'
+Pry.config.editor = "emacsclient -nw -create-frame"
 
 # === PROMPT ===
-# Pry.prompt = [ ->(obj, nest_level, _) { "✎ " }, ->(obj, nest_level, _) { "#{' ' * nest_level}  " } ]
+Pry.config.prompt_name = Dir.pwd
 
 # === COLORS ===
 unless ENV['PRY_BW']
@@ -94,6 +94,8 @@ end
 
 # === HISTORY ===
 Pry.config.history.should_save = true
+Pry.config.history.file = "~/.pry_history"
+
 # Hit Enter to repeat last command
 Pry::Commands.command /^$/, "repeat last command" do
   _pry_.run_command Pry.history.to_a.last
@@ -117,7 +119,7 @@ Pry.config.ls.private_method_color = :bright_black
 
 if defined?(PryByebug)
    def pry_debug
-     # Pry.commands.alias_command 't', 'show-stack'
+     Pry.commands.alias_command 't', 'show-stack'
      Pry.commands.alias_command 's', 'step'
      Pry.commands.alias_command 'n', 'next'
      Pry.commands.alias_command 'c', 'continue'
