@@ -557,6 +557,7 @@ key_bindings:
   - { key: Key9,     mods: Command, chars: "\x1b\x5b\x32\x37\x3b\x35\x3b\x35\x37\x7e"}
   - { key: Key0,     mods: Command, chars: "\x1b\x5b\x32\x37\x3b\x35\x3b\x34\x38\x7e"}
 
+  - { key: W,        mods: Command, action: Quit}
   - { key: Q,        mods: Command|Shift,
                                     command: {program: "/usr/bin/killall", args: ["alacritty"]}}
   - { key: Subtract, mods: Command, chars: "\x01\x2d"} # open tmux pane below

@@ -326,6 +326,7 @@ bind q copy-mode
 bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
+bind -T copy-mode    q send-keys -X cancel
 
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
