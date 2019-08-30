@@ -33,6 +33,7 @@ alias kctx='kubectx'
 alias kns='kubens'
 alias open='xdg-open'
 alias ]='open'
+alias -g G='| grep --color'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
@@ -102,6 +103,15 @@ e() {
   else
     emacsclient -nw -create-frame --alternate-editor="" "$@"
   fi
+}
+
+# https://stackoverflow.com/questions/36565295/jq-to-replace-text-directly-on-file-like-sed-i
+jqip() {
+  if [[ $# == 0 ]]; then
+    echo "Require argument"
+    return
+	fi
+  jq . $1 | sponge $1
 }
 
 flash_ergo() {

@@ -295,7 +295,7 @@ set -g prefix C-a
 bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+set -g status-position top
 
 # disable activity tracking
 set -g monitor-activity off
@@ -329,6 +329,8 @@ bind -T copy-mode-vi u send-keys -X halfpage-up
 
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux
+# - In Linux, we must map the Ctrl+number key to send sequence of character (can test with xxd)
+#   gnome terminal won't let us do this, so I switch to alarcrity, whis is stored in this repo also, alacrity.yaml
 bind -n C-1 select-window -t :=1
 bind -n C-2 select-window -t :=2
 bind -n C-3 select-window -t :=3
