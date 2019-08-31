@@ -165,6 +165,8 @@ user_pref("mail.startup.enabledMailCheckOnce", true);
 user_pref("mail.ui-rdf.version", 17);
 user_pref("mailnews.database.global.datastore.id", "4dbd615f-2341-4872-9fee-b69e4e9a2ec");
 user_pref("mailnews.database.global.views.conversation.columns", "{\"threadCol\":{\"visible\":true,\"ordinal\":\"1\"},\"flaggedCol\":{\"visible\":true,\"ordinal\":\"3\"},\"attachmentCol\":{\"visible\":false,\"ordinal\":\"5\"},\"subjectCol\":{\"visible\":true,\"ordinal\":\"7\"},\"unreadButtonColHeader\":{\"visible\":false,\"ordinal\":\"9\"},\"senderCol\":{\"visible\":false,\"ordinal\":\"11\"},\"recipientCol\":{\"visible\":false,\"ordinal\":\"13\"},\"correspondentCol\":{\"visible\":true,\"ordinal\":\"15\"},\"junkStatusCol\":{\"visible\":false,\"ordinal\":\"17\"},\"receivedCol\":{\"visible\":false,\"ordinal\":\"19\"},\"dateCol\":{\"visible\":true,\"ordinal\":\"21\"},\"statusCol\":{\"visible\":false,\"ordinal\":\"23\"},\"sizeCol\":{\"visible\":false,\"ordinal\":\"25\"},\"tagsCol\":{\"visible\":false,\"ordinal\":\"27\"},\"accountCol\":{\"visible\":false,\"ordinal\":\"29\"},\"priorityCol\":{\"visible\":false,\"ordinal\":\"31\"},\"unreadCol\":{\"visible\":false,\"ordinal\":\"33\"},\"totalCol\":{\"visible\":false,\"ordinal\":\"35\"},\"locationCol\":{\"visible\":true,\"ordinal\":\"37\"},\"idCol\":{\"visible\":false,\"ordinal\":\"39\"}}");
+user_pref("mailnews.default_news_sort_order", 2);
+user_pref("mailnews.default_sort_order", 2);
 user_pref("mailnews.message_display.disable_remote_image", false);
 user_pref("mailnews.quotingPrefs.version", 1);
 user_pref("mailnews.start_page_override.mstone", "60.8.0");
