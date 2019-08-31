@@ -26,7 +26,7 @@ lr() {
 }
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
-alias cur='date +"%Y%m%d-%H%M%S"'
+alias curfull='date +"%Y%m%d-%H%M%S"'
 alias curtime='date +"%H%M%S"'
 alias curdate='date +"%Y%m%d"'
 alias kctx='kubectx'
@@ -35,6 +35,9 @@ alias open='xdg-open'
 alias ]='open'
 alias -g G='| grep --color'
 alias histPry='e ~/.pry_history'
+alias histZsh='e ~/.zsh_history'
+alias editDotfiles='e ~/dotfiles/'
+alias editEmacs='e ~/workspace_mine/w_emacs_dotfiles/emacs.org'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
