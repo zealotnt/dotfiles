@@ -514,13 +514,13 @@ key_bindings:
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Equals,   mods: Control, chars: "\x01\x4a" } # C-a,C-J
-  - { key: Equals,   mods: Control|Alt, chars: "\x01\x4b" } # C-a,C-K
+  - { key: Equals,   mods: Control, chars: "\x01\x4a" } # C-a,J
+  - { key: Subtract, mods: Control, chars: "\x01\x4b" } # C-a,K
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Subtract,    mods: Control, chars: "\x01\x4c" } # C-a,C-L
-  - { key: Subtract,    mods: Control|Alt,  chars: "\x01\x48" } # C-a,C-H
+  - { key: Equals,    mods: Control|Alt, chars: "\x01\x4c" } # C-a,L
+  - { key: Subtract,  mods: Control|Alt,  chars: "\x01\x48" } # C-a,H
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)

@@ -369,7 +369,9 @@ run '~/.tmux/plugins/tpm/tpm'
 unbind a
 unbind C-z
 
-bind -n M-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys M-h) || tmux select-pane -L"
-bind -n M-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys M-j) || tmux select-pane -D"
-bind -n M-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys M-k) || tmux select-pane -U"
-bind -n M-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys M-l) || tmux select-pane -R"
+is_vim_emacs='tmux display-message -p "#{pane_current_command}" | grep -iqE "((^|\/)g?(view|n?vim?x?)(diff)?$)|emacs"'
+bind -n M-h run "($is_vim_emacs && tmux send-keys M-h) || tmux select-pane -L"
+bind -n M-j run "($is_vim_emacs && tmux send-keys M-j) || tmux select-pane -D"
+bind -n M-k run "($is_vim_emacs && tmux send-keys M-k) || tmux select-pane -U"
+bind -n M-l run "($is_vim_emacs && tmux send-keys M-l) || tmux select-pane -R"
+
