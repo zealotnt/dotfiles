@@ -38,8 +38,7 @@
 [diff]
     tool = bc3
 [core]
-    editor = vim
-	excludesfile = /Users/zealot/.gitignore_global
+    excludesfile = /Users/zealot/.gitignore_global
     # pager = sed 's/\\t/    /g' | less
 [color]
     ui = true
