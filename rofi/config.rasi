@@ -1,5 +1,5 @@
 configuration {
-/*	modi: "window,run,ssh";*/
+	modi: "ssh,window,circleci:~/dotfiles/rofi/scripts/circleci.sh,github:~/dotfiles/rofi/scripts/github.sh";
 	width: 85;
 /*	lines: 15;*/
 /*	columns: 1;*/
@@ -31,7 +31,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-/*	combi-modi: "window,run";*/
+	combi-modi: "github,drun";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -72,8 +72,8 @@ configuration {
 /*	kb-move-end: "Control+e";*/
 	kb-move-word-back: "Alt+b";
 /*	kb-move-word-forward: "Alt+f";*/
-/*	kb-move-char-back: "Left,Control+b";*/
-/*	kb-move-char-forward: "Right,Control+f";*/
+	kb-move-char-back: "Control+b";
+	kb-move-char-forward: "Control+f";
 	kb-remove-word-back: "Control+w,Control+BackSpace,Alt+BackSpace";
 	kb-remove-word-forward: "Alt+d";
 	kb-remove-char-forward: "Delete";
@@ -84,8 +84,8 @@ configuration {
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
-/*	kb-mode-next: "Shift+Right,Control+Tab";*/
-/*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
+	kb-mode-next: "Right,Control+Tab";
+	kb-mode-previous: "Left,Control+ISO_Left_Tab";
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
 	kb-row-up: "Control+k,Up,Control+p,ISO_Left_Tab";
