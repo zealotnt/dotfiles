@@ -5,7 +5,3 @@
 dconf dump / > dconf.dump.conf
 # or (untested)
 # dconf load / < dconf.dump.conf
-
-# 2nd method to backup, I will save all contents of this file
-gsettings list-recursively > gsettings.list-recursively.conf
-
