@@ -169,6 +169,7 @@ export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="/home/zealot/.cask/bin:$PATH"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
@@ -195,6 +196,7 @@ eval "$(hub alias -s)"
 alias vim="nvim"
 alias vi="nvim"
 
+# ========================================================
 # https://nuclearsquid.com/writings/edit-long-commands/
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line

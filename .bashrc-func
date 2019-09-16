@@ -1,5 +1,29 @@
 #!/bin/bash
 
+# Borrow from globalias, but I dont want to expand all alias, so I bind Alt+SPACE to expand the alias instead
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/globalias/globalias.plugin.zsh
+globalias() {
+  if [[ $LBUFFER =~ 'kk' ]]; then
+    zle _expand_alias
+    zle expand-word
+  fi
+  zle self-insert
+}
+
+globalias_forced() {
+  zle _expand_alias
+  zle expand-word
+  zle self-insert
+}
+zle -N globalias
+zle -N globalias_forced
+
+# space expands all aliases, including global
+bindkey -M emacs " " globalias
+bindkey -M viins " " globalias
+bindkey -M emacs "^[ " globalias_forced
+bindkey -M viins "^[ " globalias_forced
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Setting things up >>>>>>>>>>>>>>>>>>>>>>>>>>>
 platform='unknown'
 unamestr=`uname`
@@ -38,6 +62,7 @@ alias histPry='e ~/.pry_history'
 alias histZsh='e ~/.zsh_history'
 alias editDotfiles='e ~/dotfiles/'
 alias editEmacs='e ~/workspace_mine/w_emacs_dotfiles/emacs.org'
+alias kk='kill -9'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
