@@ -72,6 +72,23 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
+hard-backward-delete-word() {
+  local WORDCHARS="${WORDCHARS}/"/
+  zle backward-delete-word
+}
+
+hard-forward-delete-word() {
+  local WORDCHARS="${WORDCHARS}/"/
+  zle forward-delete-word
+}
+
+zle -N hard-backward-delete-word
+zle -N hard-forward-delete-word
+bindkey -r '^[w'
+bindkey -r '^[d'
+bindkey '^[w' hard-backward-delete-word
+bindkey '^[d' hard-forward-delete-word
+
 if [[ $platform == 'linux' ]]; then
 	# Overwrite the tree command, make it cooperate with less
 	tree() {
