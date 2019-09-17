@@ -1,0 +1,6 @@
+{
+  "shortcut": "\"<insert>,<c-enter>\"",
+  "exrc": "\"\\\" exrc for wasavi\\nset theme=solarized\\nmap L $\\nmap H ^\\nmap ,y \\\"*y\\nmap ,p \\\"*p\\nmap ,Y \\\"*Y\\nset number\\nset tabstop=2\"",
+  "targets": "{\"enableTextArea\":true,\"enableText\":false,\"enableSearch\":false,\"enableTel\":false,\"enableUrl\":false,\"enableEmail\":false,\"enablePassword\":false,\"enableNumber\":false,\"enableContentEditable\":true,\"enablePage\":false}",
+  "fontFamily": "\"\\\"Consolas\\\",\\\"Monaco\\\",\\\"Courier New\\\",\\\"Courier\\\",monospace\""
+}
