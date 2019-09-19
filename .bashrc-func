@@ -73,12 +73,12 @@ fi
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
 hard-backward-delete-word() {
-  local WORDCHARS="${WORDCHARS}/"/
+  local WORDCHARS="${WORDCHARS}/\\:"
   zle backward-delete-word
 }
 
 hard-forward-delete-word() {
-  local WORDCHARS="${WORDCHARS}/"/
+  local WORDCHARS="${WORDCHARS}/\\:"
   zle forward-delete-word
 }
 
@@ -633,20 +633,23 @@ mtStripIp() {
 alias kgnop="kgno | stripK8sIp"
 
 pf_pushgateway() {
-    export POD_NAME=$(kubectl get pods --namespace agents -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
+    local APP_NAMESPACE=agents
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Pushgateway:\r\n\t$POD_NAME"
-    kubectl --namespace agents port-forward $POD_NAME 9091
+    kubectl --namespace $APP_NAMESPACE port-forward $POD_NAME 9091
 }
 
 kt_pushgateway() {
-    export POD_NAME=$(kubectl get pods --namespace agents -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
+    local APP_NAMESPACE=agents
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Pushgateway:\r\n\t$POD_NAME"
-    kubectl --namespace agents exec -i -t $POD_NAME sh
+    kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME sh
 }
 
 kt_db_analytics() {
-    export POD_NAME=$(kubectl get pods --namespace devops -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
+    local APP_NAMESPACE=staging
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Db-analytics-web:\r\n\t$POD_NAME"
-    kubectl --namespace devops exec -i -t $POD_NAME bash
+    kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
 }
 

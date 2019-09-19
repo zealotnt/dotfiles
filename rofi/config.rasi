@@ -1,5 +1,5 @@
 configuration {
-	modi: "ssh,window,circleci:~/dotfiles/rofi/scripts/circleci.sh,github:~/dotfiles/rofi/scripts/github.sh";
+	modi: "ssh,window,calc,github:~/dotfiles/rofi/scripts/github.sh,circleci:~/dotfiles/rofi/scripts/circleci.sh";
 	width: 85;
 /*	lines: 15;*/
 /*	columns: 1;*/
@@ -31,7 +31,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-	combi-modi: "github,drun";
+	combi-modi: "drun,github";
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
