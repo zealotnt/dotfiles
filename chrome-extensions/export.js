@@ -12,7 +12,7 @@ function allStorage(included_keys) {
 
     while ( i-- ) {
         if (!included_keys.includes(keys[i])) continue;
-        archive[ keys[i] ] = localStorage.getItem( keys[i] );
+        archive[ keys[i] ] = localStorage.getItem(keys[i]);
     }
 
     return archive;

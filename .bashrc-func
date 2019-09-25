@@ -63,6 +63,8 @@ alias histZsh='e ~/.zsh_history'
 alias editDotfiles='e ~/dotfiles/'
 alias editEmacs='e ~/workspace_mine/w_emacs_dotfiles/emacs.org'
 alias kk='kill -9'
+alias picocom='picocom -e x'
+alias minicom='minicom -m'
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities
@@ -173,7 +175,8 @@ flash_ergo() {
 alias remove_whitespace="find -name \"* *\" -type f | rename 's/ /_/g'"
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> End Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 if [[ $platform == 'linux' ]]; then
-	alias scl='tee /dev/tty | tr "\r" " " | tr "\n" " "  | xclip -selection c'
+  # https://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed
+	alias scl='tee /dev/tty | tr --delete "\r" | tr --delete "\n" | xclip -selection c'
 	alias copy=scl
 else
 	alias copy="tr -d '\n' | pbcopy"
