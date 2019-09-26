@@ -82,6 +82,7 @@ plugins=(
   sublime
   zsh-completions
   zsh-autosuggestions
+  zsh-syntax-highlighting
   kubectl
   alias-tips
   autojump
