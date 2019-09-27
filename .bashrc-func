@@ -81,7 +81,7 @@ hard-backward-delete-word() {
 
 hard-forward-delete-word() {
   local WORDCHARS="${WORDCHARS}/\\:"
-  zle forward-delete-word
+  zle delete-word
 }
 
 zle -N hard-backward-delete-word
@@ -172,6 +172,17 @@ flash_ergo() {
   sudo $TEENSY_CLI --mcu=atmega32u4 -w -v $1
 }
 
+
+# https://unix.stackexchange.com/questions/391181/freezing-the-history-file-temporarily
+freeze_history () {
+    fc -p $HISTFILE
+    unset HISTFILE
+}
+# and
+unfreeze_history () {
+    fc -P
+}
+
 alias remove_whitespace="find -name \"* *\" -type f | rename 's/ /_/g'"
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> End Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 if [[ $platform == 'linux' ]]; then
@@ -199,10 +210,12 @@ cdreal() {
 	cdpwd
 }
 
-alias pwdcp="pwd | copy"
 realpathcp() {
 	realpath $@ | copy
 }
+alias pwdcp="pwd | copy"
+alias path='realpath'
+alias pathcp='realpathcp'
 
 mtconfirm () {
 	# call with a prompt string or use a default

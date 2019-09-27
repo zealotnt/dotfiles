@@ -171,6 +171,7 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="/home/zealot/.cask/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"
@@ -188,6 +189,7 @@ DISABLE_AUTO_TITLE=true
 
 autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 source ~/.bashrc-func
 source ~/dotfiles/.custom_completions.sh
 source ~/dotfiles/sandboxd/sandboxd
