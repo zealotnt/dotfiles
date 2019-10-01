@@ -75,6 +75,7 @@ plugins=(
   ruby
   docker
   docker-compose
+  encode64
   iterm2
   postgres
   tmuxinator
@@ -92,6 +93,7 @@ plugins=(
   rails
   rake
   rake-fast
+  sudo
   copybuffer
   copydir
   copyfile

@@ -5183,13 +5183,13 @@ key-zoom-double=
 #global-key-subtitle-text-scale-up=
 
 # Scale down subtitles text (string)
-#key-subtitle-text-scale-up=Ctrl+Mouse Wheel Up
+key-subtitle-text-scale-up=Alt+k
 
 # Scale up subtitles text (string)
 #global-key-subtitle-text-scale-down=
 
 # Scale up subtitles text (string)
-#key-subtitle-text-scale-down=Ctrl+Mouse Wheel Down
+key-subtitle-text-scale-down=Alt+j
 
 # Playlist bookmark 1 (string)
 #bookmark1=

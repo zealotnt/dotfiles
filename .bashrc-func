@@ -18,9 +18,10 @@ globalias_forced() {
 zle -N globalias
 zle -N globalias_forced
 
-# space expands all aliases, including global
+# space only expand enabled-to-expand-aliases
 bindkey -M emacs " " globalias
 bindkey -M viins " " globalias
+# alt+space expands all aliases
 bindkey -M emacs "^[ " globalias_forced
 bindkey -M viins "^[ " globalias_forced
 
@@ -41,12 +42,12 @@ alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/b
 unalias ll
 ll() {
   EXA=$(which exa)
-  $EXA -alh $@
+  $EXA --colour=always -alh $@
 }
 
 lr() {
   EXA=$(which exa)
-  $EXA -t=modified -l -snew $@
+  $EXA --colour=always -t=modified -l -snew $@
 }
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
@@ -57,7 +58,7 @@ alias kctx='kubectx'
 alias kns='kubens'
 alias open='xdg-open'
 alias ]='open'
-alias -g G='| grep --color'
+alias -g G='| grep --color=always'
 alias histPry='e ~/.pry_history'
 alias histZsh='e ~/.zsh_history'
 alias editDotfiles='e ~/dotfiles/'
