@@ -140,9 +140,9 @@ nautilus() {
 
 em() {
   if [[ "$@" == "" ]]; then
-    emacsclient -create-frame --alternate-editor="" . > /dev/null 2>&1 &
+    nohup emacsclient -create-frame --alternate-editor="" . > /dev/null 2>&1 &
   else
-    emacsclient -create-frame --alternate-editor="" "$@" > /dev/null 2>&1 &
+    nohup emacsclient -create-frame --alternate-editor="" "$@" > /dev/null 2>&1 &
   fi
 }
 
