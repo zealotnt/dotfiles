@@ -231,6 +231,25 @@ mtconfirm () {
 	esac
 }
 
+mtPATHPrependPath() {
+	if [[ $# != 1 ]]; then
+		echo "Usage:"
+		echo " $FUNCNAME <directory path to prepend to PATH>"
+		return
+	fi
+
+	prependPath=$1
+	if [[ ! -d $prependPath ]]; then
+		echo "$path not found !!!"
+		return
+	fi
+
+	export PATH=$prependPath:$PATH
+	echo -e "**************CURRENT_PATH*****************"
+	echo -e "$PATH"
+	echo -e "*******************************************"
+}
+
 mtPATHAppendPath() {
 	if [[ $# != 1 ]]; then
 		echo "Usage:"

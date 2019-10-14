@@ -87,6 +87,7 @@ plugins=(
   kubectl
   alias-tips
   autojump
+  jira
   z
   web-search
   urltools
@@ -100,6 +101,7 @@ plugins=(
   colorize
   colored-man-pages
   extract
+  zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -162,6 +164,7 @@ alias more='less'
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 
+export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 export EDITOR="emacsclient -nw -create-frame"
 export GOPATH=~/go
