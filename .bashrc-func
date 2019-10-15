@@ -49,6 +49,8 @@ lr() {
   EXA=$(which exa)
   $EXA --colour=always -t=modified -l -snew $@
 }
+unalias ls
+alias ls='lr'
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 alias curfull='date +"%Y%m%d-%H%M%S"'
@@ -76,12 +78,12 @@ fi
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Start Overide Scripts >>>>>>>>>>>>>>>>>>>>>>>>>>>
 hard-backward-delete-word() {
-  local WORDCHARS="${WORDCHARS}/\\:"
+  local WORDCHARS="${WORDCHARS}/\\:@"
   zle backward-delete-word
 }
 
 hard-forward-delete-word() {
-  local WORDCHARS="${WORDCHARS}/\\:"
+  local WORDCHARS="${WORDCHARS}/\\:@"
   zle delete-word
 }
 
