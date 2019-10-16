@@ -25,6 +25,10 @@ bindkey -M viins " " globalias
 bindkey -M emacs "^[ " globalias_forced
 bindkey -M viins "^[ " globalias_forced
 
+bindkey -r '^Z'
+bindkey "^Z" undo
+bindkey "^[u" undo
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Setting things up >>>>>>>>>>>>>>>>>>>>>>>>>>>
 platform='unknown'
 unamestr=`uname`
