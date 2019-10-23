@@ -219,4 +219,6 @@ bindkey -M vicmd v edit-command-line
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof
 
+cat ~/dotfiles/neofetch.cache
+
 if [ "$RUN_PROFILING" = true ]; then zprof; fi

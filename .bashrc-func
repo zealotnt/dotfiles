@@ -196,6 +196,7 @@ if [[ $platform == 'linux' ]]; then
   # https://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed
 	alias scl='tee /dev/tty | tr --delete "\r" | tr --delete "\n" | xclip -selection c'
 	alias copy=scl
+  alias xput='xclip -selection clipboard -o'
 else
 	alias copy="tr -d '\n' | pbcopy"
 fi
@@ -664,12 +665,16 @@ mtkubectlRestartPod() {
 	kubectl replace --grace-period=1 --force  -f -
 }
 
-stripK8sIp() {
+k8sStripIp() {
 	awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
 }
 
 mtStripIp() {
 	echo $@ | stripK8sIp
+}
+
+k8sGetIp() {
+  xput | awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
 }
 
 alias kgnop="kgno | stripK8sIp"
