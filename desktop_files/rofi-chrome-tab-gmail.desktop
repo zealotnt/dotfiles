@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Webmail Gmail
+Icon=/home/zealot/dotfiles/icons/mail.png
+Exec=rofi -show 'Choose email' -modi 'Choose email':/home/zealot/dotfiles/rofi/scripts/web-emails.sh
+Comment=Webmail Gmail
+Categories=Mail;
+Terminal=false
