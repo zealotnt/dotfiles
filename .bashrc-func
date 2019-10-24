@@ -677,6 +677,10 @@ k8sGetIp() {
   xput | awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
 }
 
+k8sssh() {
+  ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)
+}
+
 alias kgnop="kgno | stripK8sIp"
 
 pf_pushgateway() {
