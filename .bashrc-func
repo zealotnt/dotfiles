@@ -29,6 +29,17 @@ bindkey -r '^Z'
 bindkey "^Z" undo
 bindkey "^[u" undo
 
+space-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER == \ * ]]; then
+        LBUFFER="${LBUFFER# }"
+    else
+        LBUFFER=" $LBUFFER"
+    fi
+}
+zle -N space-command-line
+bindkey -M emacs '00' space-command-line
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Setting things up >>>>>>>>>>>>>>>>>>>>>>>>>>>
 platform='unknown'
 unamestr=`uname`

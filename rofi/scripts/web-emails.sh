@@ -6,11 +6,11 @@ PWD=$(dirname "$BASH_SOURCE")
 CACHE_FILE=$PWD/cache/github-repos.cache
 
 declare -A EmailMaps
-EmailMaps[default]="https://mail.google.com/mail/u/0/#inbox"
-EmailMaps[work-eh]="https://mail.google.com/mail/u/1/#inbox"
+EmailMaps[web-gmail-default]="https://mail.google.com/mail/u/0/#inbox"
+EmailMaps[web-gmail-work-eh]="https://mail.google.com/mail/u/1/#inbox"
 
 get_emails() {
-printf 'default\nwork-eh'
+printf 'web-gmail-default\nweb-gmail-work-eh'
 }
 
 open_email() {
