@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Caprine
+Exec=/opt/Caprine/caprine %U
+Terminal=false
+Type=Application
+Icon=/home/zealot/dotfiles/icons/caprine.png
+StartupWMClass=Caprine
+Comment=Caprine is an unofficial and privacy focused Facebook Messenger app with many useful features.
+Categories=Network;Chat;

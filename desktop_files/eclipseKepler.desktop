@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Eclipse Kepler
+Type=Application
+Exec=/home/zealot/bin/eclipse/eclipse
+Terminal=false
+Icon=/home/zealot/bin/eclipse/icon.xpm
+Comment=Integrated Development Environment
+NoDisplay=false
+Categories=Development;IDE
+Name[en]=eclipse.desktop

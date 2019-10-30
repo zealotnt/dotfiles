@@ -38,7 +38,7 @@ space-command-line() {
     fi
 }
 zle -N space-command-line
-bindkey -M emacs '00' space-command-line
+bindkey -M emacs '``' space-command-line
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>> Setting things up >>>>>>>>>>>>>>>>>>>>>>>>>>>
 platform='unknown'
@@ -688,8 +688,15 @@ k8sGetIp() {
   xput | awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
 }
 
-k8sssh() {
-  ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)
+ehssh() {
+  chars=$(xput | wc -c)
+  if [[ $chars -lt 20 ]]; then # 3*4+3 ~ 15
+    echo "ssh -i $EH_SSH_KEY -l admin $(xput)"
+    ssh -i $EH_SSH_KEY -l admin $(xput)
+  else
+    echo "ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)"
+    ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)
+  fi
 }
 
 alias kgnop="kgno | stripK8sIp"
