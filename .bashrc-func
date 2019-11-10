@@ -87,6 +87,8 @@ mtDisplayTime() {
 }
 
 alias hst='helm status'
+alias hgv='helm get values'
+alias hgm='helm get manifest'
 alias kctx='kubectx'
 alias kns='kubens'
 alias open='xdg-open'

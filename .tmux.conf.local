@@ -209,7 +209,7 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # word separators for automatic word selection
-setw -g word-separators ' @"=()[]'
+setw -g word-separators ' "=()[]'
 setw -ag word-separators "'"
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
