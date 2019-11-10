@@ -10,4 +10,5 @@ MYDOTFILES=(
   .gitignore_global
   .editrc
   .sandboxrc
+  .minirc.dfl
 )

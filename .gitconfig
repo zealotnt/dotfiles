@@ -37,6 +37,8 @@
     postBuffer = 524288000
 [diff]
     tool = bc3
+[pull]
+  rebase = true
 [core]
     excludesfile = /Users/zealot/.gitignore_global
     # pager = sed 's/\\t/    /g' | less

@@ -70,7 +70,23 @@ alias ls='lr'
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 alias curfull='date +"%Y%m%d-%H%M%S"'
 alias curtime='date +"%H%M%S"'
+alias curtimeunix='date +%s'
+alias curtimeepoch='date +%s'
 alias curdate='date +"%Y%m%d"'
+mtDisplayTime() {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  (( $D > 0 )) && printf '%d days ' $D
+  (( $H > 0 )) && printf '%d hours ' $H
+  (( $M > 0 )) && printf '%d minutes ' $M
+  (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
+  printf '%d seconds\n' $S
+}
+
+alias hst='helm status'
 alias kctx='kubectx'
 alias kns='kubens'
 alias open='xdg-open'
@@ -207,6 +223,7 @@ if [[ $platform == 'linux' ]]; then
   # https://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed
 	alias scl='tee /dev/tty | tr --delete "\r" | tr --delete "\n" | xclip -selection c'
 	alias copy=scl
+  alias xget=scl
   alias xput='xclip -selection clipboard -o'
 else
 	alias copy="tr -d '\n' | pbcopy"
