@@ -1,0 +1,11 @@
+# http://linux-tips.org/t/prevent-modem-manager-to-capture-usb-serial-devices/284/2.
+# https://stackoverflow.com/questions/24696527/modem-manager-and-ttyacm-in-use
+
+#$ lsusb | grep Sony
+#Bus 007 Device 006: ID 0fce:d0d9 Sony Ericsson Mobile Communications AB 
+#$
+
+#udevadm control --reload-rules
+
+ATTRS{idVendor}=="2341" ATTRS{idProduct}=="8036", ENV{ID_MM_DEVICE_IGNORE}="1"
+ATTRS{idVendor}=="2341" ATTRS{idProduct}=="0036", ENV{ID_MM_DEVICE_IGNORE}="1"
