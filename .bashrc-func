@@ -26,8 +26,9 @@ bindkey -M emacs "^[ " globalias_forced
 bindkey -M viins "^[ " globalias_forced
 
 bindkey -r '^Z'
+bindkey -r '^U'
 bindkey "^Z" undo
-bindkey "^[u" undo
+bindkey "^U" undo
 
 space-command-line() {
     [[ -z $BUFFER ]] && zle up-history
@@ -86,11 +87,15 @@ mtDisplayTime() {
   printf '%d seconds\n' $S
 }
 
+alias hl='helm list'
+alias hh='helm history'
 alias hst='helm status'
 alias hgv='helm get values'
 alias hgm='helm get manifest'
 alias kctx='kubectx'
 alias kns='kubens'
+
+alias watch='watch -n 0.5 ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias open='xdg-open'
 alias ]='open'
 alias -g G='| grep --color=always'
@@ -707,6 +712,7 @@ k8sGetIp() {
   xput | awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
 }
 
+alias cissh='ssh -i ~/.ssh/keys/git@bit@git.pri'
 ehssh() {
   chars=$(xput | wc -c)
   if [[ $chars -lt 20 ]]; then # 3*4+3 ~ 15

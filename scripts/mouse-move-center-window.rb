@@ -20,3 +20,4 @@ centerPointX = posX.to_i+sizeX.to_i/2
 centerPointY = posY.to_i+sizeY.to_i/2
 
 `xdotool mousemove #{centerPointX} #{centerPointY}`
+`find-cursor -s 200 -d 25 -l 2 -w 200 -g -c blue`
