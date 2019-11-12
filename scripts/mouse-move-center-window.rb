@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# ref: https://unix.stackexchange.com/questions/14159/how-do-i-find-the-window-dimensions-and-position-accurately-including-decoration
 
 require 'pry-byebug'
 

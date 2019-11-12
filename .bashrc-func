@@ -747,3 +747,9 @@ kt_db_analytics() {
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
 }
 
+kt_am_proxy() {
+    local APP_NAMESPACE=devops
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=am-proxy-web" -o jsonpath="{.items[0].metadata.name}")
+    echo -e "Am-proxy-web:\r\n\t$POD_NAME"
+    kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
+}
