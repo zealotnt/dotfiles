@@ -38,7 +38,7 @@ def swap_app(choice, cur_app_idx)
 end
 
 def check_arg(arg)
-  res = arg.match(/Slot (\d).*/)
+  res = arg.match(/Slot (\d+):.*/)
   if !res.nil? && res.size == 2
     return 0, res[1]
   end
@@ -69,11 +69,11 @@ case argType
 when 0
   File.write(SCRIPT_PATH + '/choice.res', argVal.to_i-1)
   apps = all_apps
-  apps = apps.select.with_index {|app, idx| !BLACK_LIST_IDX.include? idx+1 }
+  apps = apps[10..apps.size]
   puts apps
   exit 0
 when 1
-  cur_pos = File.read(__dir__ + '/choice.res')
+  cur_pos = File.read(SCRIPT_PATH + '/choice.res')
   swap_app(argVal, cur_pos.to_i)
   exit 0
 else
