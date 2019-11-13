@@ -95,7 +95,7 @@ alias hgm='helm get manifest'
 alias kctx='kubectx'
 alias kns='kubens'
 
-alias watch='watch -n 0.5 ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
+alias watch='watch -n 0.5 --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias open='xdg-open'
 alias ]='open'
 alias -g G='| grep --color=always'
