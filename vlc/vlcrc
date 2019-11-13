@@ -1501,7 +1501,7 @@ audiobargraph_v-position=0
 #lua-config=
 
 # Password (string)
-#http-password=
+http-password=dauxanh
 
 # Source directory (string)
 #http-src=
@@ -4337,7 +4337,7 @@ text-renderer=any
 #encoder=
 
 # Access module (string)
-#access=
+access=any
 
 # Demux module (string)
 #demux=any
@@ -5192,7 +5192,7 @@ key-subtitle-text-scale-up==
 key-subtitle-text-scale-down=-
 
 # Playlist bookmark 1 (string)
-#bookmark1=
+bookmark1=file:///home/zealot/BigExtend/Media/youtube/emacs/2015-04-01_Emacs_package_highlight-use-package-2TSKxxYEbII.mkv
 
 # Playlist bookmark 2 (string)
 #bookmark2=
