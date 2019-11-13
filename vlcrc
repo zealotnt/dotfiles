@@ -4559,7 +4559,7 @@ key-slower=
 #global-key-rate-normal=
 
 # Normal rate (string)
-#key-rate-normal==
+key-rate-normal=Shift++
 
 # Faster (fine) (string)
 #global-key-rate-faster-fine=
@@ -4625,13 +4625,13 @@ key-jump+short=l
 #global-key-jump-medium=
 
 # Medium backwards jump (string)
-key-jump-medium=Meta+j
+key-jump-medium=Alt+j
 
 # Medium forward jump (string)
 #global-key-jump+medium=
 
 # Medium forward jump (string)
-key-jump+medium=Meta+l
+key-jump+medium=Alt+l
 
 # Long backwards jump (string)
 #global-key-jump-long=
@@ -4883,7 +4883,7 @@ key-crop=
 #global-key-intf-show=
 
 # Show controller in fullscreen (string)
-key-intf-show=
+key-intf-show=w
 
 # Boss key (string)
 #global-key-intf-boss=
@@ -5183,13 +5183,13 @@ key-zoom-double=
 #global-key-subtitle-text-scale-up=
 
 # Scale down subtitles text (string)
-key-subtitle-text-scale-up=Alt+k
+key-subtitle-text-scale-up==
 
 # Scale up subtitles text (string)
 #global-key-subtitle-text-scale-down=
 
 # Scale up subtitles text (string)
-key-subtitle-text-scale-down=Alt+j
+key-subtitle-text-scale-down=-
 
 # Playlist bookmark 1 (string)
 #bookmark1=
