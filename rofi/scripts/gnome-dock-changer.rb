@@ -1,11 +1,29 @@
 #!/usr/bin/env ruby
-require 'pry-byebug'
+# require 'pry-byebug'
 
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
 BLACK_LIST_IDX = [1,2,3,4,6,7,9]
+CACHE_FILE = SCRIPT_PATH + "/cache/gnome-dash-items.cache"
 
-def all_apps
-  apps = `gsettings get org.gnome.shell favorite-apps`
+
+def update_cache(res)
+  File.write(CACHE_FILE, res)
+end
+
+def all_apps_from_cache
+  File.read(CACHE_FILE)
+  rescue
+  `gsettings get org.gnome.shell favorite-apps`
+end
+
+def all_apps(from_cached: false)
+  if from_cached
+    apps = all_apps_from_cache
+  else
+    apps = `gsettings get org.gnome.shell favorite-apps`
+
+  end
+
   all_apps = apps.
                gsub("]", '').
                gsub("['", '').
@@ -21,9 +39,9 @@ def print_debug(choice)
 end
 
 def set_gnome_apps(apps)
-  apps.map()
   apps.join(", ")
   `gsettings set org.gnome.shell favorite-apps \'#{apps}\'`
+  update_cache(apps)
 end
 
 def swap_app(choice, cur_app_idx)
@@ -79,4 +97,3 @@ when 1
 else
   exit 1
 end
-
