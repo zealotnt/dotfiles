@@ -7,7 +7,9 @@ mkdir ~/workspace_misc/
 
 # install essential tools
 sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
-     gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code
+     gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
+     xdotool \
+     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -28,6 +30,10 @@ sudo mv exa-linux-x86_64 /usr/local/bin/exa
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
   nerd-fonts/install.sh &&
   mv nerd-fonts ~/workspace_misc/
+
+# install find-cursor
+git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
+    make && sudo make install && cd .. && mv find-cursor ~/workspace_misc/
 
 # install alacritty
 sudo apt install alacritty
@@ -55,4 +61,15 @@ curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
 
 # install spotify, cause we already add gpg key of its server, then just apt install
 sudo apt-get install spotify-client
+
+# install gnome-extensions
+mkdir -p ~/.local/share/gnome-shell/extensions
+
+## unite
+## https://extensions.gnome.org/extension/1287/unite/
+## gtile
+## https://extensions.gnome.org/extension/28/gtile/
+
+# big fat heavy packages
+sudo apt install -y kicad
 
