@@ -6,7 +6,8 @@ mkdir ~/workspace_misc/
 . ~/dotfiles/apt-key/set-to-machine.sh
 
 # install essential tools
-sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26
+sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
+     gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -30,9 +31,28 @@ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
 
 # install alacritty
 sudo apt install alacritty
-ln -sf $(realpath ~/dotfiles/alacritty.yml) /home/zealot/.config/alacritty/
+ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
 
+# rofi
+mkdir -p ~/.config/rofi/
+ln -sf $(realpath ~/dotfiles/rofi/config.rasi) ~/.config/rofi/
 
 # install snap packages
 sudo snap install hub --classic
+
+# install discord
+wget --content-disposition https://discordapp.com/api/download\?platform\=linux\&format\=deb
+sudo gdebi discord*.deb
+
+# install caprine
+curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
+| grep "browser_download_url.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi -
+
+# install slack
+
+# install spotify, cause we already add gpg key of its server, then just apt install
+sudo apt-get install spotify-client
 
