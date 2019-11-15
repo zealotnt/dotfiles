@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=nvidia-settings -a '[gpu:0]/GPUFanControlState=1' -a '[fan:0]/GPUTargetFanSpeed=55'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Set VGA-Fan-Speed
+Name=Set VGA-Fan-Speed
+Comment[en_US]=
+Comment=

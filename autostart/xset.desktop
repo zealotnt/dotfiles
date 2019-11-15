@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=xset r rate 169 80
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Xinput set rate
+Name=Xinput set rate
+Comment[en_US]=speed up slowwwwwww ubuntu keyboard
+Comment=speed up slowwwwwww ubuntu keyboard
