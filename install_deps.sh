@@ -3,7 +3,7 @@
 # insstall oh-my-tmux: gpakosz/.tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f ~/.tmux/.tmux.conf ~/
-cp .tmux/.tmux.conf.local .
+cp ~/.tmux/.tmux.conf.local .
 # install tpm for tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -22,7 +22,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # other utils
 git clone https://github.com/alexppg/helmenv.git ~/.helmenv
 
-source ~/dotfile/install.sh
+source ~/dotfiles/install.sh
 
 git submodule init
 git submodule update
