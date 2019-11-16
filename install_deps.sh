@@ -6,6 +6,7 @@ ln -s -f ~/.tmux/.tmux.conf ~/
 cp ~/.tmux/.tmux.conf.local .
 # install tpm for tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git -C ~/.tmux/ clone https://github.com/jonmosco/kube-tmux
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

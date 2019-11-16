@@ -92,8 +92,8 @@ alias hh='helm history'
 alias hst='helm status'
 alias hgv='helm get values'
 alias hgm='helm get manifest'
-alias kctx='kubectx'
-alias kns='kubens'
+alias kctx='kubectl ctx' # use krew to manage plugin
+alias kns='kubectl ns'
 
 alias watch='watch -n 0.5 --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias open='xdg-open'

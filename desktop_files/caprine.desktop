@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Caprine
-Exec=/opt/Caprine/caprine %U
+Exec=/usr/bin/caprine %U
 Terminal=false
 Type=Application
 Icon=/home/zealot/dotfiles/icons/caprine.png

@@ -9,7 +9,7 @@ mkdir ~/workspace_misc/
 sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
-     blueman neovim \
+     blueman neovim network-manager-openvpn \
      libdbus-1-dev \ # requires for mpris-control
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
 
@@ -117,3 +117,6 @@ curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
 # but things still need to be configured correctly
 # follow settings -> Region & Language -> Language -> {ubuntu will prompt to install the missing pieces}
 
+# devops specific
+# install .kube credential folder
+# install openvpn
