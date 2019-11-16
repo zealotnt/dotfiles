@@ -8,7 +8,8 @@ mkdir ~/workspace_misc/
 # install essential tools
 sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
-     xdotool \
+     xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
+     blueman neovim \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
 
 # install oh-my-zsh
@@ -55,7 +56,7 @@ curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
 | grep "browser_download_url.*deb" \
 | cut -d : -f 2,3 \
 | tr -d \" \
-| wget -qi -
+| wget -i -
 
 # install slack
 
@@ -72,4 +73,40 @@ mkdir -p ~/.local/share/gnome-shell/extensions
 
 # big fat heavy packages
 sudo apt install -y kicad
+
+# some misc command
+## enable control nvidia-card-fan-speed
+## sudo nvidia-xconfig -a --cool-bits=28
+
+# install grc
+git clone git@github.com:zealotnt/grc.git && mv grc ~/workspace_misc/ && cd ~/workspace_misc/grc && sudo ./install.sh && cd
+
+# install kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
+    chmod 777 kubectl && sudo mv kubectl /usr/local/bin
+
+# install kubectl-krew
+(
+  set -x; cd "$(mktemp -d)" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/download/v0.3.2/krew.{tar.gz,yaml}" &&
+  tar zxvf krew.tar.gz &&
+  ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install \
+    --manifest=krew.yaml --archive=krew.tar.gz
+)
+# kubectl, kubens
+kubectl krew install ctx
+kubectl krew install ns
+
+# install prometheus
+curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
+| grep "browser_download_url.*linux-amd64.tar.gz" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+
+
+# vietnamese typing
+# basically, dconf already setup the neccessary configuration for vietnamese typing
+# but things still need to be configured correctly
+# follow settings -> Region & Language -> Language -> {ubuntu will prompt to install the missing pieces}
 
