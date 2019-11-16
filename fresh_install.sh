@@ -10,6 +10,7 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim \
+     libdbus-1-dev \ # requires for mpris-control
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
 
 # install oh-my-zsh
@@ -104,6 +105,12 @@ curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
 | tr -d \" \
 | wget -i -
 
+# install mpris-control
+curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
+| grep "browser_download_url.*mpris-control" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
 
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
