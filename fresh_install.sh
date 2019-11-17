@@ -124,11 +124,16 @@ curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
 | tr -d \" \
 | wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
 
-# install vim-plug
+# install vimrc, vim-plug
+mkdir -p ~/.config/nvim/
+ln -sf $(realpath ~/dotfiles/.vimrc) ~/.config/nvim/init.vim
 sudo chmod -R 777 ~/.local/share/nvim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # then go to vim, type: `PlugInstall`
+
+# install goldendict config file
+ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
 # install figlet-fonts
 git -C ~/workspace_misc/ https://github.com/xero/figlet-fonts && sudo mkdir -p /usr/share/figlet/fonts/ && sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
