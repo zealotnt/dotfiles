@@ -2,6 +2,7 @@ alacritty 0.3.3~1560809133~18.04~fdf1b7c LP-PPA-mmstick76-alacritty
 anbox-modules-dkms 13 LP-PPA-morphis-anbox-support
 bcompare 4.3.2-24472 Scooter Software
 code 1.40.1-1573664190 vscode stable
+copyq 3.9.3~bionic LP-PPA-hluk-copyq
 dropbox 2019.02.14 Dropbox.com
 emacs26 26.3~1.git96dd019-kk1+18.04 LP-PPA-kelleyk-emacs
 emacs26-common 26.3~1.git96dd019-kk1+18.04 LP-PPA-kelleyk-emacs
@@ -11,6 +12,7 @@ freecad-python3 2:0.18.4+dfsg1~201911060029~ubuntu18.04.1 LP-PPA-freecad-maintai
 freecad-runtime 2:0.18.4+dfsg1~201911060029~ubuntu18.04.1 LP-PPA-freecad-maintainers-freecad-stable
 google-chrome-beta 79.0.3945.36-1 Google LLC
 google-chrome-stable 78.0.3904.97-1 Google LLC
+ibus-bamboo 0.6.1-0~201911071024~ubuntu18.04.1 LP-PPA-bamboo-engine-ibus-bamboo
 indicator-sound-switcher 2.2.2-1 LP-PPA-yktooo
 kicad 5.1.4-201908052210+e60b266~84~ubuntu18.04.1 LP-PPA-js-reynaud-kicad-5.1
 kicad-demos 5.1.4-201908052210+e60b266~84~ubuntu18.04.1 LP-PPA-js-reynaud-kicad-5.1
@@ -50,15 +52,31 @@ libocct-modeling-data-7.3 7.3.0+dfsg1-5~ubuntu18.04.1 LP-PPA-freecad-maintainers
 libocct-ocaf-7.3 7.3.0+dfsg1-5~ubuntu18.04.1 LP-PPA-freecad-maintainers-freecad-stable
 libocct-visualization-7.3 7.3.0+dfsg1-5~ubuntu18.04.1 LP-PPA-freecad-maintainers-freecad-stable
 libopenmpt0 0.3.11-1~bionic LP-PPA-team-xbmc
+libpyside2-5.11 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 libpyside2-py3-5.11 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 libshairplay0 0.9.0.2~bionic LP-PPA-team-xbmc
+libshiboken2-5.11 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 libshiboken2-py3-5.11 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 libsoqt520 1.6.0~ea5cd76+ds1-0ppa1~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 libvdpau1 1.3-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
 libvulkan1 1.1.114.0-1~gpu18.04.1 LP-PPA-graphics-drivers
 libxnvctrl0 418.56-0ubuntu0~gpu18.04.1 LP-PPA-graphics-drivers
+neovim 0.3.8-1ppa1~ubuntu18.04.2 LP-PPA-neovim-ppa-stable
+neovim-runtime 0.3.8-1ppa1~ubuntu18.04.2 LP-PPA-neovim-ppa-stable
+nvidia-compute-utils-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
+nvidia-dkms-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
+nvidia-driver-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
+nvidia-kernel-common-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
+nvidia-kernel-source-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
+nvidia-settings 418.56-0ubuntu0~gpu18.04.1 LP-PPA-graphics-drivers
+nvidia-utils-440 440.26-0ubuntu0~gpu18.04.2 LP-PPA-graphics-drivers
 pcsx2:i386 1:1.4.0-11 LP-PPA-gregory-hainaut-pcsx2.official.ppa
 python-cryptodome 3.5.1-2~bionic LP-PPA-team-xbmc
+python-pivy 0.6.4-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
+python-pyside2.qtcore 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
+python-pyside2.qtgui 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
+python-pyside2.qtopengl 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
+python-pyside2.qtwidgets 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 python3-pivy 0.6.4-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 python3-pyside2.qtcore 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
 python3-pyside2.qtgui 5.11.2-0ppa2~ubuntu18.04 LP-PPA-freecad-maintainers-freecad-stable
