@@ -1,3 +1,8 @@
 *.cache
 goldendict/index/*
 
+copyq/copyq*.bak
+copyq/copyq-*bak.conf
+copyq/copyq_tab_*.dat
+copyq/copyq_no_session.ini
+
