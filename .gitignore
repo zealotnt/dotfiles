@@ -1,4 +1,6 @@
+*.tar.gz
 *.cache
+*.res
 goldendict/index/*
 
 copyq/copyq*.bak
