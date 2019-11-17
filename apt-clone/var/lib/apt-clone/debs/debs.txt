@@ -1,0 +1,15 @@
+caprine_2.38.0-1617_amd64.deb
+dbeaver-ce_6.2.0_amd64.deb
+debs.txt
+discord_0.0.9_amd64.deb
+fastonosql_2.5.1_amd64.deb
+franz_5.3.2-1572_amd64.deb
+process-exporter_0.5.0_amd64.deb
+ripgrep_11.0.2_amd64.deb
+sops_3.4.0_amd64.deb
+subsonic_6.1.5_all.deb
+synergy_1.10.2.stable~b10+8c010140_amd64.deb
+systemd-ui_3-4_amd64.deb
+viber_10.3.0.37_amd64.deb
+virtualbox-6.0_6.0.10-132072~Ubuntu~bionic_amd64.deb
+zoom_3.0.309708.1027_amd64.deb

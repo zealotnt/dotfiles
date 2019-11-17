@@ -1,0 +1,4 @@
+hostname: CMP
+kernel: 5.0.0-36-generic
+uname_arch: x86_64
+arch: amd64
