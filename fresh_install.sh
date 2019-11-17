@@ -9,8 +9,9 @@ mkdir ~/workspace_misc/
 sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
-     blueman neovim network-manager-openvpn \
+     blueman neovim network-manager-openvpn figlet goldendict \
      libdbus-1-dev \ # requires for mpris-control
+     python-dev python-pip python3-dev python3-pip \ # requies for neovim related
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
 
 # install oh-my-zsh
@@ -75,6 +76,17 @@ mkdir -p ~/.local/share/gnome-shell/extensions
 # big fat heavy packages
 sudo apt install -y kicad
 
+sudo apt-get install git pkg-config build-essential qt4-qmake \
+     libvorbis-dev zlib1g-dev libhunspell-dev x11proto-record-dev \
+     libqt4-dev libqtwebkit-dev libxtst-dev liblzo2-dev libbz2-dev \
+     libao-dev libavutil-dev libavformat-dev libtiff5-dev libeb16-dev # for compiling goldendict
+sudo apt-get install git pkg-config build-essential qt5-qmake \
+     libvorbis-dev zlib1g-dev libhunspell-dev x11proto-record-dev \
+     qtdeclarative5-dev libxtst-dev liblzo2-dev libbz2-dev \
+     libao-dev libavutil-dev libavformat-dev libtiff5-dev libeb16-dev \
+     libqt5webkit5-dev libqt5svg5-dev libqt5x11extras5-dev qttools5-dev \
+     qttools5-dev-tools qtmultimedia5-dev libqt5multimedia5-plugins # goldendict
+
 # some misc command
 ## enable control nvidia-card-fan-speed
 ## sudo nvidia-xconfig -a --cool-bits=28
@@ -111,6 +123,15 @@ curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
+
+# install vim-plug
+sudo chmod -R 777 ~/.local/share/nvim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# then go to vim, type: `PlugInstall`
+
+# install figlet-fonts
+git -C ~/workspace_misc/ https://github.com/xero/figlet-fonts && sudo mkdir -p /usr/share/figlet/fonts/ && sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
 
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
