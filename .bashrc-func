@@ -260,6 +260,13 @@ alias pwdcp="pwd | copy"
 alias path='realpath'
 alias pathcp='realpathcp'
 
+mtInstall_grc() {
+  local CUR_DIR=$(pwd)
+  cd ~/workspace_misc/grc/
+  sudo ./install.sh
+  cd $CUR_DIR
+}
+
 mtconfirm () {
 	# call with a prompt string or use a default
 	read -r -p "${1:-Are you sure? [y/N]} " response

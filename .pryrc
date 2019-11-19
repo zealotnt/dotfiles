@@ -10,6 +10,7 @@
 # gem install "pry-state"
 # gem install "pry-toys"
 # gem install "pry-rescue"
+# gem install "pry-nav"
 # gem install "awesome_print"
 # gem install "binding_of_caller"
 

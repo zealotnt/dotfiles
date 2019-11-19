@@ -155,6 +155,9 @@ ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 # install figlet-fonts
 git -C ~/workspace_misc/ https://github.com/xero/figlet-fonts && sudo mkdir -p /usr/share/figlet/fonts/ && sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
 
+# install jsonnet
+git -C ~/workspace_misc/ https://github.com/google/jsonnet && cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
+
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
 # but things still need to be configured correctly
