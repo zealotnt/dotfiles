@@ -99,7 +99,7 @@
   <enableMainWindowHotkey>1</enableMainWindowHotkey>
   <mainWindowHotkey>F12</mainWindowHotkey>
   <enableClipboardHotkey>1</enableClipboardHotkey>
-  <clipboardHotkey>Ctrl+C, Ctrl+D</clipboardHotkey>
+  <clipboardHotkey>Meta+Alt+V</clipboardHotkey>
   <enableScanPopup>0</enableScanPopup>
   <startWithScanPopupOn>0</startWithScanPopupOn>
   <enableScanPopupModifiers>0</enableScanPopupModifiers>
