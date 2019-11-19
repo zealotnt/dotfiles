@@ -65,8 +65,6 @@ lr() {
   EXA=$(which exa)
   $EXA --colour=always -t=modified -l -snew $@
 }
-unalias ls
-alias ls='lr'
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 alias curfull='date +"%Y%m%d-%H%M%S"'
