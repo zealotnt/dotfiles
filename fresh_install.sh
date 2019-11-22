@@ -166,3 +166,26 @@ git -C ~/workspace_misc/ https://github.com/google/jsonnet && cd ~/workspace_mis
 # devops specific
 # install .kube credential folder
 # install openvpn
+
+# TODO: install golang
+
+pip install aws-mfa
+
+## install govendor
+go get -u github.com/kardianos/govendor
+
+## install stern
+mkdir -p $GOPATH/src/github.com/wercker
+cd $GOPATH/src/github.com/wercker
+git clone https://github.com/wercker/stern.git && cd stern
+govendor sync
+go install
+
+## install sops https://github.com/mozilla/sops
+go get -u go.mozilla.org/sops/cmd/sops
+cd $GOPATH/src/go.mozilla.org/sops/
+make install
+
+
+## remove ~/.config/google-chrome/Login Data.. Login Data-journal
+
