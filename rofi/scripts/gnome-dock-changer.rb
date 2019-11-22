@@ -2,7 +2,7 @@
 # require 'pry-byebug'
 
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
-BLACK_LIST_IDX = [1,2,3,4,6,7,9]
+BLACK_LIST_IDX = [1,2,3,6,7]
 CACHE_FILE = SCRIPT_PATH + "/cache/gnome-dash-items.cache"
 
 
@@ -35,7 +35,7 @@ def all_apps(from_cached: false)
 end
 
 def print_debug(choice)
-  `echo #{choice} > res.res`
+  `echo #{choice} > #{SCRIPT_PATH + '/res.res'}`
 end
 
 def set_gnome_apps(apps)
@@ -56,12 +56,13 @@ def swap_app(choice, cur_app_idx)
 end
 
 def check_arg(arg)
-  res = arg.match(/Slot (\d+):.*/)
-  if !res.nil? && res.size == 2
-    return 0, res[1]
-  end
+  res = arg.match(/From Slot (\d+):.*/)
+  return 0, res[1] if !res.nil? && res.size == 2
 
-  return 1, arg
+  res = arg.match(/To Slot (\d+):\s+(.*)$/)
+  return 1, res[2].strip if !res.nil? && res.size == 3
+
+  exit 2
 end
 
 def choose_slot
@@ -71,7 +72,7 @@ def choose_slot
     if BLACK_LIST_IDX.include? idx+1
       next
     end
-    str += "Slot #{idx+1}: #{apps[idx]}\r\n"
+    str += "From Slot #{idx+1}: #{apps[idx]}\r\n"
   end
   str
 end
@@ -85,9 +86,17 @@ argType, argVal = check_arg(ARGV[0])
 
 case argType
 when 0
-  File.write(SCRIPT_PATH + '/choice.res', argVal.to_i-1)
+  choice = argVal.to_i
+  File.write(SCRIPT_PATH + '/choice.res', choice-1)
   apps = all_apps
-  apps = apps[10..apps.size]
+  apps.each_with_index do |app, idx|
+    apps[idx] = "To Slot #{idx+1}: #{apps[idx]}\r\n"
+  end
+  BLACK_LIST_IDX << choice
+  BLACK_LIST_IDX.sort!
+  BLACK_LIST_IDX.reverse_each do |id|
+    apps = apps.dup.tap {|i| i.delete_at(id-1)}
+  end
   puts apps
   exit 0
 when 1
