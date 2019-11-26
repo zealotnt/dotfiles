@@ -96,7 +96,7 @@ alias hgm='helm get manifest'
 alias kctx='kubectl ctx' # use krew to manage plugin
 alias kns='kubectl ns'
 
-alias watch='watch -n 0.5 --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
+alias watch='GRC_COLOR=on watch -n 0.5 --color ' # https://unix.stackexchange.com/questions/25327/watch-command-alias-expansion
 alias open='xdg-open'
 alias ]='open'
 alias -g G='| grep --color=always'

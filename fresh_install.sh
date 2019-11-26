@@ -10,7 +10,7 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom \
+     copyq minicom neofetch nodejs npm \
      libdbus-1-dev \ # requires for mpris-control
      python-dev python-pip python3-dev python3-pip \ # requies for neovim related
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
@@ -134,6 +134,15 @@ sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 
+# install nvidia-prometheus-exporter
+go get github.com/mindprince/nvidia_gpu_prometheus_exporter
+## then install systemd service (in this repo)
+
+# install postgres exporter
+go get github.com/wrouesnel/postgres_exporter && cd ${GOPATH-$HOME/go}/src/github.com/wrouesnel/postgres_exporter &&
+    go run mage.go binary && sudo cp postgres_exporter /usr/local/bin
+## then isntall systemd service
+
 # install mpris-control
 curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
 | grep "browser_download_url.*mpris-control" \
@@ -188,4 +197,8 @@ make install
 
 
 ## remove ~/.config/google-chrome/Login Data.. Login Data-journal
+
+# some usefull nodejs tools
+npm install --global public-ip-cli
+npm install -g tldr
 

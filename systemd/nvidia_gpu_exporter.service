@@ -1,0 +1,12 @@
+[Unit]
+Description=NVIDIA GPU Prometheus Exporter
+After=network.target
+
+[Service]
+User=root
+Type=simple
+ExecStart=/home/zealot/go/bin/nvidia_gpu_prometheus_exporter
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus exporter for PostgreSQL server metrics.
+After=network.target
+
+[Service]
+User=root
+Type=simple
+Environment=DATA_SOURCE_NAME="postgresql://postgres:password@localhost:5432/postgres?sslmode=disable"
+ExecStart=/home/zealot/go/src/github.com/wrouesnel/postgres_exporter/postgres_exporter
+
+[Install]
+WantedBy=multi-user.target
+
