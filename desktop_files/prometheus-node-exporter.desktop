@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Name=Prometheus Node Exporter
 Icon=/home/zealot/dotfiles/icons/node-exporter.png
-Exec=/usr/bin/google-chrome https://monitor.ehrocks.com/d/Y5SkLVtZz/node-exporter-full?orgId=1
+Exec=/usr/bin/google-chrome http://localhost:2999/d/Y5SkLVtZz/node-exporter-full?orgId=1
 Comment=Prometheus Node Exporter Grafana Dashboard
 Categories=Monitor;
 Terminal=false

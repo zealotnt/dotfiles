@@ -10,10 +10,14 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm \
+     copyq minicom neofetch nodejs npm nnn \
      libdbus-1-dev \ # requires for mpris-control
      python-dev python-pip python3-dev python3-pip \ # requies for neovim related
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
+
+# reconfigure locale
+# remember to use `en_US.UTF-8 UTF-8`
+sudo dpkg-reconfigure locales
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -201,4 +205,24 @@ make install
 # some usefull nodejs tools
 npm install --global public-ip-cli
 npm install -g tldr
+
+# install noti
+curl -s https://api.github.com/repos/variadico/noti/releases/latest \
+| awk '/browser_download_url/ { print $2 }' \
+| grep 'linux-amd64' | sed 's/"//g' \
+| wget -i -
+
+# install bat
+curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
+| grep "browser_download_url.*musl.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+
+# install fd-find
+curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
+| grep "browser_download_url.*musl.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
 

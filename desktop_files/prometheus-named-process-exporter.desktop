@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 Name=Prometheus Named Process Exporter
 Icon=/home/zealot/dotfiles/icons/named-process.png
-Exec=/usr/bin/google-chrome https://monitor.ehrocks.com/d/W6yrY4pZz/named-processes?orgId=1
+Exec=/usr/bin/google-chrome http://localhost:2999/d/W6yrY4pZz/named-processes?orgId=1
 Comment=Prometheus Named Process Grafana Dashboard
 Categories=Monitor;
 Terminal=false

@@ -2,6 +2,7 @@
 
 MYDOTFILES=(
   .bashrc
+  .psqlrc
   .bashrc-func
   .gitconfig
   .tmux.conf.local
