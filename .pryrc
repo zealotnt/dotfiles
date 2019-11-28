@@ -120,16 +120,17 @@ Pry.config.ls.private_method_color = :bright_black
 
 if defined?(PryByebug)
    def pry_debug
-     Pry.commands.alias_command 't', 'show-stack'
-     Pry.commands.alias_command 's', 'step'
-     Pry.commands.alias_command 'n', 'next'
-     Pry.commands.alias_command 'c', 'continue'
-     Pry.commands.alias_command 'u', 'up'
-     Pry.commands.alias_command 'd', 'down'
-     Pry.commands.alias_command 'b', 'break'
-     Pry.commands.alias_command 'w', 'whereami'
+     # Pry.commands.alias_command 't', 'show-stack'
+     Pry.commands.alias_command '\s', 'step'
+     Pry.commands.alias_command '\n', 'next'
+     Pry.commands.alias_command '\c', 'continue'
+     Pry.commands.alias_command '\u', 'up'
+     Pry.commands.alias_command '\d', 'down'
+     Pry.commands.alias_command '\b', 'break'
+     Pry.commands.alias_command '\w', 'whereami'
      Pry.commands.alias_command ':q', 'exit-program'
      Pry.commands.alias_command 'quit', 'exit-program' # make it same with byebug
+     Pry.commands.alias_command '\q', 'exit-program' # make it same with psql
      Pry.commands.alias_command 'exit', 'exit-program' # make it same with byebug
 
      puts "Debugging Shortcuts"

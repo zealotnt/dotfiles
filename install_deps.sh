@@ -10,7 +10,7 @@ git -C ~/.tmux/ clone https://github.com/jonmosco/kube-tmux
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # zsh-plugins
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
