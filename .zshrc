@@ -164,6 +164,7 @@ alias more='less'
 PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 
+export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
@@ -185,6 +186,7 @@ fi
 
 . ~/dotfiles/my-dot-files.sh
 DISABLE_AUTO_TITLE=true
+
 # =========== load real stuff here
 # complete -C aws_completer aws
 
@@ -196,6 +198,7 @@ DISABLE_AUTO_TITLE=true
 autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+cat ~/dotfiles/neofetch.cache
 source ~/.bashrc-func
 source ~/dotfiles/.custom_completions.sh
 source ~/dotfiles/sandboxd/sandboxd
@@ -219,7 +222,5 @@ bindkey -M vicmd v edit-command-line
 
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof
-
-cat ~/dotfiles/neofetch.cache
 
 if [ "$RUN_PROFILING" = true ]; then zprof; fi

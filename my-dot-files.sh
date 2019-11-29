@@ -2,6 +2,7 @@
 
 MYDOTFILES=(
   .bashrc
+  .batrc
   .psqlrc
   .bashrc-func
   .gitconfig

@@ -1,0 +1,8 @@
+# ref https://github.com/sharkdp/bat#configuration-file
+
+# bat --list-themes to list all themes
+--theme="Monokai Extended Bright"
+
+# Show line numbers, Git modifications and file header (but no grid)
+--style="changes,header,snip,numbers,grid"
+
