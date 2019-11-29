@@ -67,6 +67,7 @@ lr() {
 }
 unalias l
 alias l='lr'
+alias ls='/bin/ls --color=always -1'
 
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
