@@ -1,0 +1,15 @@
+# https://mehmandarov.com/start-docker-containers-automatically/
+# improve: https://blog.container-solutions.com/running-docker-containers-with-systemd
+
+[Unit]
+Description=Cadvisor
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a cadvisor
+ExecStop=/usr/bin/docker stop -t 2 cadvisor
+
+[Install]
+WantedBy=local.target

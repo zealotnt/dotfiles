@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Qalculate!
+Name=Qalculate Local!
 Comment=Powerful and easy to use calculator
 Exec=qalculate.gtk
 Icon=/snap/qalculate/current/meta/gui/qalculate.png

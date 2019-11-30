@@ -226,3 +226,9 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | tr -d \" \
 | wget -i -
 
+# clone, compile and install ncdu
+git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
+    cd ~/workspace_misc/ncdu &&
+    autoreconf -i && ./configure &&
+    make && sudo make install
+
