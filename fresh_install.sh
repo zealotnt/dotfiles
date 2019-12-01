@@ -226,6 +226,19 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | tr -d \" \
 | wget -i -
 
+# install smartmontools
+curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
+| grep "browser_download_url.*tar.gz\"" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+
+# intall smartctl_exporter
+go get github.com/Sheridan/smartctl_exporter &&
+    cd $GOPATH/src/github.com/Sheridan/smartctl_exporter &&
+    go build . &&
+    sudo cp smartctl_exporter /usr/local/sbin/
+
 # clone, compile and install ncdu
 git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
     cd ~/workspace_misc/ncdu &&

@@ -1,0 +1,10 @@
+smartctl_exporter:
+  bind_to: "localhost:9633"
+  url_path: "/metrics"
+  fake_json: no
+  smartctl_location: /usr/local/sbin/smartctl
+  collect_not_more_than_period: 120s
+  devices:
+  - /dev/sda
+  - /dev/sdb
+  - /dev/nvme0
