@@ -57,6 +57,15 @@ scrape_configs:
     scrape_interval: 60s
     scrape_timeout: 60s
 
+  - job_name: openvpn
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['localhost:9176']
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+    scrape_timeout: 5s
+
   - job_name: process
     static_configs:
       - targets: ['localhost:9256']

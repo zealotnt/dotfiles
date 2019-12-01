@@ -239,6 +239,12 @@ go get github.com/Sheridan/smartctl_exporter &&
     go build . &&
     sudo cp smartctl_exporter /usr/local/sbin/
 
+# install openvpn-exporter
+go get github.com/kumina/openvpn_exporter &&
+    cd $GOPATH/src/github.com/kumina/openvpn_exporter &&
+    go build . &&
+    sudo cp openvpn_exporter /usr/local/sbin/
+
 # clone, compile and install ncdu
 git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
     cd ~/workspace_misc/ncdu &&

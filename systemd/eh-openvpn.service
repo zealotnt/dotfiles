@@ -6,7 +6,9 @@ After=network.target
 User=root
 Group=root
 Type=simple
-ExecStart=/usr/sbin/openvpn /home/zealot/.ssh/other-keys/eh-openvpn/openvpn-eh/client.ovpn
+Environment=CONFIG_ARG="--config /home/zealot/.ssh/other-keys/eh-openvpn/openvpn-eh/client.ovpn"
+Environment=STATUS_ARG="--status /etc/openvpn/openvpn-status.log 5"
+ExecStart=/usr/sbin/openvpn $CONFIG_ARG $STATUS_ARG
 
 [Install]
 WantedBy=multi-user.target

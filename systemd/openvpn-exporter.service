@@ -1,0 +1,19 @@
+[Unit]
+Description=openvpn exporter service
+After=network-online.target
+
+[Service]
+Type=simple
+PIDFile=/run/openvpn_exporter.pid
+Environment=CONFIG_ARG="openvpn.status_paths /etc/openvpn/openvpn-status.log"
+ExecStart=/usr/local/sbin/openvpn_exporter $CONFIG_ARG
+User=root
+Group=root
+Restart=on-failure
+RemainAfterExit=no
+RestartSec=100ms
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
