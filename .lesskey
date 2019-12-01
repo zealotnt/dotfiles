@@ -1,0 +1,13 @@
+# https://linux.die.net/man/1/lesskey
+# For customizing this file, look at the source code
+# https://github.com/gdamore/less-fork/blob/master/lesskey.c#L96
+# First col: list of commands
+
+#command
+s display-flag s
+S toggle-flag S
+
+e visual
+h left-scroll
+l right-scroll
+

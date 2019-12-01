@@ -8,6 +8,7 @@ MYDOTFILES=(
   .gitconfig
   .tmux.conf.local
   .zshrc
+  .lesskey
   .pryrc
   .gitignore_global
   .editrc
