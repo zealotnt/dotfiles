@@ -719,13 +719,24 @@ mtStripIp() {
 }
 
 k8sGetIp() {
-  xput | awk '{print $1}' | sed -E -n -e 's/^ip-(.*)\.ap.*/\1/p' | sed 's/-/\./g'
+  # Test cases:
+  # ip-11-22-33-444.ap-southeast-2.compute.internal
+  # root@ip-10-30-34-245:/home/admin#
+
+  # sed -E -n -e 's/regexStr/\1/p' -> not work, suck...
+  # sed -E -n -e 's/(.*)\./\1/p' -> this is not working again
+  # https://stackoverflow.com/questions/9522631/how-to-put-a-line-comment-for-a-multi-line-command
+  # https://github.com/learnbyexample/Command-line-text-processing/blob/master/ruby_one_liners.md
+  xput | awk '{print $1}' \
+    | gawk 'match($0, /^.*ip-([0-9\-\.^:]*).*/, ary) {print ary[1]}' \
+    | sed 's/-/\./g'                 `# replace - to .` \
+    | ruby -pe "gsub(/(\d+\.\d+\.\d+\.\d+)[^0-9]*/, '\1')" `# remove last dot`
 }
 
 alias cissh='ssh -i ~/.ssh/keys/git@bit@git.pri'
 ehssh() {
   chars=$(xput | wc -c)
-  if [[ $chars -lt 20 ]]; then # 3*4+3 ~ 15
+  if [[ $chars -lt 15 ]]; then # 3*4+3 ~ 15
     echo "ssh -i $EH_SSH_KEY -l admin $(xput)"
     ssh -i $EH_SSH_KEY -l admin $(xput)
   else
