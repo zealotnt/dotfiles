@@ -251,3 +251,8 @@ git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
     autoreconf -i && ./configure &&
     make && sudo make install
 
+# install minikube https://kubernetes.io/docs/tasks/tools/install-minikube/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+sudo install minikube /usr/local/bin/
+
