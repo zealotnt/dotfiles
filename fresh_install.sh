@@ -1,7 +1,8 @@
 #!/bin/bash
 
-mkdir ~/workspace_mine/
-mkdir ~/workspace_misc/
+ln -sf $(realpath Old-Home/zealot/workspace_mine) .
+ln -sf $(realpath Old-Home/zealot/workspace_misc) .
+ln -sf $(realpath Old-Home/zealot/workspace_eo) .
 
 . ~/dotfiles/apt-key/set-to-machine.sh
 
@@ -10,10 +11,10 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nnn \
-     libdbus-1-dev \ # requires for mpris-control
-     python-dev python-pip python3-dev python3-pip \ # requies for neovim related
-     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev # requires to compile find-cursor
+     copyq minicom neofetch nodejs npm nnn alacritty spotify-client \
+     libdbus-1-dev `# requires for mpris-control` \
+     python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
+     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor`
 
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`
@@ -28,7 +29,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # ref https://ourcodeworld.com/articles/read/832/how-to-install-and-use-exa-a-modern-replacement-for-the-ls-command-in-ubuntu-16-04
 ## install rust compiler
 curl https://sh.rustup.rs -sSf | sh
-
 ## TODO: find a way to fetch latest binary
 wget -c https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
 unzip exa-linux-x86_64-0.8.0.zip && rm exa-linux-x86_64-0.8.0.zip
@@ -41,13 +41,15 @@ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
 
 # install find-cursor
 git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
-    make && sudo make install && cd .. && mv find-cursor ~/workspace_misc/
+    make && sudo mkdir -p /usr/local/share/man/man1/ && sudo make install &&
+    cd .. && mv find-cursor ~/workspace_misc/
 
 # install alacritty
-sudo apt install alacritty
+mkdir -p ~/.config/alacritty/
 ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
 
 # rofi
+sudo cp /usr/bin/rofi /usr/local/bin/rofi
 mkdir -p ~/.config/rofi/
 ln -sf $(realpath ~/dotfiles/rofi/config.rasi) ~/.config/rofi/
 
@@ -64,11 +66,9 @@ curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
+sudo gdebi caprine*.deb
 
 # install slack
-
-# install spotify, cause we already add gpg key of its server, then just apt install
-sudo apt-get install spotify-client
 
 # install gnome-extensions
 mkdir -p ~/.local/share/gnome-shell/extensions
@@ -166,10 +166,13 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
 # install figlet-fonts
-git -C ~/workspace_misc/ https://github.com/xero/figlet-fonts && sudo mkdir -p /usr/share/figlet/fonts/ && sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
+git -C ~/workspace_misc/ clone https://github.com/xero/figlet-fonts &&
+    sudo mkdir -p /usr/share/figlet/fonts/ &&
+    sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
 
 # install jsonnet
-git -C ~/workspace_misc/ https://github.com/google/jsonnet && cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
+git -C ~/workspace_misc/ clone https://github.com/google/jsonnet &&
+    cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
 
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
