@@ -77,15 +77,6 @@ scrolling:
   # scrollback is enabled (history > 0).
   multiplier: 3
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 3
-
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
@@ -570,6 +561,12 @@ key_bindings:
   - { key: Q,        mods: Command|Shift,
                                     command: {program: "/usr/bin/killall", args: ["alacritty"]}}
   - { key: Subtract, mods: Command, chars: "\x01\x2d"} # open tmux pane below
+  # -> everything relate to Underline is not working
+  # some references to all key bindings
+  # https://github.com/jwilm/alacritty/blob/master/alacritty/src/config/bindings.rs
+  # other refs
+  # https://github.com/jwilm/alacritty/issues/62
+  # https://www.systutorials.com/4670/ascii-table-and-ascii-code/
   - { key: Underline, mods: Command|Shift, chars: "\x01\x5f"} # open tmux pane on the right -- not work yet
   - { key: N,        mods: Command|Shift,
                                     action: SpawnNewInstance} # open tmux pane vertically
