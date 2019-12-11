@@ -49,7 +49,7 @@ def calculate_point(pos)
 end
 
 if ARGV.length != 1
-  pointX, pointY = calculate_point(5)
+  pointX, pointY = calculate_point(4)
 else
   pointX, pointY = calculate_point(ARGV[0].to_i-1)
 end

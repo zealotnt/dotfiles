@@ -1,24 +1,39 @@
 #!/bin/bash
 
+mkdir ~/bin/
+
 ln -sf $(realpath Old-Home/zealot/workspace_mine) .
 ln -sf $(realpath Old-Home/zealot/workspace_misc) .
 ln -sf $(realpath Old-Home/zealot/workspace_eo) .
 
-. ~/dotfiles/apt-key/set-to-machine.sh
+cp -rp Old-Root/home/zealot/.ssh .
+cp -rp Old-Root/home/zealot/.aws .
+cp -rp Old-Root/home/zealot/.kube .
+
+# migrate google-chrome data
+cp -rp /home/zealot/Old-Root/home/zealot/.config/google-chrome ~/.config/
+## remove ~/.config/google-chrome/Default/Login Data.. Login Data-journal
+rm ~/.config/google-chrome/default/Login\ Data*
+
 
 # install essential tools
 sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nnn alacritty spotify-client \
+     copyq minicom neofetch nodejs npm nnn alacritty spotify-client ubuntu-make \
      libdbus-1-dev `# requires for mpris-control` \
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
-     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor`
+     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
+     vlc gnupg-agent docker-ce docker-ce-cli containerd.io
+
 
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`
 sudo dpkg-reconfigure locales
+
+# install docker
+sudo usermod -aG docker $USER
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -48,6 +63,14 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
 mkdir -p ~/.config/alacritty/
 ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
 
+# install vlc config
+mkdir -p ~/.config/vlc
+cp ~/dotfiles/vlc/vlcrc ~/.config/vlc/vlcrc
+
+# install copyq config
+rm -rf ~/.config/copyq
+ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
+
 # rofi
 sudo cp /usr/bin/rofi /usr/local/bin/rofi
 mkdir -p ~/.config/rofi/
@@ -69,6 +92,17 @@ curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
 sudo gdebi caprine*.deb
 
 # install slack
+google-chrome https://slack.com/intl/en-vn/downloads/instructions/ubuntu
+sudo gdebi slack-desktop*amd64.deb
+
+# install telegram
+google-chrome https://telegram.org/dl/desktop/linux
+tar -xvf tsetup.1.8.15.tar.xz
+mv Telegram ~/bin/
+
+# install skype
+google-chrome https://www.skype.com/en/get-skype/
+sudo gdebi skypeforlinux-64.deb
 
 # install gnome-extensions
 mkdir -p ~/.local/share/gnome-shell/extensions
@@ -78,12 +112,12 @@ mkdir -p ~/.local/share/gnome-shell/extensions
 ## gtile
 ## https://extensions.gnome.org/extension/28/gtile/
 
-# big fat heavy packages
-sudo apt install -y kicad
-
 # some misc command
 ## enable control nvidia-card-fan-speed
 ## sudo nvidia-xconfig -a --cool-bits=28
+
+# install linux-brew
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
 # install ruby/rbenv/bundle
 # ref: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
@@ -96,6 +130,8 @@ gem install bundler
 
 # install grc
 git clone git@github.com:zealotnt/grc.git && mv grc ~/workspace_misc/ && cd ~/workspace_misc/grc && sudo ./install.sh && cd
+
+# intall helm
 
 # install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
@@ -174,16 +210,27 @@ git -C ~/workspace_misc/ clone https://github.com/xero/figlet-fonts &&
 git -C ~/workspace_misc/ clone https://github.com/google/jsonnet &&
     cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
 
+
+# install calibre https://calibre-ebook.com/download_linux
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
+| sudo sh /dev/stdin
+
+# install qalculate
+sudo snap install qalculate
+
+# install firefox-dev
+umake web firefox-dev --lang en-US
+
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
 # but things still need to be configured correctly
 # follow settings -> Region & Language -> Language -> {ubuntu will prompt to install the missing pieces}
 
 # devops specific
-# install .kube credential folder
-# install openvpn
 
 # TODO: install golang
+google-chrome https://golang.org/dl/
+sudo tar -C /usr/local -xzf go*-amd64.tar.gz
 
 pip install aws-mfa
 
@@ -203,11 +250,9 @@ cd $GOPATH/src/go.mozilla.org/sops/
 make install
 
 
-## remove ~/.config/google-chrome/Login Data.. Login Data-journal
-
 # some usefull nodejs tools
-npm install --global public-ip-cli
-npm install -g tldr
+sudo npm install --global public-ip-cli
+sudo npm install -g tldr
 
 # install noti
 curl -s https://api.github.com/repos/variadico/noti/releases/latest \
@@ -215,12 +260,17 @@ curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 | grep 'linux-amd64' | sed 's/"//g' \
 | wget -i -
 
+# install arandr
+git -C ~/workspace_misc/ clone https://gitlab.com/arandr/arandr
+cd ~/workspace_misc/arandr && sudo ./setup.py install
+
 # install bat
 curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
 | grep "browser_download_url.*musl.*deb" \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
+sudo gdebi bat-musl*.deb
 
 # install fd-find
 curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
@@ -228,6 +278,7 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
+sudo gdebi fd-musl*.deb
 
 # install smartmontools
 curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
@@ -235,6 +286,8 @@ curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
+tar -xvf smartmontools-7.0.tar.gz
+cd smartmontools-7.0 && ./configure && make && sudo make install
 
 # intall smartctl_exporter
 go get github.com/Sheridan/smartctl_exporter &&
@@ -258,4 +311,10 @@ git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
   && chmod +x minikube
 sudo install minikube /usr/local/bin/
+
+# install emacs all-the-icons
+
+#############################################################
+# big fat heavy packages
+sudo apt install -y kicad
 
