@@ -25,7 +25,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # other utils
 git clone https://github.com/alexppg/helmenv.git ~/.helmenv
 
-source ~/dotfiles/install.sh
+source ~/dotfiles/install_dotfiles.sh
 
 git submodule init
 git submodule update

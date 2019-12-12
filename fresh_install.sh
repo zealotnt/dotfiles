@@ -26,7 +26,7 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
      vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
-     redis-tools redis-server
+     redis-tools redis-server htop
 
 
 # reconfigure locale
@@ -318,6 +318,9 @@ git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
   && chmod +x minikube
 sudo install minikube /usr/local/bin/
+
+# install sound-use-both-headphone-and-lineout
+./pulseaudio/install.sh
 
 # install emacs all-the-icons
 
