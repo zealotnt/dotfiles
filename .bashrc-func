@@ -785,6 +785,6 @@ start_grafana() {
   docker run -d --rm --user $(id -u) \
          --volume "/home/zealot/dotfiles/applications-config/grafana:/var/lib/grafana" \
          -e "GF_PATHS_CONFIG=/var/lib/grafana/grafana.ini" \
-         --network=host grafana/grafana
+         --name=grafana --network=host grafana/grafana
 }
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-if [[ $# != 0 ]]; then
+if [[ $# != 1 ]]; then
   echo "Usage:"
   echo " install_service.sh <service file to install to systemd>"
-  return
+  exit 1
 fi
 
 SERVICE_FILE=$1

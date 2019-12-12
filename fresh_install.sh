@@ -25,12 +25,20 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      libdbus-1-dev `# requires for mpris-control` \
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
-     vlc gnupg-agent docker-ce docker-ce-cli containerd.io
+     vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
+     redis-tools redis-server
 
 
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`
 sudo dpkg-reconfigure locales
+
+# reconfigure postgresql
+sudo cp ~/dotfiles/applications-config/etc/postgresql/10/main/pg_hba.conf \
+     /etc/postgresql/10/main/pg_hba.conf
+sudo systemctl restart postgresql
+psql -U postgres -c "create user $USER;"
+psql -U postgres -c "create database $USER;"
 
 # install docker
 sudo usermod -aG docker $USER
@@ -150,16 +158,19 @@ kubectl krew install ctx
 kubectl krew install ns
 
 # install prometheus
+cd /tmp
 curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
 | grep "browser_download_url.*linux-amd64.tar.gz" \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
+prome_folder=$(extract prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
+# cd to folder
+cd $prome_folder
+sudo cp prometheus promtool tsdb /usr/bin
 
 # download node-exporter
 # install step https://devopscube.com/monitor-linux-servers-prometheus-node-exporter/
-sudo systemctl disable prometheus-node-exporter # remove the node-exporter that comes with prometheus package
-sudo systemctl stop prometheus-node-exporter
 cd /tmp
 curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
 | grep "browser_download_url.*linux-amd64.tar.gz" \
@@ -169,10 +180,6 @@ curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
 node_exporter_folder=$(extract node_exporter* | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
 sudo mv $node_exporter_folder/node_exporter /usr/local/bin
 sudo useradd -rs /bin/false node_exporter
-sudo ln -sf $(realpath ~/dotfiles/node_exporter.service) /etc/systemd/system/node_exporter.service
-sudo systemctl daemon-reload
-sudo systemctl start node_exporter
-sudo systemctl enable node_exporter
 
 # install nvidia-prometheus-exporter
 go get github.com/mindprince/nvidia_gpu_prometheus_exporter
