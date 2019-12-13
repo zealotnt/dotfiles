@@ -103,6 +103,10 @@ sudo gdebi caprine*.deb
 google-chrome https://slack.com/intl/en-vn/downloads/instructions/ubuntu
 sudo gdebi slack-desktop*amd64.deb
 
+# install viber
+wget https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb
+sudo gdebi viber.deb
+
 # install telegram
 google-chrome https://telegram.org/dl/desktop/linux
 tar -xvf tsetup.1.8.15.tar.xz
@@ -121,6 +125,18 @@ mkdir -p ~/.local/share/gnome-shell/extensions
 ## https://extensions.gnome.org/extension/28/gtile/
 
 # some misc command
+
+# nvidia fanspeed setting
+## edit /usr/share/X11/xorg.conf.d/10-nvidia.conf
+## value:
+# Section "OutputClass"
+#     Identifier "nvidia"
+#     MatchDriver "nvidia-drm"
+#     Driver "nvidia"
+#     Option "AllowEmptyInitialConfiguration"
+#     Option "Coolbits" "28"
+#     ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
+# EndSection
 ## enable control nvidia-card-fan-speed
 ## sudo nvidia-xconfig -a --cool-bits=28
 
@@ -321,8 +337,13 @@ sudo install minikube /usr/local/bin/
 
 # install sound-use-both-headphone-and-lineout
 ./pulseaudio/install.sh
+# install autostart
+./autostart/install.sh
 
-# install emacs all-the-icons
+# Emacs
+## TODO: install all-the-icons
+## for go-imenu
+go get -u github.com/lukehoban/go-outline
 
 #############################################################
 # big fat heavy packages
