@@ -12,6 +12,9 @@
 # gem install "pry-rescue"
 # gem install "awesome_print"
 # gem install "binding_of_caller"
+# gem install "rb-readline"
+# gem install "highline"
+# gem install "gem-open"
 
 # Fix for Zeus: see https://github.com/burke/zeus/issues/466#issuecomment-60242431
 if defined?(::Rails) && Rails.env
@@ -79,10 +82,10 @@ Pry.config.color = true
 
 # http://rocket-science.ru/hacking/2018/10/27/pry-with-whistles
 # === EDITOR ===
-Pry.config.editor = "emacsclient -nw -create-frame"
+Pry.config.editor = proc { |file, line| "emacsclient -nw -create-frame +#{line} #{file}" }
 
 # === PROMPT ===
-Pry.config.prompt_name = Dir.pwd
+Pry.config.prompt_name = ""
 
 # === COLORS ===
 unless ENV['PRY_BW']
@@ -167,6 +170,10 @@ end
 if defined?(::Rails) && Rails.env && Rails.env.test? && ENV["PRY_LONG"].blank?
   pry_debug
 end
+
+require 'highline/import'
+confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
+pry_debug if confirm.downcase == 'y'
 
 # == PLUGINS ===
 # awesome_print gem: great syntax colorized printing

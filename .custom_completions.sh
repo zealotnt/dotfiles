@@ -7,7 +7,7 @@ _gemopencomplete() {
 
     case "$subcmd" in
         open)
-            words=`ruby -rubygems -e 'puts Dir["{#{Gem::Specification.dirs.join(",")}}/*.gemspec"].collect {|s| File.basename(s).gsub(/\.gemspec$/, "")}'`
+            words=`ruby -e 'puts Dir["{#{Gem::Specification.dirs.join(",")}}/*.gemspec"].collect {|s| File.basename(s).gsub(/\.gemspec$/, "")}'`
             ;;
         *)
             return
@@ -19,3 +19,4 @@ _gemopencomplete() {
 }
 
 complete -o default -F _gemopencomplete gem
+

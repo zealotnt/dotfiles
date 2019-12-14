@@ -5,7 +5,6 @@ Name=Firefox Developer Edition
 Icon=/home/zealot/.local/share/umake/web/firefox-dev/browser/chrome/icons/default/default128.png
 Exec=/home/zealot/.local/share/umake/web/firefox-dev/firefox
 TryExec=/home/zealot/.local/share/umake/web/firefox-dev/firefox
-#Exec=firefox-developer
 Comment=Firefox Aurora with Developer tools
 Categories=Development;IDE;
 Terminal=false

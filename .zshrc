@@ -14,7 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="spaceship"
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -90,10 +90,12 @@ plugins=(
   z
   web-search
   urltools
-  rails
   rake
   rake-fast
+  systemd
   sudo
+  ubuntu
+  urltools
   copybuffer
   copydir
   copyfile
@@ -138,7 +140,7 @@ source $ZSH/oh-my-zsh.sh
 # ZSH-Command-Time
 # https://github.com/popstas/zsh-command-time
 # If command execution time above min. time, plugins will output time.
-ZSH_COMMAND_TIME_MIN_SECONDS=1
+ZSH_COMMAND_TIME_MIN_SECONDS=2
 # Message to display (set to "" for disable).
 ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
 # Message color.
@@ -167,7 +169,7 @@ export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
-export EDITOR="emacsclient -nw -create-frame"
+export EDITOR="emacsclient -create-frame"
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:/usr/local/go/bin
@@ -201,7 +203,7 @@ autoload -Uz compinit && compinit -i
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 cat ~/dotfiles/neofetch.cache
 source ~/.bashrc-func
-source ~/dotfiles/.custom_completions.sh
+source ~/dotfiles/.custom_completions.sh # install https://github.com/fnando/gem-open
 source ~/dotfiles/sandboxd/sandboxd
 source ~/.helmenv/helmenv.sh
 
