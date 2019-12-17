@@ -26,7 +26,7 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
      vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
-     redis-tools redis-server htop sqlitebrowser
+     redis-tools redis-server htop sqlitebrowser libusb-dev
 
 
 # reconfigure locale
@@ -61,6 +61,8 @@ sudo mv exa-linux-x86_64 /usr/local/bin/exa
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
   nerd-fonts/install.sh &&
   mv nerd-fonts ~/workspace_misc/
+
+# install teensy_loader_cli
 
 # install find-cursor
 git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
@@ -184,6 +186,23 @@ prome_folder=$(extract prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/
 # cd to folder
 cd $prome_folder
 sudo cp prometheus promtool tsdb /usr/bin
+
+# install process-exporter
+curl -s https://api.github.com/repos/ncabatoff/process-exporter/releases/latest \
+| grep "browser_download_url.*linux_amd64.deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi process-exporter*_linux_amd64.deb
+
+# install cadvisor
+curl -s https://api.github.com/repos/google/cadvisor/releases/latest \
+| grep "browser_download_url.*cadvisor" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+chmod 777 cadvisor
+sudo mv cadvisor /usr/local/sbin/
 
 # download node-exporter
 # install step https://devopscube.com/monitor-linux-servers-prometheus-node-exporter/

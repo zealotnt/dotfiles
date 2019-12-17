@@ -1,0 +1,14 @@
+[Unit]
+Description=cadvisor service
+Requires=docker.service
+After=docker.service
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/usr/local/sbin/cadvisor
+
+[Install]
+WantedBy=multi-user.target
+
