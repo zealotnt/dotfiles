@@ -109,6 +109,55 @@ alias kk='kill -9'
 alias picocom='picocom -e x'
 alias minicom='minicom -m'
 alias cat='bat'
+unalias z
+z() {
+  if [[ -z "$*" ]]; then
+    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+  else
+    _last_z_args="$@"
+    _z "$@"
+  fi
+}
+zz() {
+  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+}
+alias j=z
+alias jj=zz
+
+# fo [FUZZY PATTERN] - Open the selected file with the default editor/xdg-open
+#   - CTRL-O to open with `open` command,
+#   - CTRL-E or Enter key to open with the $EDITOR
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fo() {
+  local out file key
+  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    # https://stackoverflow.com/questions/12806987/unix-command-to-escape-spaces
+    file=$(printf %q "$file")
+    [ "$key" = ctrl-e ] && eval ${EDITOR:-vim} "$file" || open "$file"
+    # echo ${EDITOR:-vim} "${file}"
+  fi
+}
+
+fman() {
+    man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
+}
+
+# fuzzy grep open via ag with line number
+vg() {
+  local file
+  local line
+
+  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+  if [[ -n $file ]]
+  then
+     vim $file +$line
+  fi
+}
 
 # make MAC prefers GNU's coreutils
 # https://apple.stackexchange.com/questions/69223/how-to-replace-mac-os-x-utilities-with-gnu-core-utilities

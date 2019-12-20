@@ -277,7 +277,8 @@ bind q copy-mode
 bind -T prefix v split-window -h -c "#{pane_current_path}"
 bind -T prefix s split-window -v -c "#{pane_current_path}"
 
-bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
+# TODO: fix this
+# bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
 bind -T copy-mode    q send-keys -X cancel
