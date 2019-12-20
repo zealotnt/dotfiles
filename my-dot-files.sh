@@ -14,4 +14,5 @@ MYDOTFILES=(
   .editrc
   .sandboxrc
   .minirc.dfl
+  .goldendict
 )
