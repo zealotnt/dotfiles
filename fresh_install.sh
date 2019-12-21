@@ -16,19 +16,6 @@ cp -rp /home/zealot/Old-Root/home/zealot/.config/google-chrome ~/.config/
 rm ~/.config/google-chrome/default/Login\ Data*
 
 
-# install essential tools
-sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
-     gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
-     xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
-     blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nnn alacritty spotify-client ubuntu-make \
-     libdbus-1-dev `# requires for mpris-control` \
-     python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
-     libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
-     vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
-     redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox
-
-
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`
 sudo dpkg-reconfigure locales
@@ -43,20 +30,6 @@ psql -U postgres -c "create database $USER;"
 # install docker
 sudo usermod -aG docker $USER
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# after this, should restart to change shell to zsh
-
-# install exa
-# ref https://ourcodeworld.com/articles/read/832/how-to-install-and-use-exa-a-modern-replacement-for-the-ls-command-in-ubuntu-16-04
-## install rust compiler
-curl https://sh.rustup.rs -sSf | sh
-## TODO: find a way to fetch latest binary
-wget -c https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
-unzip exa-linux-x86_64-0.8.0.zip && rm exa-linux-x86_64-0.8.0.zip
-sudo mv exa-linux-x86_64 /usr/local/bin/exa
-
 # install nerd font
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
   nerd-fonts/install.sh &&
@@ -69,10 +42,6 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
     make && sudo mkdir -p /usr/local/share/man/man1/ && sudo make install &&
     cd .. && mv find-cursor ~/workspace_misc/
 
-# install alacritty
-mkdir -p ~/.config/alacritty/
-ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
-
 # install vlc config
 mkdir -p ~/.config/vlc
 cp ~/dotfiles/vlc/vlcrc ~/.config/vlc/vlcrc
@@ -80,11 +49,6 @@ cp ~/dotfiles/vlc/vlcrc ~/.config/vlc/vlcrc
 # install copyq config
 rm -rf ~/.config/copyq
 ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
-
-# rofi
-sudo cp /usr/bin/rofi /usr/local/bin/rofi
-mkdir -p ~/.config/rofi/
-ln -sf $(realpath ~/dotfiles/rofi/config.rasi) ~/.config/rofi/
 
 # install snap packages
 sudo snap install hub --classic
@@ -158,6 +122,9 @@ gem install bundler
 git clone git@github.com:zealotnt/grc.git && mv grc ~/workspace_misc/ && cd ~/workspace_misc/grc && sudo ./install.sh && cd
 
 # intall helm
+wget https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
+tar -xvf helm*.tar.gz
+sudo mv linux-amd64/helm linux-amd64/tiller /usr/local/bin
 
 # install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
@@ -232,14 +199,6 @@ curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
 | tr -d \" \
 | wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
 
-# install vimrc, vim-plug
-mkdir -p ~/.config/nvim/
-ln -sf $(realpath ~/dotfiles/.vimrc) ~/.config/nvim/init.vim
-sudo chmod -R 777 ~/.local/share/nvim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# then go to vim, type: `PlugInstall`
-
 # install goldendict config file
 ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
@@ -306,14 +265,6 @@ curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 git -C ~/workspace_misc/ clone https://gitlab.com/arandr/arandr
 cd ~/workspace_misc/arandr && sudo ./setup.py install
 
-# install bat
-curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
-| grep "browser_download_url.*musl.*deb" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-sudo gdebi bat-musl*.deb
-
 # install fd-find
 curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | grep "browser_download_url.*musl.*amd64.*deb" \
@@ -355,9 +306,9 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 sudo install minikube /usr/local/bin/
 
 # install sound-use-both-headphone-and-lineout
-./pulseaudio/install.sh
+~/dotfiles/pulseaudio/install.sh
 # install autostart
-./autostart/install.sh
+~/dotfiles/autostart/install.sh
 
 # Emacs
 ## TODO: install all-the-icons
