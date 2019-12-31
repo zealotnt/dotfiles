@@ -24,8 +24,9 @@ sudo dpkg-reconfigure locales
 sudo cp ~/dotfiles/applications-config/etc/postgresql/10/main/pg_hba.conf \
      /etc/postgresql/10/main/pg_hba.conf
 sudo systemctl restart postgresql
-psql -U postgres -c "create user $USER;"
-psql -U postgres -c "create database $USER;"
+psql -U postgres -c "CREATE USER $USER;"
+psql -U postgres -c "CREATE DATABASES $USER;"
+psql -U postgres -c "ALTER USER $USER with superuser createrole createdb replication bypassrls"
 
 # install docker
 sudo usermod -aG docker $USER
