@@ -281,7 +281,13 @@ bind -T prefix s split-window -v -c "#{pane_current_path}"
 # bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
+bind -T copy-mode-vi q send -X cancel
 bind -T copy-mode    q send-keys -X cancel
+bind -T copy-mode-vi i send-keys B \; send -X begin-selection \; send-keys E
+bind -T copy-mode-vi I send-keys B \; send -X begin-selection \; send-keys E \; send-keys y \; send-keys q
+run -b 'tmux bind -T copy-mode-vi Escape send -X clear-selection'
+run -b 'tmux bind -T copy-mode-vi y send -X copy-selection 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi Y send -X copy-selection-and-cancel 2> /dev/null || true'
 
 # Some pre-configure before use these binding in itemr2
 # https://unix.stackexchange.com/questions/96884/using-ctrl0-9-to-cycle-between-windows-using-tmux

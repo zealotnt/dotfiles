@@ -48,6 +48,7 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
      openssh-server gparted iotop libpam-google-authenticator \
      python-docutils python3-docutils `# requires for arandr`
+     libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...`
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
