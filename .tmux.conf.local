@@ -222,9 +222,11 @@ setw -g automatic-rename off
 # in .tmux.conf, it binds C-l with next-window, C-h with previous-window, we move it to C-n/p
 unbind C-l
 unbind C-h
-bind -r C-p previous-window # select previous window
-bind -r C-n next-window     # select next window
 bind -n C-l send-keys C-l
+
+# dont repeat, cause we will use in Allacrity as well
+bind C-p previous-window # select previous window
+bind C-n next-window     # select next window
 
 # increase history size
 set -g history-limit 100000
@@ -266,6 +268,14 @@ bind l select-pane -R  # move right
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # My own stuff
+
+# cause M-number already pick by OS, use C-number instead
+bind -T prefix C-1 select-layout even-horizontal
+bind -T prefix C-2 select-layout even-vertical
+bind -T prefix C-3 select-layout main-horizontal
+bind -T prefix C-4 select-layout main-vertical
+bind -T prefix C-5 select-layout tiled
+
 # clear both screen and history
 bind C-r send-keys C-l\; run-shell "sleep 0.2"\; clear-history\; run-shell "tmux display \"History cleared\""
 bind C-m resize-pane -Z
@@ -314,6 +324,12 @@ bind -r H resize-pane -L 8
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 bind -r L resize-pane -R 8
+
+# resize pane without repeat -> fit with alacritty
+bind C-h resize-pane -L 8
+bind C-j resize-pane -D 4
+bind C-k resize-pane -U 4
+bind C-l resize-pane -R 8
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # tmux-resurrect:

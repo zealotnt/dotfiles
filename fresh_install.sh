@@ -230,11 +230,16 @@ umake web firefox-dev --lang en-US
 
 # devops specific
 
+# install libreoffice
+google-chrome https://www.libreoffice.org/donate/dl/deb-x86_64/6.3.4/en-US/LibreOffice_6.3.4_Linux_x86-64_deb.tar.gz
+
 # TODO: install golang
 google-chrome https://golang.org/dl/
 sudo tar -C /usr/local -xzf go*-amd64.tar.gz
 
 pip install aws-mfa
+pip install awscli
+pip install aws-shell
 
 ## install govendor
 go get -u github.com/kardianos/govendor

@@ -2,7 +2,7 @@
 # require 'pry-byebug'
 
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
-BLACK_LIST_IDX = [1,2,3,4,5]
+BLACK_LIST_IDX = [1,2,3,4]
 CACHE_FILE = SCRIPT_PATH + "/cache/gnome-dash-items.cache"
 
 

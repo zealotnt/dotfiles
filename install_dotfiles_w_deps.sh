@@ -46,9 +46,10 @@ sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
      vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
-     openssh-server gparted iotop libpam-google-authenticator \
+     openssh-server gparted iotop libpam-google-authenticator libnss3-tools \
      python-docutils python3-docutils `# requires for arandr`
      libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...`
+     system-config-samba samba samba-common-bin cmake
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh

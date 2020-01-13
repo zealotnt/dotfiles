@@ -505,13 +505,13 @@ key_bindings:
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Equals,   mods: Control, chars: "\x01\x4a" } # C-a,J
-  - { key: Subtract, mods: Control, chars: "\x01\x4b" } # C-a,K
+  - { key: Equals,   mods: Control, chars: "\x01\x0a" } # C-a,C-j
+  - { key: Subtract, mods: Control, chars: "\x01\x0b" } # C-a,C-k
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Equals,    mods: Control|Alt, chars: "\x01\x4c" } # C-a,L
-  - { key: Subtract,  mods: Control|Alt,  chars: "\x01\x48" } # C-a,H
+  - { key: Equals,    mods: Control|Alt, chars: "\x01\x0c" } # C-a,C-l
+  - { key: Subtract,  mods: Control|Alt,  chars: "\x01\x08" } # C-a,C-h
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
@@ -568,6 +568,7 @@ key_bindings:
   # https://github.com/jwilm/alacritty/issues/62
   # https://www.systutorials.com/4670/ascii-table-and-ascii-code/
   - { key: Underline, mods: Command|Shift, chars: "\x01\x5f"} # open tmux pane on the right -- not work yet
+  - { key: Underline, mods: Command, chars: "\x01\x5f"} # open tmux pane on the right -- not work yet
   - { key: N,        mods: Command|Shift,
                                     action: SpawnNewInstance} # open tmux pane vertically
   - { key: Comma,    mods: Command, command: {program: "/usr/bin/emacsclient", args: ["--create-frame", "~/.config/alacritty/alacritty.yml"]}}
