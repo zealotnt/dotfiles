@@ -226,7 +226,7 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # https://stackoverflow.com/a/3432749
-tmux list-sessions > /dev/null 2>&1 || (tmux new -s tall && tmux new -s wide)
+tmux list-sessions > /dev/null 2>&1 || (tmux new -s $(hostname) && tmux new -s wide-alternative)
 
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof

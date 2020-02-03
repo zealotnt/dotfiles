@@ -232,6 +232,9 @@ umake web firefox-dev --lang en-US
 
 # install libreoffice
 google-chrome https://www.libreoffice.org/donate/dl/deb-x86_64/6.3.4/en-US/LibreOffice_6.3.4_Linux_x86-64_deb.tar.gz
+x LibreOffice_6.3.4_Linux_x86-64_deb.tar.gz
+cd LibreOffice_6.3.4_Linux_x86-64_deb/DEBS
+sudo dpkg -i *.deb
 
 # TODO: install golang
 google-chrome https://golang.org/dl/

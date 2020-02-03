@@ -232,6 +232,15 @@ nautilus() {
 	fi
 }
 
+emp() {
+  local TMP;
+  TMP="$(mktemp /tmp/emacsstdinXXX)";
+  cat >"$TMP";
+  emacsclient -create-frame --alternate-editor /usr/bin/false --eval "(let ((b (create-file-buffer \"*stdin*\"))) (switch-to-buffer b) (insert-file-contents \"${TMP}\") (delete-file \"${TMP}\"))"  > /dev/null 2>&1 &
+  # wmctrl -l -> get windowid
+  # xdotool -> focus new opened window
+}
+
 em() {
   if [[ "$@" == "" ]]; then
     nohup emacsclient -create-frame --alternate-editor="" . > /dev/null 2>&1 &
