@@ -1,4 +1,4 @@
 hostname: CMP
-kernel: 5.0.0-37-generic
+kernel: 5.3.0-28-generic
 uname_arch: x86_64
 arch: amd64
