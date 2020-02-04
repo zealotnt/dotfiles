@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt install -y git curl zsh
+sudo chsh -s /usr/bin/zsh root
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # insstall oh-my-tmux: gpakosz/.tmux
@@ -34,21 +37,22 @@ git submodule update
 ############################################################################
 # install keyring, pgp things
 . ~/dotfiles/apt-clone/import_sources.sh
+sudo apt update
 
 # install apt-package
-sudo apt install -y git zsh curl zsh tmux google-chrome-stable emacs26 rofi ruby \
+sudo apt install -y jq tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nnn alacritty spotify-client ubuntu-make \
+     copyq minicom neofetch nodejs npm nodejs nnn alacritty spotify-client ubuntu-make \
      libdbus-1-dev `# requires for mpris-control` \
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
      vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
      openssh-server gparted iotop libpam-google-authenticator libnss3-tools \
-     python-docutils python3-docutils `# requires for arandr`
-     libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...`
+     python-docutils python3-docutils `# requires for arandr` \
+     libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake
 
 ############################################################################
