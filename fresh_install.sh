@@ -321,6 +321,7 @@ sudo install minikube /usr/local/bin/
 
 # Emacs
 ## TODO: install all-the-icons
+emacsclient --eval "(all-the-icons-install-fonts t)"
 ## for go-imenu
 go get -u github.com/lukehoban/go-outline
 
