@@ -162,8 +162,15 @@ alias less='less -m -N -g -i -J --underline-special --SILENT'
 alias more='less'
 
 # Change PROMPT a bit
-PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
+
+if [[ -n $SSH_CONNECTION ]]; then
+  HOSTNAME=$(hostname)
+  PROMPT='%{$fg[red]%}${HOSTNAME}%{$reset_color%} ⏣${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
+else
+  PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
+%{$fg[cyan]%}$%{$reset_color%} '
+fi
 
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto

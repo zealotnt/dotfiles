@@ -40,7 +40,7 @@ git submodule update
 sudo apt update
 
 # install apt-package
-sudo apt install -y jq tmux google-chrome-stable emacs26 rofi ruby \
+sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
@@ -53,7 +53,7 @@ sudo apt install -y jq tmux google-chrome-stable emacs26 rofi ruby \
      openssh-server gparted iotop libpam-google-authenticator libnss3-tools \
      python-docutils python3-docutils `# requires for arandr` \
      libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
-     system-config-samba samba samba-common-bin cmake
+     system-config-samba samba samba-common-bin cmake grsync
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh

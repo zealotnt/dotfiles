@@ -111,6 +111,8 @@ alias kk='kill -9'
 alias picocom='picocom -e x'
 alias minicom='minicom -m'
 alias cat='bat'
+alias parse_yaml='ruby ~/workspace_mine/w_emacs_dotfiles/packages/yaml-imenu/parse_yaml.rb'
+
 unalias z
 z() {
   if [[ -z "$*" ]]; then

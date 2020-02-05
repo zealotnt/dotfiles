@@ -4,7 +4,7 @@ mkdir ~/bin/
 
 ln -sf $(realpath Old-Home/zealot/workspace_mine) .
 ln -sf $(realpath Old-Home/zealot/workspace_misc) .
-ln -sf $(realpath Old-Home/zealot/workspace_eo) .
+ln -sf $(realpath Old-Home/zealot/workspace_eh) .
 
 cp -rp Old-Root/home/zealot/.ssh .
 cp -rp Old-Root/home/zealot/.aws .
