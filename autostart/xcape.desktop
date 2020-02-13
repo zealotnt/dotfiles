@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=xcape -e 'Control_L=Escape'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Control_L as Escape
+Name=Xcape map key
+Comment[en_US]=Control_L as Escape
+Comment=Control_L as Escape
