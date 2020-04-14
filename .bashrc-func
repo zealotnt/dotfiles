@@ -860,3 +860,8 @@ start/pgadmin4() {
   xdg-open http://localhost:2998 > /dev/null 2>&1
 }
 
+hack/disable_osk() {
+  # hacky way to disable annoying on screen keyboard
+  gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true
+  gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false
+}
