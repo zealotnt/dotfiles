@@ -111,6 +111,7 @@ alias kk='kill -9'
 alias picocom='picocom -e x'
 alias minicom='minicom -m'
 alias cat='bat'
+alias catp='bat -p'
 alias parse_yaml='ruby ~/workspace_mine/w_emacs_dotfiles/packages/yaml-imenu/parse_yaml.rb'
 
 unalias z
@@ -238,7 +239,7 @@ emp() {
   local TMP;
   TMP="$(mktemp /tmp/emacsstdinXXX)";
   cat >"$TMP";
-  emacsclient -create-frame --alternate-editor /usr/bin/false --eval "(let ((b (create-file-buffer \"*stdin*\"))) (switch-to-buffer b) (insert-file-contents \"${TMP}\") (delete-file \"${TMP}\"))"  > /dev/null 2>&1 &
+  emacsclient -create-frame --alternate-editor /usr/bin/false --eval "(let ((b (create-file-buffer \"*stdin*\"))) (switch-to-buffer b) (insert-file-contents \"${TMP}\") (delete-file \"${TMP}\") (select-frame-set-input-focus (selected-frame) (delete-other-windows)))"  > /dev/null 2>&1 &
   # wmctrl -l -> get windowid
   # xdotool -> focus new opened window
 }
@@ -321,6 +322,10 @@ cdreal() {
 realpathcp() {
 	realpath $@ | copy
 }
+function catcp {
+  emulate -L zsh
+  clipcopy $1
+}
 alias pwdcp="pwd | copy"
 alias path='realpath'
 alias pathcp='realpathcp'
@@ -330,6 +335,15 @@ mtInstall_grc() {
   cd ~/workspace_misc/grc/
   sudo ./install.sh
   cd $CUR_DIR
+}
+
+mtConfirmDialog() {
+  if (dialog --title "Message" --yesno "Want to do something risky?" 6 25)
+  then
+    true
+  else
+    false
+  fi
 }
 
 mtconfirm () {
@@ -853,11 +867,45 @@ start/grafana() {
 }
 
 start/pgadmin4() {
-  docker start pgadmin4 ||  docker run -d --user $(id -u) -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" \
+  docker start pgadmin4 ||  docker run -d -e PGADMIN_LISTEN_PORT=2998 -e SESSION_DB_PATH=/pgadmin -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" \
          -e "PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD" \
-         --name=pgadmin4 -p 2998:80 dpage/pgadmin4 \
+         --name=pgadmin4 --network=host dpage/pgadmin4 \
          > /dev/null 2>&1
   xdg-open http://localhost:2998 > /dev/null 2>&1
+}
+
+op/xiaofang() {
+  open rtsp://$XIAOMI_XIAOFANG_IP:8554/unicast
+}
+
+op/adb-connect() {
+  adb connect $ANDROID_PHONE_IP:5555
+}
+
+op/wifi-transfer-pro() {
+  open http://$ANDROID_PHONE_IP:1234
+}
+
+op/unlock() {
+  # https://stackoverflow.com/questions/29072501/how-to-unlock-android-phone-through-adb
+  # for a list of KEYCODE, visit https://developer.android.com/reference/android/view/KeyEvent
+  op/adb-connect
+  sleep 0.5
+  adb shell input keyevent KEYCODE_MENU && adb shell input text $ANDROID_PHONE_LOCK_PIN && adb shell input keyevent KEYCODE_ENTER
+}
+
+op/lock() {
+  op/adb-connect
+  sleep 0.5
+  adb shell input keyevent KEYCODE_POWER
+}
+
+op/aom() {
+  op/adb-connect
+  sleep 0.5
+  adb shell input keyevent KEYCODE_HOME
+  adb shell input tap 752 284
+  adb shell input tap 441 1844
 }
 
 hack/disable_osk() {

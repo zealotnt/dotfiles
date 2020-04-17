@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Android Mirroring
-Exec=/usr/local/bin/scrcpy --bit-rate 1M %U
+Exec=/usr/local/bin/scrcpy --max-size 200 --bit-rate 1M %U
 Terminal=false
 Type=Application
 StartupWMClass=scrcpy

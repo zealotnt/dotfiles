@@ -1,0 +1,21 @@
+// ref:
+// https://www.sublimemerge.com/docs/packages
+//   -> how to find default key package
+//   for linux it is /opt/sublime_merge/Packages/Default - Merge.sublime-package
+// https://www.sublimemerge.com/docs/key_bindings
+//   -> how to customize key
+[
+  { "keys": ["z", "z"], "command": "stash"},
+  { "keys": ["ctrl+s"], "command": "noop"},
+  { "keys": ["ctrl+s"]},
+  {
+    "keys": ["s"],
+    "command": "stage_hunk",
+    "context": [{"key": "is_staged", "operand": false }, {"key": "is_diff"}],
+  },
+  {
+      "keys": ["x"],
+      "command": "discard_hunk",
+      "context": [{"key": "is_diff"}],
+  },
+]
