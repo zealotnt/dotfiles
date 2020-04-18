@@ -279,6 +279,10 @@ map <silent> <C-h> <ESC>:TmuxNavigateLeft<CR>
 map <silent> <C-l> <ESC>:TmuxNavigateRight<CR>
 map <silent> <C-k> <ESC>:TmuxNavigateUp<CR>
 map <silent> <C-j> <ESC>:TmuxNavigateDown<CR>
+map <silent> <M-h> <ESC>:TmuxNavigateLeft<CR>
+map <silent> <M-l> <ESC>:TmuxNavigateRight<CR>
+map <silent> <M-k> <ESC>:TmuxNavigateUp<CR>
+map <silent> <M-j> <ESC>:TmuxNavigateDown<CR>
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 map <silent> <leader>path :let @+=@%<CR>
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
