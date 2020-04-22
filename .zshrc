@@ -230,7 +230,18 @@ autoload -U edit-command-line
 # bindkey '^x^e' edit-command-line
 # Vi style:
 zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+z/edit-command-line() {
+  OLD_EDITOR=$EDITOR
+  EDITOR="emacsclient -create-frame -nw"
+  edit-command-line
+  # note: need below line to be patch to
+  # /usr/share/zsh/functions/Zle/edit-command-line
+  # [ ! -z "$OLD_EDITOR" ] && EDITOR=$OLD_EDITOR
+}
+zle -N z/edit-command-line
+bindkey -M vicmd v z/edit-command-line
+bindkey '^ee' z/edit-command-line
+bindkey '^e^e' z/edit-command-line
 
 # https://stackoverflow.com/a/3432749
 tmux list-sessions > /dev/null 2>&1 || (tmux new -s $(hostname) && tmux new -s wide-alternative)
