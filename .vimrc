@@ -28,7 +28,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'zchee/deoplete-clang'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go'
-" Plug 'mrkn/vim-cruby'
+Plug 'mrkn/vim-cruby'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'brooth/far.vim'
 Plug 'kristijanhusak/vim-carbon-now-sh'
@@ -291,10 +291,10 @@ end
 nmap <silent> <leader>t :TagbarToggle<CR>
 
 let g:tmux_navigator_no_mappings = 1
-map <silent> <M-h> <ESC>:TmuxNavigateLeft<CR>
-map <silent> <M-l> <ESC>:TmuxNavigateRight<CR>
-map <silent> <M-k> <ESC>:TmuxNavigateUp<CR>
-map <silent> <M-j> <ESC>:TmuxNavigateDown<CR>
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 "========================================================
 " MACHINE CONFIGS
 "========================================================

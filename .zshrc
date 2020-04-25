@@ -172,6 +172,7 @@ else
 %{$fg[cyan]%}$%{$reset_color%} '
 fi
 
+export PRY_SHORT=true
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
@@ -222,8 +223,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-# autoload -Uz compinit && compinit -i[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# autoload -Uz compinit && compinit -i
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 cat ~/dotfiles/neofetch.cache
 source ~/.bashrc-func
@@ -261,7 +262,7 @@ bindkey '^ee' z/edit-command-line
 bindkey '^e^e' z/edit-command-line
 
 # https://stackoverflow.com/a/3432749
-tmux list-sessions > /dev/null 2>&1 || (tmux new -s $(hostname) && tmux new -s wide-alternative)
+tmux list-sessions > /dev/null 2>&1 || tmux new -s $(hostname)
 
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof

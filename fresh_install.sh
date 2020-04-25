@@ -47,7 +47,11 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
 
 # install vlc config
 mkdir -p ~/.config/vlc
-cp ~/dotfiles/vlc/vlcrc ~/.config/vlc/vlcrc
+ln -sf $(realpath ~/dotfiles/vlc/vlcrc) ~/.config/vlc/vlcrc
+
+# install sublime-merge config
+mkdir -p ~/.config/sublime-merge/Packages/User
+for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packages/User ; done
 
 # install copyq config
 rm -rf ~/.config/copyq

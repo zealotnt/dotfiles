@@ -97,13 +97,15 @@ unless ENV['PRY_BW']
 end
 
 # === HISTORY ===
-Pry.config.history.should_save = true
-Pry.config.history.should_load = true
-Pry.config.history.file = "~/.pry_history"
+if Gem::Version.new("0.12.2") >= Gem::Version.new(Pry::VERSION)
+  Pry.config.history.should_save = true
+  Pry.config.history.should_load = true
+  Pry.config.history.default_file = "~/.pry_history"
+end
 
 # Hit Enter to repeat last command
 Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
+  pry_instance.run_command Pry.history.to_a.last
 end
 
 Pry.config.commands.alias_command "h", "hist -T 20", desc: "Last 20 commands"
@@ -172,13 +174,17 @@ if defined?(::Rails) && Rails.env && Rails.env.test? && ENV["PRY_LONG"].blank?
   pry_debug
 end
 
-begin
-  require 'highline/import'
-  confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
-  pry_debug if confirm.downcase == 'y'
-rescue LoadError => err
-  puts "gem install highline # <-- !!??"
-  puts "type: pry_debug to apply pry shortkeys"
+if not ENV["PRY_SHORT"].nil? && ENV["PRY_SHORT"].true?
+  pry_debug
+else
+  begin
+    require 'highline/import'
+    confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
+    pry_debug if confirm.downcase == 'y'
+  rescue LoadError => err
+    puts "gem install highline # <-- !!??"
+    puts "type: pry_debug to apply pry shortkeys"
+  end
 end
 
 # == PLUGINS ===
@@ -225,6 +231,7 @@ my_hook = Pry::Hooks.new.add_hook(:before_session, :add_dirs_to_load_path) do
   end
   puts "Added #{ dirs_added.join(", ") } to load path in ~/.pryrc." if dirs_added.present?
 end
+# my_hook.exec_hook(:before_session)
 
 Pry.config.hooks.add_hook(:after_session, :say_hi) do
   history_file = Pry.config.history_file
