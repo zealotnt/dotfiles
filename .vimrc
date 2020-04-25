@@ -279,10 +279,6 @@ map <silent> <C-h> <ESC>:TmuxNavigateLeft<CR>
 map <silent> <C-l> <ESC>:TmuxNavigateRight<CR>
 map <silent> <C-k> <ESC>:TmuxNavigateUp<CR>
 map <silent> <C-j> <ESC>:TmuxNavigateDown<CR>
-map <silent> <M-h> <ESC>:TmuxNavigateLeft<CR>
-map <silent> <M-l> <ESC>:TmuxNavigateRight<CR>
-map <silent> <M-k> <ESC>:TmuxNavigateUp<CR>
-map <silent> <M-j> <ESC>:TmuxNavigateDown<CR>
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 map <silent> <leader>path :let @+=@%<CR>
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -293,6 +289,12 @@ if has("nvim")
   tnoremap <c-e> <C-\><C-n>
 end
 nmap <silent> <leader>t :TagbarToggle<CR>
+
+let g:tmux_navigator_no_mappings = 1
+map <silent> <M-h> <ESC>:TmuxNavigateLeft<CR>
+map <silent> <M-l> <ESC>:TmuxNavigateRight<CR>
+map <silent> <M-k> <ESC>:TmuxNavigateUp<CR>
+map <silent> <M-j> <ESC>:TmuxNavigateDown<CR>
 "========================================================
 " MACHINE CONFIGS
 "========================================================

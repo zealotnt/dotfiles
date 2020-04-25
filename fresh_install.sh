@@ -15,6 +15,8 @@ cp -rp /home/zealot/Old-Root/home/zealot/.config/google-chrome ~/.config/
 ## remove ~/.config/google-chrome/Default/Login Data.. Login Data-journal
 rm ~/.config/google-chrome/default/Login\ Data*
 
+# install dropbox
+google-chrome https://www.dropbox.com/install?os=lnx
 
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`

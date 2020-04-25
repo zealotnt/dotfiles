@@ -82,7 +82,8 @@ Pry.config.color = true
 
 # http://rocket-science.ru/hacking/2018/10/27/pry-with-whistles
 # === EDITOR ===
-Pry.config.editor = proc { |file, line| "emacsclient -nw -create-frame +#{line} #{file}" }
+# Pry.config.editor = proc { |file, line| "emacsclient -nw -create-frame +#{line} #{file}" }
+Pry.config.editor = proc { |file, line| "nvim +#{line} #{file}" }
 
 # === PROMPT ===
 Pry.config.prompt_name = ""
@@ -171,9 +172,14 @@ if defined?(::Rails) && Rails.env && Rails.env.test? && ENV["PRY_LONG"].blank?
   pry_debug
 end
 
-require 'highline/import'
-confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
-pry_debug if confirm.downcase == 'y'
+begin
+  require 'highline/import'
+  confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
+  pry_debug if confirm.downcase == 'y'
+rescue LoadError => err
+  puts "gem install highline # <-- !!??"
+  puts "type: pry_debug to apply pry shortkeys"
+end
 
 # == PLUGINS ===
 # awesome_print gem: great syntax colorized printing
@@ -198,7 +204,7 @@ begin
   end
 
   AwesomePrint.defaults = {
-    :string_limit => 80,
+    :string_limit => 140,
     :indent => 2,
     :multiline => true
   }
@@ -220,7 +226,15 @@ my_hook = Pry::Hooks.new.add_hook(:before_session, :add_dirs_to_load_path) do
   puts "Added #{ dirs_added.join(", ") } to load path in ~/.pryrc." if dirs_added.present?
 end
 
-my_hook.exec_hook(:before_session)
+Pry.config.hooks.add_hook(:after_session, :say_hi) do
+  history_file = Pry.config.history_file
+  puts "Cleaning up history file #{history_file}"
+  # puts "\tBefore cleaning: #{`cat #{history_file} | wc -l`}"
+  # `sed --in-place 's/[[:space:]]\+$//' #{history_file}`
+  # `tac #{history_file} | awk '!x[$0]++' | tac | sponge #{history_file}`
+  # puts "\tAfter cleaning: #{`cat #{history_file} | wc -l`}"
+end
+# my_hook.exec_hook(:after_session)
 
 require 'rb-readline'
 require 'readline'
@@ -273,7 +287,7 @@ def more_help
   puts "Run 'pry_debug' to display shorter debug shortcuts"
   ""
  end
- puts "Run 'more_help' to see tips"
+puts "Run 'more_help' to see tips"
 
 def refresh_gem
   Gem.clear_paths

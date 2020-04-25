@@ -8,8 +8,8 @@ if [[ $# != 1 ]]; then
 fi
 
 SERVICE_FILE=$1
-sudo rm /etc/systemd/system/${SERVICE_FILE}
-sudo cp $(realpath $SERVICE_FILE) /etc/systemd/system/
+echo "sudo ln -sf $(realpath $SERVICE_FILE) /etc/systemd/system/"
+sudo ln -sf $(realpath $SERVICE_FILE) /etc/systemd/system/
 sudo systemctl daemon-reload
 
 # ref https://stackoverflow.com/questions/125281/how-do-i-remove-the-file-suffix-and-path-portion-from-a-path-string-in-bash

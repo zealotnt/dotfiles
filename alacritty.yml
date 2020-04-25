@@ -557,9 +557,9 @@ key_bindings:
   - { key: Tab,        mods: Control|Shift, chars: "\x01\x10"} # C-a,C-p -> prev window
 
   - { key: W,        mods: Control|Shift, action: Quit}
-  - { key: W,        mods: Command|Shift, action: Quit}
-  - { key: Q,        mods: Command|Shift,
-                                    command: {program: "/usr/bin/killall", args: ["alacritty"]}}
+  # - { key: W,        mods: Command|Shift, action: Quit}
+  # - { key: Q,        mods: Command|Shift,
+  #                                   command: {program: "/usr/bin/killall", args: ["alacritty"]}}
   - { key: Subtract, mods: Command, chars: "\x01\x2d"} # open tmux pane below
   # -> everything relate to Underline is not working
   # some references to all key bindings
