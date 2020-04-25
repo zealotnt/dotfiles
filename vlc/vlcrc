@@ -4559,7 +4559,7 @@ key-slower=
 #global-key-rate-normal=
 
 # Normal rate (string)
-key-rate-normal=Shift++
+key-rate-normal=Backspace
 
 # Faster (fine) (string)
 #global-key-rate-faster-fine=
