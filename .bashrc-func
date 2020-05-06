@@ -114,6 +114,29 @@ alias cat='bat'
 alias catp='bat -p'
 alias parse_yaml='ruby ~/workspace_mine/w_emacs_dotfiles/packages/yaml-imenu/parse_yaml.rb'
 
+# My Color code
+export ANSI_ENDL="\r\n"
+export ANSI_NRM="\033[0m"
+export ANSI_RED="\033[31m"
+export ANSI_GRN="\033[32m"
+export ANSI_YEL="\033[33m"
+export ANSI_BLU="\033[34m"
+export ANSI_MAG="\033[35m"
+export ANSI_CYN="\033[36m"
+export ANSI_WHT="\033[37m"
+export ANSI_LGRN="\033[92m"
+export ANSI_LRED="\033[91m"
+export ANSI_LYEL="\033[93m"
+export ANSI_LBLU="\033[94m"
+export ANSI_LMAG="\033[95m"
+export ANSI_LCYN="\033[96m"
+# Console style print
+export ANSI_BOLD="\033[1m"
+export ANSI_UDLN="\033[4m"
+# Reset all settings of console print
+export ANSI_RESET="\033[0m"
+export ANSI_RBOLD="\033[21m"
+
 unalias z
 z() {
   if [[ -z "$*" ]]; then
