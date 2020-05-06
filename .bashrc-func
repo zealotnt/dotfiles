@@ -164,9 +164,8 @@ fo() {
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
     # https://stackoverflow.com/questions/12806987/unix-command-to-escape-spaces
-    file=$(printf %q "$file")
+    # file=$(printf %q "$file")
     [ "$key" = ctrl-e ] && eval ${EDITOR:-vim} "$file" || open "$file" > /dev/null 2>&1
-    # echo ${EDITOR:-vim} "${file}"
   fi
 }
 
