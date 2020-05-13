@@ -89,6 +89,7 @@ mtDisplayTime() {
   printf '%d seconds\n' $S
 }
 
+alias tf='terraform'
 alias hl='helm list'
 alias hh='helm history'
 alias hst='helm status'

@@ -156,7 +156,7 @@ curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-prome_folder=$(extract prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
+prome_folder=$(tar -xvf prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
 # cd to folder
 cd $prome_folder
 sudo cp prometheus promtool tsdb /usr/bin

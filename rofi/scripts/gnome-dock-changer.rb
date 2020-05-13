@@ -3,7 +3,7 @@
 
 SCRIPT_NAME = File.basename(__FILE__)
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
-BLACK_LIST_IDX = [1,2,3,4]
+BLACK_LIST_IDX = [1,2,3]
 CACHE_FILE = SCRIPT_PATH + "/cache/gnome-dash-items.cache"
 
 
