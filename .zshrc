@@ -259,7 +259,6 @@ z/edit-command-line() {
 zle -N z/edit-command-line
 bindkey -M vicmd v z/edit-command-line
 bindkey '^ee' z/edit-command-line
-bindkey '^e^e' z/edit-command-line
 
 # https://stackoverflow.com/a/3432749
 tmux list-sessions > /dev/null 2>&1 || tmux new -s $(hostname)
