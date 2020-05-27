@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Samba
+Name[en_GB]=Samba
+Name[vi]=Samba
+Comment=Create, modify, and delete samba shares
+Comment[en_GB]=Create, modify, and delete samba shares
+Categories=System;Settings;
+Icon=system-config-samba
+Exec=system-config-samba-pkexec
+Type=Application
+StartupNotify=true
+Terminal=false
