@@ -864,7 +864,7 @@ kt_db_analytics() {
     local GRC_COLOR_OLD=$GRC_COLOR
     export GRC_COLOR=auto
     local APP_NAMESPACE=staging
-    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Db-analytics-web:\r\n\t$POD_NAME"
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
     export GRC_COLOR=$GRC_COLOR_OLD
@@ -874,9 +874,20 @@ kt_am_proxy() {
     local GRC_COLOR_OLD=$GRC_COLOR
     export GRC_COLOR=auto
     local APP_NAMESPACE=devops
-    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=am-proxy-web" -o jsonpath="{.items[0].metadata.name}")
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=am-proxy-web" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Am-proxy-web:\r\n\t$POD_NAME"
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
+    export GRC_COLOR=$GRC_COLOR_OLD
+}
+
+kpf_kong() {
+    local GRC_COLOR_OLD=$GRC_COLOR
+    export GRC_COLOR=auto
+    CURRENT_CONTEXT=$(kubectl config current-context)
+    [[ $CURRENT_CONTEXT =~ .*prod.* ]] && local APP_NAMESPACE=gateway || local APP_NAMESPACE=devops
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app.kubernetes.io/instance=kong-gateway,app.kubernetes.io/component=app" -o jsonpath="{.items[0].metadata.name}")
+    echo "kong-pod:\r\n\tkubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 8444:8444"
+    kubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 8444:8444
     export GRC_COLOR=$GRC_COLOR_OLD
 }
 
@@ -936,3 +947,9 @@ hack/disable_osk() {
   gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true
   gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false
 }
+
+remoteCommand() {
+  # https://stackoverflow.com/questions/3834839/how-to-escape-a-double-quote-inside-double-quotes
+  echo -e 'export DISPLAY=$(w | grep $USER | grep gdm | awk \x27{print $3}\x27)'
+}
+
