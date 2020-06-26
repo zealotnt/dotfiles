@@ -18,5 +18,6 @@ echo "sudo systemctl enable ${SERVICE_FILE%.service}"
 sudo systemctl start ${SERVICE_FILE%.service}
 sudo systemctl enable ${SERVICE_FILE%.service}
 
+echo "systemctl status ${SERVICE_FILE%.service}"
 systemctl status ${SERVICE_FILE%.service}
 

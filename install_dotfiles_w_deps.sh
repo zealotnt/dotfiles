@@ -52,7 +52,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
      openssh-server gparted iotop libpam-google-authenticator libnss3-tools \
      python-docutils python3-docutils `# requires for arandr` \
-     libavcodec-dev libldac pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
+     libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog
 
