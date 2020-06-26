@@ -294,8 +294,8 @@ curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-tar -xvf smartmontools-7.0.tar.gz
-cd smartmontools-7.0 && ./configure && make && sudo make install
+extract_folder=$(tar -xvf smartmontools-*.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
+cd $extract_folder && ./configure && make && sudo make install
 
 # intall smartctl_exporter
 go get github.com/Sheridan/smartctl_exporter &&
