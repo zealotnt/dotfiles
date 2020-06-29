@@ -288,6 +288,14 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | wget -i -
 sudo gdebi fd-musl*.deb
 
+# install playerctl
+curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
+| grep "browser_download_url.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi playerctl*.deb
+
 # install smartmontools
 curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
 | grep "browser_download_url.*tar.gz\"" \
