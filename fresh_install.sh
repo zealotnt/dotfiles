@@ -15,6 +15,8 @@ cp -rp /home/zealot/Old-Root/home/zealot/.config/google-chrome ~/.config/
 ## remove ~/.config/google-chrome/Default/Login Data.. Login Data-journal
 rm ~/.config/google-chrome/default/Login\ Data*
 
+# install dropbox
+google-chrome https://www.dropbox.com/install?os=lnx
 
 # reconfigure locale
 # remember to use `en_US.UTF-8 UTF-8`
@@ -25,7 +27,7 @@ sudo cp ~/dotfiles/applications-config/etc/postgresql/10/main/pg_hba.conf \
      /etc/postgresql/10/main/pg_hba.conf
 sudo systemctl restart postgresql
 psql -U postgres -c "CREATE USER $USER;"
-psql -U postgres -c "CREATE DATABASES $USER;"
+psql -U postgres -c "CREATE DATABASE $USER;"
 psql -U postgres -c "ALTER USER $USER with superuser createrole createdb replication bypassrls"
 
 # install docker
@@ -45,7 +47,11 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
 
 # install vlc config
 mkdir -p ~/.config/vlc
-cp ~/dotfiles/vlc/vlcrc ~/.config/vlc/vlcrc
+ln -sf $(realpath ~/dotfiles/vlc/vlcrc) ~/.config/vlc/vlcrc
+
+# install sublime-merge config
+mkdir -p ~/.config/sublime-merge/Packages/User
+for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packages/User ; done
 
 # install copyq config
 rm -rf ~/.config/copyq
@@ -150,7 +156,7 @@ curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-prome_folder=$(extract prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
+prome_folder=$(tar -xvf prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
 # cd to folder
 cd $prome_folder
 sudo cp prometheus promtool tsdb /usr/bin
@@ -282,14 +288,22 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | wget -i -
 sudo gdebi fd-musl*.deb
 
+# install playerctl
+curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
+| grep "browser_download_url.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi playerctl*.deb
+
 # install smartmontools
 curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
 | grep "browser_download_url.*tar.gz\"" \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-tar -xvf smartmontools-7.0.tar.gz
-cd smartmontools-7.0 && ./configure && make && sudo make install
+extract_folder=$(tar -xvf smartmontools-*.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
+cd $extract_folder && ./configure && make && sudo make install
 
 # intall smartctl_exporter
 go get github.com/Sheridan/smartctl_exporter &&

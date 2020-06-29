@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=root
 Type=simple
-Environment=DATA_SOURCE_NAME="postgresql://postgres:password@localhost:5432/postgres?sslmode=disable"
-ExecStart=/home/zealot/go/src/github.com/wrouesnel/postgres_exporter/postgres_exporter
+Environment=DATA_SOURCE_NAME="postgresql://zealot:@localhost:5432/zealot?sslmode=disable"
+ExecStart=/home/zealot/go/src/github.com/wrouesnel/postgres_exporter/postgres_exporter --extend.query-path=/home/zealot/go/src/github.com/wrouesnel/postgres_exporter/queries.yaml
 
 [Install]
 WantedBy=multi-user.target

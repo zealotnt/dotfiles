@@ -290,6 +290,8 @@ bind -T prefix s split-window -v -c "#{pane_current_path}"
 # bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
+bind -T copy-mode-vi J send-keys -X bottom-line
+bind -T copy-mode-vi K send-keys -X top-line
 bind -T copy-mode-vi q send -X cancel
 bind -T copy-mode    q send-keys -X cancel
 bind -T copy-mode-vi i send-keys B \; send -X begin-selection \; send-keys E

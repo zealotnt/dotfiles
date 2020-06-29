@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -n "$(which pkexec)" ] && pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY HOME=$HOME system-config-samba || system-config-samba ;
+
+

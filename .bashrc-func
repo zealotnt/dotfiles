@@ -89,6 +89,7 @@ mtDisplayTime() {
   printf '%d seconds\n' $S
 }
 
+alias tf='terraform'
 alias hl='helm list'
 alias hh='helm history'
 alias hst='helm status'
@@ -113,6 +114,29 @@ alias minicom='minicom -m'
 alias cat='bat'
 alias catp='bat -p'
 alias parse_yaml='ruby ~/workspace_mine/w_emacs_dotfiles/packages/yaml-imenu/parse_yaml.rb'
+
+# My Color code
+export ANSI_ENDL="\r\n"
+export ANSI_NRM="\033[0m"
+export ANSI_RED="\033[31m"
+export ANSI_GRN="\033[32m"
+export ANSI_YEL="\033[33m"
+export ANSI_BLU="\033[34m"
+export ANSI_MAG="\033[35m"
+export ANSI_CYN="\033[36m"
+export ANSI_WHT="\033[37m"
+export ANSI_LGRN="\033[92m"
+export ANSI_LRED="\033[91m"
+export ANSI_LYEL="\033[93m"
+export ANSI_LBLU="\033[94m"
+export ANSI_LMAG="\033[95m"
+export ANSI_LCYN="\033[96m"
+# Console style print
+export ANSI_BOLD="\033[1m"
+export ANSI_UDLN="\033[4m"
+# Reset all settings of console print
+export ANSI_RESET="\033[0m"
+export ANSI_RBOLD="\033[21m"
 
 unalias z
 z() {
@@ -141,9 +165,8 @@ fo() {
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
     # https://stackoverflow.com/questions/12806987/unix-command-to-escape-spaces
-    file=$(printf %q "$file")
+    # file=$(printf %q "$file")
     [ "$key" = ctrl-e ] && eval ${EDITOR:-vim} "$file" || open "$file" > /dev/null 2>&1
-    # echo ${EDITOR:-vim} "${file}"
   fi
 }
 
@@ -841,7 +864,7 @@ kt_db_analytics() {
     local GRC_COLOR_OLD=$GRC_COLOR
     export GRC_COLOR=auto
     local APP_NAMESPACE=staging
-    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=db-analytics-web" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Db-analytics-web:\r\n\t$POD_NAME"
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
     export GRC_COLOR=$GRC_COLOR_OLD
@@ -851,9 +874,20 @@ kt_am_proxy() {
     local GRC_COLOR_OLD=$GRC_COLOR
     export GRC_COLOR=auto
     local APP_NAMESPACE=devops
-    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=am-proxy-web" -o jsonpath="{.items[0].metadata.name}")
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=am-proxy-web" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Am-proxy-web:\r\n\t$POD_NAME"
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
+    export GRC_COLOR=$GRC_COLOR_OLD
+}
+
+kpf_kong() {
+    local GRC_COLOR_OLD=$GRC_COLOR
+    export GRC_COLOR=auto
+    CURRENT_CONTEXT=$(kubectl config current-context)
+    [[ $CURRENT_CONTEXT =~ .*prod.* ]] && local APP_NAMESPACE=gateway || local APP_NAMESPACE=devops
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app.kubernetes.io/instance=kong-gateway,app.kubernetes.io/component=app" -o jsonpath="{.items[0].metadata.name}")
+    echo "kong-pod:\r\n\tkubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 8444:8444"
+    kubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 8444:8444
     export GRC_COLOR=$GRC_COLOR_OLD
 }
 
@@ -913,3 +947,9 @@ hack/disable_osk() {
   gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true
   gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false
 }
+
+remoteCommand() {
+  # https://stackoverflow.com/questions/3834839/how-to-escape-a-double-quote-inside-double-quotes
+  echo -e 'export DISPLAY=$(w | grep $USER | grep gdm | awk \x27{print $3}\x27)'
+}
+

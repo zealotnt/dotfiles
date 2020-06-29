@@ -172,9 +172,12 @@ else
 %{$fg[cyan]%}$%{$reset_color%} '
 fi
 
+export PRY_SHORT=true
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
+export FZF_DEFAULT_COMMAND="fd ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 export EDITOR="emacsclient -create-frame"
 export GOPATH=~/go
@@ -204,8 +207,25 @@ DISABLE_AUTO_TITLE=true
 # https://superuser.com/questions/1245273/iterm2-version-3-individual-history-per-tab
 # unsetopt inc_append_history
 # unsetopt share_history
+# https://github.com/mattjj/my-oh-my-zsh/blob/master/history.zsh
+HISTSIZE=10000000
+SAVEHIST=10000000
 
-autoload -Uz compinit && compinit -i
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+# setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+# setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+# setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+
+# autoload -Uz compinit && compinit -i
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 cat ~/dotfiles/neofetch.cache
@@ -241,12 +261,12 @@ z/edit-command-line() {
 zle -N z/edit-command-line
 bindkey -M vicmd v z/edit-command-line
 bindkey '^ee' z/edit-command-line
-bindkey '^e^e' z/edit-command-line
 
 # https://stackoverflow.com/a/3432749
-tmux list-sessions > /dev/null 2>&1 || (tmux new -s $(hostname) && tmux new -s wide-alternative)
+tmux list-sessions > /dev/null 2>&1 || tmux new -s $(hostname)
 
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof
+setopt globdots # zsh completion to show hidden files/folders also
 
 if [ "$RUN_PROFILING" = true ]; then zprof; fi

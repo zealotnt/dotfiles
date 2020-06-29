@@ -19,7 +19,9 @@ if ARGV.length != 1
   status_media = `playerctl status -a`
   status_media_arr = status_media.split("\n")
   if status_media_arr.count("Playing") == 1
-    `playerctl play-pause -p #{list_media_arr[status_media_arr.index("Playing")]}`
+    media = list_media_arr[status_media_arr.index("Playing")]
+    `playerctl play-pause -p #{media}`
+    puts "Just toggle #{media} to Paused"
     exit 0
   else
     ret = ""

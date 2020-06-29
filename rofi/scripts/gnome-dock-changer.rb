@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # require 'pry-byebug'
 
+SCRIPT_NAME = File.basename(__FILE__)
 SCRIPT_PATH = File.expand_path(File.dirname(__FILE__))
-BLACK_LIST_IDX = [1,2,3,4]
+BLACK_LIST_IDX = [1,2,3]
 CACHE_FILE = SCRIPT_PATH + "/cache/gnome-dash-items.cache"
 
 
@@ -34,8 +35,8 @@ def all_apps(from_cached: false)
   all_apps
 end
 
-def print_debug(choice)
-  `echo #{choice} > #{SCRIPT_PATH + '/res.res'}`
+def print_debug(choice, debugFile=SCRIPT_NAME)
+  `echo #{choice} >> #{SCRIPT_PATH + '/debug/' + debugFile + '.res'}`
 end
 
 def set_gnome_apps(apps)
@@ -77,6 +78,7 @@ def choose_slot
   str
 end
 
+# FIRST
 if ARGV.length != 1
   puts choose_slot
   exit 0
@@ -86,13 +88,15 @@ argType, argVal = check_arg(ARGV[0])
 
 case argType
 when 0
-  choice = argVal.to_i
-  File.write(SCRIPT_PATH + '/choice.res', choice-1)
+  # SECOND
+  from_pos = argVal.to_i
+  File.write(SCRIPT_PATH + '/from_pos.res', from_pos-1)
+
   apps = all_apps
   apps.each_with_index do |app, idx|
     apps[idx] = "To Slot #{idx+1}: #{apps[idx]}\r\n"
   end
-  BLACK_LIST_IDX << choice
+  BLACK_LIST_IDX << from_pos
   BLACK_LIST_IDX.sort!
   BLACK_LIST_IDX.reverse_each do |id|
     apps = apps.dup.tap {|i| i.delete_at(id-1)}
@@ -100,8 +104,9 @@ when 0
   puts apps
   exit 0
 when 1
-  cur_pos = File.read(SCRIPT_PATH + '/choice.res')
-  swap_app(argVal, cur_pos.to_i)
+  # THIRD
+  from_pos = File.read(SCRIPT_PATH + '/from_pos.res')
+  swap_app(argVal, from_pos.to_i)
   exit 0
 else
   exit 1

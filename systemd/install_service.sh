@@ -8,8 +8,8 @@ if [[ $# != 1 ]]; then
 fi
 
 SERVICE_FILE=$1
-sudo rm /etc/systemd/system/${SERVICE_FILE}
-sudo cp $(realpath $SERVICE_FILE) /etc/systemd/system/
+echo "sudo ln -sf $(realpath $SERVICE_FILE) /etc/systemd/system/"
+sudo ln -sf $(realpath $SERVICE_FILE) /etc/systemd/system/
 sudo systemctl daemon-reload
 
 # ref https://stackoverflow.com/questions/125281/how-do-i-remove-the-file-suffix-and-path-portion-from-a-path-string-in-bash
@@ -18,5 +18,6 @@ echo "sudo systemctl enable ${SERVICE_FILE%.service}"
 sudo systemctl start ${SERVICE_FILE%.service}
 sudo systemctl enable ${SERVICE_FILE%.service}
 
+echo "systemctl status ${SERVICE_FILE%.service}"
 systemctl status ${SERVICE_FILE%.service}
 
