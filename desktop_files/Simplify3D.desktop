@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Simplify 3D
+Exec=env LD_LIBRARY_PATH=/opt/Simplify3D-4.0.1 env LD_PRELOAD=/opt/Simplify3D-4.0.1/Interface.so /opt/Simplify3D-4.0.1/Simplify3D 
+Terminal=false
+Type=Application
+StartupWMClass=Simplify3D
+Icon=/opt/Simplify3D-4.0.1/icon.png
+Comment=Simplify 3D
+Categories=CAD;
