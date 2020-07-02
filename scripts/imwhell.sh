@@ -10,6 +10,10 @@
 # use the command xev to find what your wheel does.
 #
 ### see if imwheel config exists, if not create it ###
+
+# ref https://dev.to/bbavouzet/ubuntu-20-04-mouse-scroll-wheel-speed-536o
+# ref https://io.bikegremlin.com/11541/linux-mouse-scroll-speed/
+
 if [ ! -f ~/.imwheelrc ]
 then
 cat >~/.imwheelrc<<EOF
