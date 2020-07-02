@@ -1,0 +1,20 @@
+[Unit]
+Description=RW Openvpn
+After=network.target
+
+# https://forums.openvpn.net/viewtopic.php?t=12687
+# add this to /etc/openvpn/server/server.conf to prevent traffic routing thorugh vpn server
+##push "redirect-gateway def1 bypass-dhcp"
+#push "route 10.8.0.0 255.255.0.0"
+
+[Service]
+User=root
+Group=root
+Type=simple
+Environment=CONFIG_ARG="--config /home/zealot/.ssh/other-keys/zealot-zephyr.ovpn"
+Environment=STATUS_ARG="--status /etc/openvpn/openvpn-status-zephyr.log 5"
+ExecStart=/usr/sbin/openvpn $CONFIG_ARG $STATUS_ARG
+
+[Install]
+WantedBy=multi-user.target
+
