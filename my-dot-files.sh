@@ -15,4 +15,5 @@ MYDOTFILES=(
   .sandboxrc
   .minirc.dfl
   .goldendict
+  .imwheelrc
 )
