@@ -7,10 +7,10 @@ function main_menu
     sudo clear
     cursetting=$(cat /sys/class/backlight/intel_backlight/brightness)
     maxsetting=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-    powersave=$((maxsetting/5))
-    conservative=$((powersave*2))
-    medium=$((powersave*3))
-    performance=$((powersave*4))
+    powersave=$((maxsetting/6))
+    conservative=$((powersave))
+    medium=$((powersave*2))
+    performance=$((powersave*3))
     echo ""
     echo "----------------------- Brightness -----------------------"
     echo " 1. Set Display to Minimum (Powersave) brightness setting."
