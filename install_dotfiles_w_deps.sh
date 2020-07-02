@@ -93,3 +93,11 @@ wget -c https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0
 unzip exa-linux-x86_64-0.8.0.zip && rm exa-linux-x86_64-0.8.0.zip
 sudo mv exa-linux-x86_64 /usr/local/bin/exa
 
+# snap apps
+
+# install qalculate
+sudo snap install qalculate
+
+# install snap packages
+sudo snap install hub --classic
+

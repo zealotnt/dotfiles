@@ -57,9 +57,6 @@ for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packag
 rm -rf ~/.config/copyq
 ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
 
-# install snap packages
-sudo snap install hub --classic
-
 # install discord
 wget --content-disposition https://discordapp.com/api/download\?platform\=linux\&format\=deb
 sudo gdebi discord*.deb
@@ -222,9 +219,6 @@ git -C ~/workspace_misc/ clone https://github.com/google/jsonnet &&
 # install calibre https://calibre-ebook.com/download_linux
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
 | sudo sh /dev/stdin
-
-# install qalculate
-sudo snap install qalculate
 
 # install firefox-dev
 umake web firefox-dev --lang en-US
