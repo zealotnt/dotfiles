@@ -91,7 +91,7 @@ for_window [class=".*"] border none
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'class = "Google-chrome"' google-chrome
 
-assign [class="Alacritty"] workspace 3
+assign [class="Alacritty"] workspace 2
 bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
 assign [class="Emacs"] workspace 3
@@ -106,8 +106,8 @@ bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 assign [class="Viber"] workspace 6
 bindsym Mod1+6 exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
-assign [class="Telegram"] workspace 7
-bindsym Mod1+7 exec run-or-raise 'class = "Telegram"' Telegram
+assign [class="TelegramDesktop"] workspace 7
+bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
 assign [class="Mpv"] workspace 8
 bindsym Mod1+8 exec run-or-raise 'class = "Mpv"' mpv
