@@ -11,7 +11,7 @@ After=network.target
 User=root
 Group=root
 Type=simple
-Environment=CONFIG_ARG="--config /home/zealot/.ssh/other-keys/zealot-zephyr.ovpn"
+Environment=CONFIG_ARG="--config /home/zealot/.ssh/other-keys/dm-zephyr.ovpn"
 Environment=STATUS_ARG="--status /etc/openvpn/openvpn-status-zephyr.log 5"
 ExecStart=/usr/sbin/openvpn $CONFIG_ARG $STATUS_ARG
 
