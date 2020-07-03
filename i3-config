@@ -68,7 +68,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+shift+f fullscreen toggle
+bindsym $mod+F12 fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking
@@ -82,18 +82,41 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+t focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
 
 for_window [class=".*"] border none
 assign [class="Google-chrome"] workspace 1
+bindsym Mod1+1 exec run-or-raise 'class = "Google-chrome"' google-chrome
+
+assign [class="Alacritty"] workspace 3
+bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
+
 assign [class="Emacs"] workspace 3
+bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
+
 assign [class="Slack"] workspace 4
-assign [class="Telegram"] workspace 4
-assign [class="Caprine"] workspace 4
-for_window [class="Spotify"] move to workspace 5
+bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
+
+assign [class="Spotify"] workspace 5
+bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
+
+assign [class="Viber"] workspace 6
+bindsym Mod1+6 exec run-or-raise 'class = "Viber"' /opt/viber/Viber
+
+assign [class="Telegram"] workspace 7
+bindsym Mod1+7 exec run-or-raise 'class = "Telegram"' Telegram
+
+assign [class="Mpv"] workspace 8
+bindsym Mod1+8 exec run-or-raise 'class = "Mpv"' mpv
+
+assign [class="Nemo"] workspace 9
+bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' mpv
+
+assign [class="Caprine"] workspace 10
+bindsym Mod1+0 exec run-or-raise 'class = "Caprine"' caprine
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -120,7 +143,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 # bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
