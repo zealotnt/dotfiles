@@ -54,7 +54,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      python-docutils python3-docutils `# requires for arandr` \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
-     yarn socat libsqlite3-dev dialog
+     yarn socat libsqlite3-dev dialog guvcview
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -92,6 +92,10 @@ curl https://sh.rustup.rs -sSf | sh
 wget -c https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
 unzip exa-linux-x86_64-0.8.0.zip && rm exa-linux-x86_64-0.8.0.zip
 sudo mv exa-linux-x86_64 /usr/local/bin/exa
+
+# install youtube-dl
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
 
 # snap apps
 
