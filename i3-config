@@ -110,13 +110,13 @@ assign [class="TelegramDesktop"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
 assign [class="Mpv"] workspace 8
-bindsym Mod1+8 exec run-or-raise 'class = "Mpv"' mpv
+bindsym Mod1+8 exec run-or-raise 'class = "MPV"' mpv --player-operation-mode=pseudo-gui
 
 assign [class="Nemo"] workspace 9
-bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' mpv
+bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' nemo
 
 assign [class="Caprine"] workspace 10
-bindsym Mod1+0 exec run-or-raise 'class = "Caprine"' caprine
+bindsym Mod1+0 exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -128,7 +128,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+# bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1

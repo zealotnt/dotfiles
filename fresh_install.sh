@@ -337,3 +337,10 @@ go get -u github.com/lukehoban/go-outline
 # big fat heavy packages
 sudo apt install -y kicad
 
+# install i3
+sudo apt install i3
+
+# i3 dependancies
+cargo install run-or-raise
+
+
