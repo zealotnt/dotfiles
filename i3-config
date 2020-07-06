@@ -49,6 +49,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -87,6 +92,9 @@ bindsym $mod+Shift+t focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
+# tips for finding class:
+# using xprop, click to inspectee windows
+# all properties of the application/windows will be shown -> use the class/name here
 for_window [class=".*"] border none
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'class = "Google-chrome"' google-chrome
@@ -100,6 +108,8 @@ bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 assign [class="Slack"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
+assign [class="blueman-manager"] workspace 5
+assign [class="Blueman-manager"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
@@ -109,9 +119,11 @@ bindsym Mod1+6 exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 assign [class="TelegramDesktop"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
-assign [class="Mpv"] workspace 8
-bindsym Mod1+8 exec run-or-raise 'class = "MPV"' mpv --player-operation-mode=pseudo-gui
 
+assign [class="mpv"] workspace 8
+bindsym Mod1+8 exec run-or-raise 'class = "mpv"' mpv --player-operation-mode=pseudo-gui
+
+assign [class="gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
 bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' nemo
 
@@ -186,7 +198,7 @@ bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- unmute
 bindsym XF86AudioMute        exec amixer -q -D pulse sset Master toggle
 bindsym XF86AudioPrev        exec /usr/bin/playerctl previous
 bindsym XF86AudioNext        exec /usr/bin/playerctl next
-bindsym XF86AudioPlay        exec rofi -show Play-Pause-Media -modi window,Play-Pause-Media:/home/zealot/dotfiles/rofi/scripts/playerctl-playpause-media.rb
+bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play-Pause-Media:/home/zealot/dotfiles/rofi/scripts/playerctl-playpause-media.rb"
 
 bindsym $mod+Ctrl+q exec i3lock --color=000000
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
