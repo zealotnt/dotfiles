@@ -123,7 +123,7 @@ bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Te
 assign [class="mpv"] workspace 8
 bindsym Mod1+8 exec run-or-raise 'class = "mpv"' mpv --player-operation-mode=pseudo-gui
 
-assign [class="gnome-power-statistics"] workspace 9
+assign [class="Gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
 bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' nemo
 
