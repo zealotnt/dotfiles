@@ -109,6 +109,7 @@ bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
+assign [class="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
 assign [class="Blueman-manager"] workspace 5
