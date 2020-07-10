@@ -1,14 +1,22 @@
 #!/bin/bash
 
-sudo apt install -y git curl zsh
-sudo chsh -s /usr/bin/zsh root
+# if network is slow, and we dont want to pass sudoers password many times
+# ref - https://stackoverflow.com/questions/323957/how-do-i-edit-etc-sudoers-from-a-script
+#     - https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/
+# echo 'Defaults        env_reset,timestamp_timeout=-1' | sudo EDITOR='tee -a' visudo
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+set -x
+sudo apt update
+sudo apt install -y git curl zsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # insstall oh-my-tmux: gpakosz/.tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f ~/.tmux/.tmux.conf ~/
 cp ~/.tmux/.tmux.conf.local .
+ln -sf $HOME/dotfiles/.tmux.conf.local  ~/
+
 # install tpm for tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git -C ~/.tmux/ clone https://github.com/jonmosco/kube-tmux
@@ -22,7 +30,7 @@ git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/pl
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/djui/alias-tips.git ~/.oh-my-zsh/custom/plugins/alias-tips
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-git clone git@github.com:wulfgarpro/history-sync.git ~/.oh-my-zsh/plugins/history-sync
+git clone https://github.com/wulfgarpro/history-sync.git ~/.oh-my-zsh/plugins/history-sync
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # other utils
@@ -55,7 +63,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
-     libpq-dev
+     libpq-dev i3
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -65,8 +73,20 @@ curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi bat-musl*.deb
+sudo gdebi -n bat-musl*.deb
 rm bat-musl*.deb
+
+# install rustup
+## install rust compiler
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source $HOME/.cargo/env
+
+# i3 dependancies
+cargo install run-or-raise
+
+# install i3 config
+mkdir -p ~/.config/i3
+ln -sf $(realpath ~/dotfiles/i3-config) ~/.config/i3/config
 
 # install alacritty
 mkdir -p ~/.config/alacritty/
@@ -78,17 +98,28 @@ ln -sf $(realpath ~/dotfiles/.vimrc) ~/.config/nvim/init.vim
 sudo chmod -R 777 ~/.local/share/nvim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# then go to vim, type: `PlugInstall`
+# then go to vim, type: `PlugInstall` or use this
+nvim --headless +PlugInstall +qall
 
 # rofi
 sudo cp /usr/bin/rofi /usr/local/bin/rofi
 mkdir -p ~/.config/rofi/
 ln -sf $(realpath ~/dotfiles/rofi/config.rasi) ~/.config/rofi/
 
+# install vlc config
+mkdir -p ~/.config/vlc
+ln -sf $(realpath ~/dotfiles/vlc/vlcrc) ~/.config/vlc/vlcrc
+
+# install sublime-merge config
+mkdir -p ~/.config/sublime-merge/Packages/User
+for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packages/User ; done
+
+# install copyq config
+rm -rf ~/.config/copyq
+ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
+
 # install exa
 # ref https://ourcodeworld.com/articles/read/832/how-to-install-and-use-exa-a-modern-replacement-for-the-ls-command-in-ubuntu-16-04
-## install rust compiler
-curl https://sh.rustup.rs -sSf | sh
 ## TODO: find a way to fetch latest binary
 wget -c https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip
 unzip exa-linux-x86_64-0.8.0.zip && rm exa-linux-x86_64-0.8.0.zip
@@ -97,6 +128,9 @@ sudo mv exa-linux-x86_64 /usr/local/bin/exa
 # install youtube-dl
 sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
+
+# install docker permission
+sudo usermod -aG docker $USER
 
 # snap apps
 

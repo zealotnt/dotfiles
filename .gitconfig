@@ -67,5 +67,9 @@
 	user = zealotnt
 
 # https://stackoverflow.com/questions/32232655/go-get-results-in-terminal-prompts-disabled-error-for-github-private-repo
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+# [url "git@github.com:"]
+# 	insteadOf = https://github.com/
+# [filter "gitignore"]
+# 	clean = "sed '/#gitignore$/d'"
+# [url "ssh://git@github.com/"]
+# 	insteadOf = https://github.com/

@@ -30,9 +30,6 @@ psql -U postgres -c "CREATE USER $USER;"
 psql -U postgres -c "CREATE DATABASE $USER;"
 psql -U postgres -c "ALTER USER $USER with superuser createrole createdb replication bypassrls"
 
-# install docker
-sudo usermod -aG docker $USER
-
 # install nerd font
 git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
   nerd-fonts/install.sh &&
@@ -45,21 +42,9 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
     make && sudo mkdir -p /usr/local/share/man/man1/ && sudo make install &&
     cd .. && mv find-cursor ~/workspace_misc/
 
-# install vlc config
-mkdir -p ~/.config/vlc
-ln -sf $(realpath ~/dotfiles/vlc/vlcrc) ~/.config/vlc/vlcrc
-
-# install sublime-merge config
-mkdir -p ~/.config/sublime-merge/Packages/User
-for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packages/User ; done
-
-# install copyq config
-rm -rf ~/.config/copyq
-ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
-
 # install discord
 wget --content-disposition https://discordapp.com/api/download\?platform\=linux\&format\=deb
-sudo gdebi discord*.deb
+sudo gdebi -n discord*.deb
 
 # install caprine
 curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
@@ -67,15 +52,15 @@ curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi caprine*.deb
+sudo gdebi -n caprine*.deb
 
 # install slack
 google-chrome https://slack.com/intl/en-vn/downloads/instructions/ubuntu
-sudo gdebi slack-desktop*amd64.deb
+sudo gdebi -n slack-desktop*amd64.deb
 
 # install viber
 wget https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb
-sudo gdebi viber.deb
+sudo gdebi -n viber.deb
 
 # install telegram
 google-chrome https://telegram.org/dl/desktop/linux
@@ -84,7 +69,7 @@ mv Telegram ~/bin/
 
 # install skype
 google-chrome https://www.skype.com/en/get-skype/
-sudo gdebi skypeforlinux-64.deb
+sudo gdebi -n skypeforlinux-64.deb
 
 # install gnome-extensions
 mkdir -p ~/.local/share/gnome-shell/extensions
@@ -164,7 +149,7 @@ curl -s https://api.github.com/repos/ncabatoff/process-exporter/releases/latest 
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi process-exporter*_linux_amd64.deb
+sudo gdebi -n process-exporter*_linux_amd64.deb
 
 # install cadvisor
 curl -s https://api.github.com/repos/google/cadvisor/releases/latest \
@@ -280,7 +265,7 @@ curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi fd-musl*.deb
+sudo gdebi -n fd-musl*.deb
 
 # install playerctl
 curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
@@ -288,7 +273,7 @@ curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi playerctl*.deb
+sudo gdebi -n playerctl*.deb
 
 # install smartmontools
 curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
@@ -336,11 +321,4 @@ go get -u github.com/lukehoban/go-outline
 #############################################################
 # big fat heavy packages
 sudo apt install -y kicad
-
-# install i3
-sudo apt install i3
-
-# i3 dependancies
-cargo install run-or-raise
-
 
