@@ -108,17 +108,16 @@ assign [class="Emacs"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 assign [class="Slack"] workspace 4
+assign [class="Viber"] workspace 4
 assign [class="zoom"] workspace 4
-assign [class="TeamViewer"] workspace 4
+assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
+bindsym $mod+Mod1+v exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
 assign [class="Blueman-manager"] workspace 5
 assign [class="Pavucontrol"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
-
-assign [class="Viber"] workspace 6
-bindsym Mod1+6 exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
 assign [class="TelegramDesktop"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
