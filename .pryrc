@@ -243,13 +243,17 @@ Pry.config.hooks.add_hook(:after_session, :say_hi) do
 end
 # my_hook.exec_hook(:after_session)
 
-require 'rb-readline'
-require 'readline'
-if defined?(RbReadline)
-  def RbReadline.rl_reverse_search_history(sign, key)
-    rl_insert_text  `cat ~/.pry_history | fzf --tac |  tr '\n' ' '`
+begin
+  require 'rb-readline'
+  require 'readline'
+  if defined?(RbReadline)
+    def RbReadline.rl_reverse_search_history(sign, key)
+      rl_insert_text  `cat ~/.pry_history | fzf --tac |  tr '\n' ' '`
+    end
+    Readline.basic_word_break_characters = " \t\n`><=.;|&{("
   end
-  Readline.basic_word_break_characters = " \t\n`><=.;|&{("
+rescue LoadError => err
+  puts "gem install rb-readline readline  # <-- highly recommended"
 end
 
 puts "Loaded ~/.pryrc"
