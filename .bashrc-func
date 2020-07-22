@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias bfg='java -jar ~/bin/bfg.jar'
+
 # Borrow from globalias, but I dont want to expand all alias, so I bind Alt+SPACE to expand the alias instead
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/globalias/globalias.plugin.zsh
 globalias() {

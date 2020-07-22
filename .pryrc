@@ -124,8 +124,25 @@ Pry.config.ls.public_method_color = :green
 Pry.config.ls.protected_method_color = :yellow
 Pry.config.ls.private_method_color = :bright_black
 
+def help_pry_shortcut
+  puts "Debugging Shortcuts"
+  puts 'ss  :  step'
+  puts 'nn  :  next'
+  puts 'cc  :  continue'
+  puts 'fin :  finish'
+  puts 'uu  :  up'
+  puts 'dd  :  down'
+  puts 'bb  :  break'
+  puts 'ww  :  whereami'
+  puts 'ff  :  frame'
+  puts 'sss :  show-stack'
+  puts '$   :  show whole method of context'
+  puts
+  puts "Run 'pry_shortcut_debug' to display shorter debug shortcuts"
+end
+
 if defined?(PryByebug)
-   def pry_debug
+   def pry_shortcut_debug
      # Pry.commands.alias_command 't', 'show-stack'
      Pry.commands.alias_command '\s', 'step'
      Pry.commands.alias_command '\n', 'next'
@@ -139,21 +156,7 @@ if defined?(PryByebug)
      Pry.commands.alias_command '\q', 'exit-program' # make it same with psql
      Pry.commands.alias_command 'exit', 'exit-program' # make it same with byebug
 
-     puts "Debugging Shortcuts"
-     puts 'w  :  whereami'
-     puts 's  :  step'
-     puts 'n  :  next'
-     puts 'c  :  continue'
-     puts 'f  :  finish'
-     puts 'Stack movement'
-     puts 't  :  show-stack'
-     puts 'ff :  frame'
-     puts 'u  :  up'
-     puts 'd  :  down'
-     puts 'b  :  break'
-     puts ':q :  exit-program'
-     puts 'quit :  exit-program'
-     ""
+     help_pry_shortcut
    end
 
    # Longer shortcuts
@@ -171,19 +174,19 @@ if defined?(PryByebug)
 end
 
 if defined?(::Rails) && Rails.env && Rails.env.test? && ENV["PRY_LONG"].blank?
-  pry_debug
+  pry_shortcut_debug
 end
 
 if not ENV["PRY_SHORT"].nil? && ENV["PRY_SHORT"].true?
-  pry_debug
+  pry_shortcut_debug
 else
   begin
     require 'highline/import'
     confirm = ask("Enable pry-shortcut [y/n]? ") { |yn| yn.default = "y\n", yn.limit = 1, yn.validate = /[yn]/i }
-    pry_debug if confirm.downcase == 'y'
+    pry_shortcut_debug if confirm.downcase == 'y'
   rescue LoadError => err
     puts "gem install highline # <-- !!??"
-    puts "type: pry_debug to apply pry shortkeys"
+    puts "type: pry_shortcut_debug to apply pry shortkeys"
   end
 end
 
@@ -258,6 +261,7 @@ end
 
 puts "Loaded ~/.pryrc"
 puts
+
 def more_help
   puts "Helpful shortcuts:"
   puts "hh  : hist -T 20       Last 20 commands"
@@ -295,7 +299,8 @@ def more_help
   puts 'sss :  show-stack'
   puts '$   :  show whole method of context'
   puts
-  puts "Run 'pry_debug' to display shorter debug shortcuts"
+  puts "Run 'pry_shortcut_debug' to display shorter debug shortcuts"
+  help_pry_shortcut
   ""
  end
 puts "Run 'more_help' to see tips"

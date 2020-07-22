@@ -97,16 +97,21 @@ bindsym $mod+Shift+t focus mode_toggle
 #   all properties of the application/windows will be shown -> use the class/name here
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
+workspace 1 output DP-0
 for_window [class=".*"] border none
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
+workspace 2 output DP-2.1
 assign [class="Alacritty"] workspace 2
 bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
+workspace 3 output DP-4.8
 assign [class="Emacs"] workspace 3
+assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
+workspace 4 output DP-2.1
 assign [class="Slack"] workspace 4
 assign [class="Viber"] workspace 4
 assign [class="zoom"] workspace 4
@@ -114,21 +119,32 @@ assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 bindsym $mod+Mod1+v exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
+workspace 5 output DP-4.8
+assign [class="calibre-ebook-viewer"] workspace 5
+assign [class="calibre-gui"] workspace 5
+assign [class="calibre"] workspace 5
+assign [class="Evince"] workspace 5
+assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Blueman-manager"] workspace 5
-assign [class="Pavucontrol"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
+workspace 7 output DP-2.1
 assign [class="TelegramDesktop"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
+workspace 8 output DP-2.1
 assign [class="mpv"] workspace 8
 bindsym Mod1+8 exec run-or-raise 'class = "mpv"' mpv --player-operation-mode=pseudo-gui
 
+workspace 9 output DP-2.1
+assign [class="Gnome-disks"] workspace 9
+assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
 bindsym Mod1+9 exec run-or-raise 'class = "Nemo"' nemo
 
+workspace 10 output DP-2.1
 assign [class="Caprine"] workspace 10
 bindsym Mod1+0 exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
