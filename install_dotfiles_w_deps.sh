@@ -63,7 +63,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
-     libpq-dev i3
+     libpq-dev i3 compton
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
