@@ -371,6 +371,26 @@ mtConfirmDialog() {
   fi
 }
 
+mtConfirmInline() {
+  DEFAULT_PROMPT="?Are you sure\? [y/N] ?"
+
+	if [[ $# == 0 ]]; then
+    PROMT=$DEFAULT_PROMPT
+  else
+    PROMT="?$1 [y/N]?"
+	fi
+
+  read $PROMT response
+  case "$response" in
+      [yY][eE][sS]|[yY])
+          true
+          ;;
+      *)
+          false
+          ;;
+  esac
+}
+
 mtconfirm () {
 	# call with a prompt string or use a default
 	read -r -p "${1:-Are you sure? [y/N]} " response
@@ -953,5 +973,19 @@ hack/disable_osk() {
 remoteCommand() {
   # https://stackoverflow.com/questions/3834839/how-to-escape-a-double-quote-inside-double-quotes
   echo -e 'export DISPLAY=$(w | grep $USER | grep gdm | awk \x27{print $3}\x27)'
+}
+
+sync_folder() {
+  declare -A mapping
+  mapping[CMP]=pc.zep
+  mapping[zephyr]=pc.cmp
+
+  FROM=$1
+  DEST=$(realpath $FROM)
+  # TODO: if FROM is a directory, automatically add trailing / to it
+  #       this will make the path is "correct"
+  echo "rsync --no-relative -a -r $FROM zealot@${mapping[$HOST]}:$DEST"
+  mtConfirmInline "Are you sure to copy from $1 to $DEST" && \
+  rsync --no-relative -a -r $FROM zealot@${mapping[$HOST]}:$DEST
 }
 

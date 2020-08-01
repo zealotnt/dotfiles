@@ -186,6 +186,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/bin # fix alacrity PATH issue
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.bin:$PATH"
+export PATH=$PATH:$HOME/.local/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="/home/zealot/.cask/bin:$PATH"
