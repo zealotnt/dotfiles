@@ -32,6 +32,11 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 
+# Screens
+set $big_screen DP-0
+set $chat_screen DP-2.1
+set $code_screen DP-4.8
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -97,21 +102,23 @@ bindsym $mod+Shift+t focus mode_toggle
 #   all properties of the application/windows will be shown -> use the class/name here
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
-workspace 1 output DP-0
+workspace 1 output $big_screen
 for_window [class=".*"] border none
+assign [class="Google-chrome" id="Zalo Web"] workspace 10
+bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
-workspace 2 output DP-2.1
+workspace 2 output $chat_screen
 assign [class="Alacritty"] workspace 2
 bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
-workspace 3 output DP-4.8
+workspace 3 output $code_screen
 assign [class="Emacs"] workspace 3
 assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
-workspace 4 output DP-2.1
+workspace 4 output $chat_screen
 assign [class="Slack"] workspace 4
 assign [class="Viber"] workspace 4
 assign [class="zoom"] workspace 4
@@ -119,7 +126,7 @@ assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 bindsym $mod+Mod1+v exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
-workspace 5 output DP-4.8
+workspace 5 output $code_screen
 assign [class="Eog"] workspace 5
 assign [class="Gimp*"] workspace 5
 assign [class="jetbrains-pycharm-ce"] workspace 5
@@ -131,14 +138,14 @@ assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
-workspace 7 output DP-2.1
+workspace 7 output $chat_screen
 assign [class="TelegramDesktop"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
-workspace 8 output DP-2.1
+workspace 8 output $chat_screen
 assign [class="mpv"] workspace 8
 
-workspace 9 output DP-2.1
+workspace 9 output $chat_screen
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9
 assign [class="Gnome-disks"] workspace 9
@@ -149,7 +156,7 @@ assign [class="Nemo"] workspace 9
 assign [class="Qalculate-gtk"] workspace 9
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
-workspace 10 output DP-2.1
+workspace 10 output $chat_screen
 assign [class="Caprine"] workspace 10
 bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
@@ -192,10 +199,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -226,10 +233,12 @@ bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 bindsym $mod+Mod1+s exec /usr/bin/copyq show Snippets
+bindsym $mod+Mod1+i exec /usr/bin/copyq show Images
 bindsym $mod+Mod1+c exec /usr/bin/copyq show clipboard
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
+        tray_output primary
 }
