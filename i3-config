@@ -43,6 +43,7 @@ bindsym $mod+Shift+q kill
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
 for_window [class=".*"] title_format "%class | %title"
+for_window [class=".*"] border pixel 1
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -107,7 +108,6 @@ bindsym $mod+Shift+t focus mode_toggle
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
 workspace 1 output $big_screen
-for_window [class=".*"] border none
 assign [class="Google-chrome" id="Zalo Web"] workspace 10
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 assign [class="Google-chrome"] workspace 1
@@ -225,6 +225,7 @@ exec --no-startup-id xset r rate 169 80
 exec --no-startup-id nm-applet # Network
 exec --no-startup-id pasystray # Audio Volume
 exec --no-startup-id blueman-tray # Bluetooth
+exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # Audio volume controls
 bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
@@ -236,6 +237,7 @@ bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play
 
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
+for_window [class="copyq"] floating enable
 bindsym $mod+Mod1+s exec /usr/bin/copyq show Snippets
 bindsym $mod+Mod1+i exec /usr/bin/copyq show Images
 bindsym $mod+Mod1+c exec /usr/bin/copyq show clipboard
@@ -243,7 +245,16 @@ bindsym $mod+Mod1+c exec /usr/bin/copyq show clipboard
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        output $big_screen
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         tray_output primary
+        tray_padding 0
+        font pango:DejaVuSansMono 10
 }
 
+bar {
+        output $chat_screen
+        output $code_screen
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        font pango:DejaVuSansMono 8
+}
