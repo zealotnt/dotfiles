@@ -2,7 +2,6 @@
 Version=1.0
 Name=Telegram Desktop
 Comment=Official desktop application for the Telegram messaging service
-TryExec=/home/zealot/bin/Telegram/Telegram
 Exec=env QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -- %u
 Icon=telegram
 Terminal=false

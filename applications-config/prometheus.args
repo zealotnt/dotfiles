@@ -1,2 +1,2 @@
 # Set the command-line arguments to pass to the server.
-ARGS="--config.file=/home/zealot/dotfiles/applications-config/prometheus.yml --storage.tsdb.path=/home/zealot/Media-Sharing/prometheus-data --storage.tsdb.retention.time=365d --storage.tsdb.retention.size=30GB --web.enable-admin-api --web.enable-lifecycle"
+ARGS="--config.file=/home/zealot/dotfiles/applications-config/prometheus.yml --storage.tsdb.path=/home/zealot/Media-Sharing/prometheus-data --storage.tsdb.retention.time=2y --storage.tsdb.retention.size=60GB --web.enable-admin-api --web.enable-lifecycle"

@@ -989,3 +989,9 @@ sync_folder() {
   rsync --no-relative -a -r $FROM zealot@${mapping[$HOST]}:$DEST
 }
 
+unix_time() {
+  # TODO: handle ms, us case
+  # TODO: if there is an argument, use it over clipboard
+  date -d @$(xput)
+}
+

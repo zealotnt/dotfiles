@@ -94,6 +94,7 @@ bindsym $mod+Shift+e layout toggle split
 
 # toggle tiling / floating
 for_window [class="Yad"] floating enable border pixel $floating_border_pixel
+for_window [class="GoldenDict"] floating enable border pixel $floating_border_pixel
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
@@ -127,7 +128,6 @@ bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 workspace 4 output $chat_screen
 assign [class="Slack"] workspace 4
-assign [class="Viber"] workspace 4
 assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
@@ -147,6 +147,7 @@ bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
 workspace 7 output $chat_screen
 assign [class="TelegramDesktop"] workspace 7
+assign [class="Viber"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
 
 workspace 8 output $chat_screen
