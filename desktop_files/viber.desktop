@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Viber
+Name=Viber Qt
 Comment=Viber VoIP and messenger
 Exec=env QT_IM_MODULE=ibus /opt/viber/Viber %u
 Icon=/usr/share/pixmaps/viber.png

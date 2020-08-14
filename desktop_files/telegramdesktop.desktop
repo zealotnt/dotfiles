@@ -1,6 +1,5 @@
 [Desktop Entry]
-Version=1.0
-Name=Telegram Desktop
+Name=Telegram Desktop Qt
 Comment=Official desktop application for the Telegram messaging service
 Exec=env QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -- %u
 Icon=telegram
@@ -11,4 +10,3 @@ Categories=Network;InstantMessaging;Qt;
 MimeType=x-scheme-handler/tg;
 Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
 X-GNOME-UsesNotifications=true
-X-Desktop-File-Install-Version=0.23

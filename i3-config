@@ -37,6 +37,14 @@ set $big_screen DP-0
 set $chat_screen DP-2.1
 set $code_screen DP-4.8
 
+# i3-volume config, from: https://github.com/hastinbe/i3-volume
+set $i3_volume_path /usr/local/bin/i3-volume
+set $i3_volume_statuscmd i3blocks
+set $i3_volume_timeout_volume_step 300
+set $i3_volume_timeout_mute 500
+set $i3_volume_statussig SIGRTMIN+10
+set $i3_volume_step 5
+
 set $floating_border_pixel 5
 
 # kill focused window
@@ -232,9 +240,10 @@ exec --no-startup-id blueman-tray # Bluetooth
 # exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # Audio volume controls
-bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- unmute
-bindsym XF86AudioMute        exec amixer -q -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume exec $i3_volume_path -np -i $i3_volume_step -t $i3_volume_statuscmd -u $i3_volume_statussig -e $i3_volume_timeout_volume_step
+bindsym XF86AudioLowerVolume exec $i3_volume_path -np -d $i3_volume_step -t $i3_volume_statuscmd -u $i3_volume_statussig -e $i3_volume_timeout_volume_step
+bindsym XF86AudioMute        exec $i3_volume_path -mn -t $i3_volume_statuscmd -u $i3_volume_statussig -e $i3_volume_timeout_mute
+
 bindsym XF86AudioPrev        exec /usr/bin/playerctl previous
 bindsym XF86AudioNext        exec /usr/bin/playerctl next
 bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play-Pause-Media:/home/zealot/dotfiles/rofi/scripts/playerctl-playpause-media.rb"
