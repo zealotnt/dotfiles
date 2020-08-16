@@ -36,6 +36,7 @@ floating_modifier $mod
 set $big_screen DP-0
 set $chat_screen DP-2.1
 set $code_screen DP-4.8
+set $terminal_screen HDMI-0
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
 set $i3_volume_path /usr/local/bin/i3-volume
@@ -125,7 +126,7 @@ bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chro
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
-workspace 2 output $chat_screen
+workspace 2 output $terminal_screen
 assign [class="Alacritty"] workspace 2
 bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
@@ -139,7 +140,6 @@ assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
-bindsym $mod+Mod1+v exec run-or-raise 'class = "Viber"' /opt/viber/Viber
 
 workspace 5 output $code_screen
 assign [class="Eog"] workspace 5
@@ -157,11 +157,12 @@ workspace 7 output $chat_screen
 assign [class="TelegramDesktop"] workspace 7
 assign [class="Viber"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
+bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' /opt/viber/Viber
 
 workspace 8 output $chat_screen
 assign [class="mpv"] workspace 8
 
-workspace 9 output $chat_screen
+workspace 9 output $terminal_screen
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9
 assign [class="Gnome-disks"] workspace 9
@@ -269,6 +270,7 @@ bar {
 bar {
         output $chat_screen
         output $code_screen
+        output $terminal_screen
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         font pango:DejaVuSansMono 8
 }
