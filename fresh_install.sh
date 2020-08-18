@@ -326,3 +326,6 @@ go get -u github.com/lukehoban/go-outline
 sudo apt install -y kicad
 
 # TODO: remaining items needs to be done list here
+# install https://github.com/Hummer12007/brightnessctl
+#   sudo chmod u+s /usr/bin/brightnessctl
+# write a script to notify/update to i3blocks about screen brightness

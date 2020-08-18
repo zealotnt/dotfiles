@@ -249,6 +249,8 @@ bindsym XF86AudioMute        exec $i3_volume_path -mn -t $i3_volume_statuscmd -u
 bindsym XF86AudioPrev        exec /usr/bin/playerctl previous
 bindsym XF86AudioNext        exec /usr/bin/playerctl next
 bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play-Pause-Media:/home/zealot/dotfiles/rofi/scripts/playerctl-playpause-media.rb"
+bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
+bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
