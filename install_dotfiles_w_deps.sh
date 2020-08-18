@@ -88,6 +88,18 @@ cargo install run-or-raise
 mkdir -p ~/.config/i3
 ln -sf $(realpath ~/dotfiles/i3-config) ~/.config/i3/config
 
+# install i3 dependancies
+sudo curl https://raw.githubusercontent.com/hastinbe/i3-volume/master/volume -o /usr/local/bin/i3-volume
+sudo chmod 777 /usr/local/bin/i3-volume
+
+# install i3blocks
+git -C ~/workspace_misc/ clone https://github.com/vivien/i3blocks &&
+    cd i3blocks &&
+    ./autogen.sh &&
+    ./configure &&
+    make &&
+    sudo make install
+
 # install alacritty
 mkdir -p ~/.config/alacritty/
 ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
