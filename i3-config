@@ -37,6 +37,7 @@ set $big_screen DP-0
 set $chat_screen DP-2.1
 set $code_screen DP-4.8
 set $terminal_screen HDMI-0
+set $laptop_screen eDP-1-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
 set $i3_volume_path /usr/local/bin/i3-volume
@@ -271,6 +272,7 @@ bar {
         output $chat_screen
         output $code_screen
         output $terminal_screen
+        output $laptop_screen
         tray_output primary
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         font pango:DejaVuSansMono 8
