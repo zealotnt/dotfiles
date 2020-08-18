@@ -94,7 +94,7 @@ sudo chmod 777 /usr/local/bin/i3-volume
 
 # install i3blocks
 git -C ~/workspace_misc/ clone https://github.com/vivien/i3blocks &&
-    cd i3blocks &&
+    cd ~/workspace_misc/i3blocks &&
     ./autogen.sh &&
     ./configure &&
     make &&

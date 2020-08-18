@@ -36,6 +36,9 @@ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &&
   mv nerd-fonts ~/workspace_misc/
 
 # install teensy_loader_cli
+git -C ~/workspace_misc/ clone https://github.com/PaulStoffregen/teensy_loader_cli &&
+    cd ~/workspace_misc/teensy_loader_cli &&
+    make && sudo cp teensy_loader_cli /usr/local/bin/
 
 # install find-cursor
 git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
@@ -322,3 +325,4 @@ go get -u github.com/lukehoban/go-outline
 # big fat heavy packages
 sudo apt install -y kicad
 
+# TODO: remaining items needs to be done list here
