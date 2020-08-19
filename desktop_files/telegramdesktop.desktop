@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Telegram Desktop Qt
 Comment=Official desktop application for the Telegram messaging service
-Exec=env QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -- %u
+Exec=env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -- %u
 Icon=telegram
 Terminal=false
 StartupWMClass=TelegramDesktop
