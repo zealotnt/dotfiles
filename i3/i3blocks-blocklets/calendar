@@ -30,7 +30,7 @@ case "$BLOCK_BUTTON" in
 	posY=$(($BLOCK_Y - $HEIGHT))
 
 	i3-msg -q "exec yad --calendar \
-        --width=$WIDTH --height=$HEIGHT \
+        --show-weeks --width=$WIDTH --height=$HEIGHT \
 	    --undecorated --fixed \
 	    --close-on-unfocus --no-buttons \
 	    --posx=$posX --posy=$posY \
