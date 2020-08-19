@@ -164,6 +164,7 @@ workspace 8 output $chat_screen
 assign [class="mpv"] workspace 8
 
 workspace 9 output $terminal_screen
+assign [class="GParted"] workspace 9
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9
 assign [class="Gnome-disks"] workspace 9

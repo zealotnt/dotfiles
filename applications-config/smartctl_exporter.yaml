@@ -8,3 +8,4 @@ smartctl_exporter:
   - /dev/sda
   - /dev/sdb
   - /dev/nvme0
+  - /dev/nvme1
