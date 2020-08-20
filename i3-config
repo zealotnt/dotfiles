@@ -34,7 +34,7 @@ floating_modifier $mod
 
 # Screens
 set $big_screen DP-0
-set $chat_screen DP-2.1
+set $work_screen DP-2.1
 set $code_screen DP-4.8
 set $terminal_screen HDMI-0
 set $laptop_screen eDP-1-1
@@ -136,13 +136,13 @@ assign [class="Emacs"] workspace 3
 assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
-workspace 4 output $chat_screen
+workspace 4 output $work_screen
 assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
-workspace 5 output $code_screen
+workspace 5 output $work_screen
 assign [class="Eog"] workspace 5
 assign [class="Gimp*"] workspace 5
 assign [class="jetbrains-pycharm-ce"] workspace 5
@@ -157,10 +157,10 @@ bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 workspace 7 output $terminal_screen
 assign [class="TelegramDesktop"] workspace 7
 assign [class="Viber"] workspace 7
-bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' /home/zealot/bin/Telegram/Telegram
-bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' /opt/viber/Viber
+bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
+bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
 
-workspace 8 output $chat_screen
+workspace 8 output $work_screen
 assign [class="mpv"] workspace 8
 
 workspace 9 output $terminal_screen
@@ -272,7 +272,7 @@ bar {
 }
 
 bar {
-        output $chat_screen
+        output $work_screen
         output $code_screen
         output $terminal_screen
         output $laptop_screen
