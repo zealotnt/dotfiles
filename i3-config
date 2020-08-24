@@ -253,9 +253,11 @@ bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play
 bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
 bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
+bindsym $mod+Mod1+t exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
+for_window [class="copyq"] resize set 1280 720
 bindsym $mod+Mod1+s exec /usr/bin/copyq show Snippets
 bindsym $mod+Mod1+i exec /usr/bin/copyq show Images
 bindsym $mod+Mod1+c exec /usr/bin/copyq show clipboard

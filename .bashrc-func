@@ -917,7 +917,10 @@ start/grafana() {
   docker start grafana || docker run -d --user $(id -u) \
          --volume "/home/zealot/dotfiles/applications-config/grafana:/var/lib/grafana" \
          -e "GF_PATHS_CONFIG=/var/lib/grafana/grafana.ini" \
-         --name=grafana --network=host grafana/grafana \
+         -e "GF_RENDERING_SERVER_URL=http://localhost:8081/render" \
+         -e "GF_RENDERING_CALLBACK_URL=http://localhost:2999/" \
+         -e "GF_LOG_FILTERS=rendering:debug" \
+         --name=grafana --network=host grafana/grafana:latest \
          > /dev/null 2>&1
   xdg-open http://localhost:2999 > /dev/null 2>&1
 }
