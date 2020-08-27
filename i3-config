@@ -34,9 +34,9 @@ floating_modifier $mod
 
 # Screens
 set $big_screen DP-0
-set $work_screen DP-2.1
+set $work_screen HDMI-0
 set $code_screen DP-4.8
-set $terminal_screen HDMI-0
+set $chat_screen DP-2.1
 set $laptop_screen eDP-1-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
@@ -127,7 +127,7 @@ bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chro
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
-workspace 2 output $terminal_screen
+workspace 2 output $work_screen
 assign [class="Alacritty"] workspace 2
 bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
@@ -136,7 +136,7 @@ assign [class="Emacs"] workspace 3
 assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
-workspace 4 output $work_screen
+workspace 4 output $chat_screen
 assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
@@ -154,7 +154,7 @@ assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
-workspace 7 output $terminal_screen
+workspace 7 output $chat_screen
 assign [class="TelegramDesktop"] workspace 7
 assign [class="Viber"] workspace 7
 bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
@@ -163,7 +163,7 @@ bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1
 workspace 8 output $work_screen
 assign [class="mpv"] workspace 8
 
-workspace 9 output $terminal_screen
+workspace 9 output $chat_screen
 assign [class="GParted"] workspace 9
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9
@@ -175,7 +175,7 @@ assign [class="Nemo"] workspace 9
 assign [class="Qalculate-gtk"] workspace 9
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
-workspace 10 output $terminal_screen
+workspace 10 output $chat_screen
 assign [class="Caprine"] workspace 10
 bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
@@ -253,6 +253,7 @@ bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play
 bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
 bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
+bindsym $mod+Mod1+o exec /usr/bin/orage
 bindsym $mod+Mod1+t exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
@@ -276,7 +277,7 @@ bar {
 bar {
         output $work_screen
         output $code_screen
-        output $terminal_screen
+        output $chat_screen
         output $laptop_screen
         tray_output primary
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
