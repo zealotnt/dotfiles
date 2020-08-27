@@ -137,6 +137,7 @@ assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 workspace 4 output $chat_screen
+assign [class="Sublime_merge"] workspace 4
 assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4

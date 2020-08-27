@@ -29,8 +29,9 @@
         "context": [{"operator": "not_equal", "key": "merge_mode"}]
     },
 
-    { "keys": ["alt+left"], "command": "navigate_back" },
-    { "keys": ["alt+right"], "command": "navigate_forward" },
+    { "keys": ["alt+h"], "command": "navigate_to_parent" },
+    { "keys": ["alt+k"], "command": "navigate_back" },
+    { "keys": ["alt+j"], "command": "navigate_forward" },
     { "keys": ["ctrl+0"], "command": "navigate_to_head" },
     { "keys": ["ctrl+1"], "command": "navigate_to_commit_message" },
 
