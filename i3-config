@@ -143,7 +143,8 @@ assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
-workspace 5 output $chat_screen
+workspace 5 output $code_screen
+assign [class="DB Browser for SQLite"] workspace 5
 assign [class="Eog"] workspace 5
 assign [class="Gimp*"] workspace 5
 assign [class="jetbrains-pycharm-ce"] workspace 5
