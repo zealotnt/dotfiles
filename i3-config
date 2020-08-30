@@ -143,7 +143,7 @@ assign [class="zoom"] workspace 4
 assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
-workspace 5 output $work_screen
+workspace 5 output $chat_screen
 assign [class="Eog"] workspace 5
 assign [class="Gimp*"] workspace 5
 assign [class="jetbrains-pycharm-ce"] workspace 5
@@ -164,7 +164,7 @@ bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1
 workspace 8 output $work_screen
 assign [class="mpv"] workspace 8
 
-workspace 9 output $chat_screen
+workspace 9 output $work_screen
 assign [class="GParted"] workspace 9
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9

@@ -998,6 +998,22 @@ unix_time() {
   date -d @$(xput)
 }
 
+toggle_room_light() {
+  curl http://192.168.31.232/toggle
+}
+
+
+toggle_balcony_light() {
+  curl http://192.168.31.159/toggle
+}
+
+toggle_fan() {
+  . ~/dotfiles/scripts/toggle_fan.sh $@
+}
+
+toggle_air_con() {
+  . ~/dotfiles/scripts/toggle_air_con.sh $@
+}
 
 aws_testing_cli() {
   docker run --rm -it -e "AWS_ACCESS_KEY_ID=$AWS_TESTING_ACCESS_KEY_ID" \
