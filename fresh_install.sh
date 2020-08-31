@@ -329,3 +329,11 @@ sudo apt install -y kicad
 # install https://github.com/Hummer12007/brightnessctl
 #   sudo chmod u+s /usr/bin/brightnessctl
 # write a script to notify/update to i3blocks about screen brightness
+
+# install mpv
+#sudo add-apt-repository ppa:mc3man/mpv-tests
+#sudo apt install mpv
+# add mpv config files
+mkdir -p ~/.config/mpv
+ln -sf $(realpath mpv.conf) ~/.config/mpv/mpv.conf
+ln -sf $(realpath mpv-input.conf) ~/.config/mpv/input.conf

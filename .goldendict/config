@@ -97,9 +97,9 @@
   <helpZoomFactor>1</helpZoomFactor>
   <wordsZoomLevel>0</wordsZoomLevel>
   <enableMainWindowHotkey>1</enableMainWindowHotkey>
-  <mainWindowHotkey>F12</mainWindowHotkey>
+  <mainWindowHotkey>Alt+F12</mainWindowHotkey>
   <enableClipboardHotkey>1</enableClipboardHotkey>
-  <clipboardHotkey>Ctrl+C, Ctrl+D</clipboardHotkey>
+  <clipboardHotkey>Ctrl+C, Ctrl+C</clipboardHotkey>
   <enableScanPopup>0</enableScanPopup>
   <startWithScanPopupOn>0</startWithScanPopupOn>
   <enableScanPopupModifiers>0</enableScanPopupModifiers>
