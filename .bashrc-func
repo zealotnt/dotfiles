@@ -978,18 +978,36 @@ remoteCommand() {
   echo -e 'export DISPLAY=$(w | grep $USER | grep gdm | awk \x27{print $3}\x27)'
 }
 
-sync_folder() {
+sync_push_folder() {
   declare -A mapping
-  mapping[CMP]=pc.zep
-  mapping[zephyr]=pc.cmp
+  # mapping[CMP]=pc.zep
+  # mapping[zephyr]=pc.cmp
+  mapping[CMP]=vpn.zep
+  mapping[zephyr]=vpn.cmp
 
   FROM=$1
   DEST=$(realpath $FROM)
   # TODO: if FROM is a directory, automatically add trailing / to it
   #       this will make the path is "correct"
   echo "rsync --no-relative -a -r $FROM zealot@${mapping[$HOST]}:$DEST"
-  mtConfirmInline "Are you sure to copy from $1 to $DEST" && \
+  mtConfirmInline "Are you sure to push from $FROM to ${mapping[$HOST]}:$DEST" && \
   rsync --no-relative -a -r $FROM zealot@${mapping[$HOST]}:$DEST
+}
+
+sync_pull_folder() {
+  declare -A mapping
+  # mapping[CMP]=pc.zep
+  # mapping[zephyr]=pc.cmp
+  mapping[CMP]=vpn.zep
+  mapping[zephyr]=vpn.cmp
+
+  FROM=$1
+  DEST=$(realpath $FROM)
+  # TODO: if FROM is a directory, automatically add trailing / to it
+  #       this will make the path is "correct"
+  echo "rsync --no-relative -a -r zealot@${mapping[$HOST]}:$DEST $FROM"
+  mtConfirmInline "Are you sure to pull from ${mapping[$HOST]}:$DEST to $FROM" && \
+  rsync --no-relative -a -r zealot@${mapping[$HOST]}:$DEST $FROM
 }
 
 unix_time() {

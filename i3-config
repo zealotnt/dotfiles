@@ -89,10 +89,10 @@ bindsym $mod+Mod1+Ctrl+k move workspace to output up
 bindsym $mod+Mod1+Ctrl+l move workspace to output right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# bindsym $mod+V split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+F12 fullscreen toggle
