@@ -144,6 +144,7 @@ assign [id="TeamViewer"] workspace 4
 bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
 
 workspace 5 output $code_screen
+assign [class="Postman"] workspace 5
 assign [class="DB Browser for SQLite"] workspace 5
 assign [class="Eog"] workspace 5
 assign [class="Gimp*"] workspace 5

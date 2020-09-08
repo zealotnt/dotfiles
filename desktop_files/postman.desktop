@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Comment=Postman Native App
+Exec=/home/zealot/bin/Postman/Postman — %u
+Icon=/home/zealot/bin/Postman/app/resources/app/assets/icon.png
+Terminal=false
+StartupWMClass=postman
+Type=Application
+Categories=Network;
+MimeType=x-scheme-handler/tg;
