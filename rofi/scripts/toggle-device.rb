@@ -17,11 +17,28 @@ def toggle_air_con
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_air_con.sh`
 end
 
+def room_enter_scenario
+  `curl -s http://192.168.31.232/control?relay=on`
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 1`
+  `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 1`
+  `pactl set-sink-mute 0 0`
+end
+
+def room_leave_scenario
+  `curl -s http://192.168.31.232/control?relay=off`
+  `DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off`
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 0`
+  `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 0`
+  `pactl set-sink-mute 0 1`
+end
+
 CONTROL_COMMANDS = [
   "Toggle Room Light",
   "Toggle Balcony Light",
   "Toggle Fan",
   "Toggle Air Con",
+  "Enter Room Scenario",
+  "Leave Room Scenario"
 ]
 
 CONTROL_FUNC = [
@@ -29,6 +46,8 @@ CONTROL_FUNC = [
   method(:toggle_balcony_light),
   method(:toggle_fan),
   method(:toggle_air_con),
+  method(:room_enter_scenario),
+  method(:room_leave_scenario),
 ]
 
 # FIRST
