@@ -24,11 +24,23 @@ def room_enter_scenario
   `pactl set-sink-mute 0 0`
 end
 
+def off_screen
+  `DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off`
+end
+
+def off_air_con
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 0`
+end
+
+def off_fan
+  `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 0`
+end
+
 def room_leave_scenario
   `curl -s http://192.168.31.232/control?relay=off`
-  `DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off`
-  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 0`
-  `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 0`
+  off_screen
+  off_air_con
+  off_fan
   `pactl set-sink-mute 0 1`
 end
 
@@ -38,7 +50,10 @@ CONTROL_COMMANDS = [
   "Toggle Fan",
   "Toggle Air Con",
   "Enter Room Scenario",
-  "Leave Room Scenario"
+  "Leave Room Scenario",
+  "Turn off screen",
+  "Turn off air con",
+  "Turn off fan",
 ]
 
 CONTROL_FUNC = [
@@ -48,6 +63,9 @@ CONTROL_FUNC = [
   method(:toggle_air_con),
   method(:room_enter_scenario),
   method(:room_leave_scenario),
+  method(:off_screen),
+  method(:off_air_con),
+  method(:off_fan),
 ]
 
 # FIRST
