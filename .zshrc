@@ -80,7 +80,7 @@ plugins=(
   postgres
   tmuxinator
   command-time
-  sublime
+  git-open
   zsh-completions
   zsh-autosuggestions
   zsh-syntax-highlighting

@@ -32,6 +32,7 @@ git clone https://github.com/djui/alias-tips.git ~/.oh-my-zsh/custom/plugins/ali
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/wulfgarpro/history-sync.git ~/.oh-my-zsh/plugins/history-sync
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 
 # other utils
 git clone https://github.com/alexppg/helmenv.git ~/.helmenv
