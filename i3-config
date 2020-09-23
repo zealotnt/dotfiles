@@ -122,7 +122,6 @@ bindsym $mod+Shift+t focus mode_toggle
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
 workspace 1 output $big_screen
-assign [class="Google-chrome" id="Zalo Web"] workspace 10
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
@@ -137,11 +136,17 @@ assign [class="Code"] workspace 3
 bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 workspace 4 output $chat_screen
+assign [class="TelegramDesktop"] workspace 4
+assign [class="Viber"] workspace 4
 assign [class="Sublime_merge"] workspace 4
 assign [class="Slack"] workspace 4
 assign [class="zoom"] workspace 4
-assign [id="TeamViewer"] workspace 4
-bindsym Mod1+4 exec run-or-raise 'class = "Slack"' slack
+assign [class="TeamViewer"] workspace 4
+assign [class="Caprine"] workspace 4
+bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
+bindsym $mod+Mod1+t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
+bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
+bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
 workspace 5 output $code_screen
 assign [class="Postman"] workspace 5
@@ -158,10 +163,7 @@ assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 
 workspace 7 output $chat_screen
-assign [class="TelegramDesktop"] workspace 7
-assign [class="Viber"] workspace 7
-bindsym Mod1+7 exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
-bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
+assign [class="demo_fishyy_server"] workspace 7
 
 workspace 8 output $work_screen
 assign [class="mpv"] workspace 8
@@ -179,8 +181,6 @@ assign [class="Qalculate-gtk"] workspace 9
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 10 output $chat_screen
-assign [class="Caprine"] workspace 10
-bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -213,7 +213,30 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+Ctrl+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+set $copyq_launcher Launch: [c]lipboard [s]nippets [i]mages
+bindsym $mod+Mod1+c mode "$copyq_launcher"
+mode "$copyq_launcher" {
+  bindsym c exec /usr/bin/copyq show clipboard
+  bindsym s exec /usr/bin/copyq show Snippets
+  bindsym i exec /usr/bin/copyq show Images
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+set $chat_app_launcher Launch: [s]lack [t]elegram [v]iber [f]acebook [z]alo
+bindsym $mod+Mod1+space mode "$chat_app_launcher"
+mode "$chat_app_launcher" {
+  bindsym s exec run-or-raise 'class = "Slack"' slack; mode "default"
+  bindsym t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram; mode "default"
+  bindsym v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
+  bindsym f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10; mode "default"
+  bindsym z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome; mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 # resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -237,8 +260,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
 exec --no-startup-id xset r rate 169 80
 exec --no-startup-id nm-applet # Network
 exec --no-startup-id pasystray # Audio Volume
@@ -257,14 +278,11 @@ bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
 bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
 bindsym $mod+Mod1+o exec /usr/bin/orage
-bindsym $mod+Mod1+t exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
+bindsym $mod+Mod1+h exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
 for_window [class="copyq"] resize set 1280 720
-bindsym $mod+Mod1+s exec /usr/bin/copyq show Snippets
-bindsym $mod+Mod1+i exec /usr/bin/copyq show Images
-bindsym $mod+Mod1+c exec /usr/bin/copyq show clipboard
 bindsym Mod1+c exec /home/zealot/dotfiles/scripts/mouse-move-position-window.rb
 
 # Start i3bar to display a workspace bar (plus the system information i3status
