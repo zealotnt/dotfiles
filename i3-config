@@ -122,7 +122,6 @@ bindsym $mod+Shift+t focus mode_toggle
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
 workspace 1 output $big_screen
-bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 assign [class="Google-chrome"] workspace 1
 bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
@@ -147,6 +146,7 @@ bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
 bindsym $mod+Mod1+t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
 bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
 bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
+bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
 assign [class="Postman"] workspace 5
@@ -178,7 +178,6 @@ assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
 assign [class="Qalculate-gtk"] workspace 9
-bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 10 output $chat_screen
 
@@ -213,12 +212,25 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+Ctrl+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+set $util_launcher Launch: [N]emo [D]isk [Q]alculate Pa[v]ucontrol [B]lueman
+bindsym $mod+Mod1+u mode "$util_launcher"
+mode "$util_launcher" {
+  bindsym d exec run-or-raise 'class = "Gnome-disks"' gnome-disks; mode "default"
+  bindsym n exec run-or-raise 'class = "Nemo"' /usr/bin/nemo; mode "default"
+  bindsym q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk; mode "default"
+  bindsym v exec run-or-raise 'class = "Pavucontrol"' pavucontrol; mode "default"
+  bindsym b exec run-or-raise 'class = "Blueman-manager"' blueman-manager; mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 set $copyq_launcher Launch: [c]lipboard [s]nippets [i]mages
 bindsym $mod+Mod1+c mode "$copyq_launcher"
 mode "$copyq_launcher" {
-  bindsym c exec /usr/bin/copyq show clipboard
-  bindsym s exec /usr/bin/copyq show Snippets
-  bindsym i exec /usr/bin/copyq show Images
+  bindsym c exec /usr/bin/copyq show clipboard; mode "default"
+  bindsym s exec /usr/bin/copyq show Snippets; mode "default"
+  bindsym i exec /usr/bin/copyq show Images; mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
