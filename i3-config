@@ -142,9 +142,11 @@ assign [class="zoom"] workspace 4
 assign [class="TeamViewer"] workspace 4
 assign [class="Caprine"] workspace 4
 bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
-bindsym $mod+Mod1+t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
-bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
-bindsym $mod+Mod1+f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10
+# bindsym $mod+Mod1+t exec run-or-raise 'class = \"TelegramDesktop\"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
+bindsym $mod+Mod1+t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
+# bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
+bindsym $mod+Mod1+v exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
+bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
@@ -239,9 +241,11 @@ set $chat_app_launcher Launch: [s]lack [t]elegram [v]iber [f]acebook [z]alo
 bindsym $mod+Mod1+space mode "$chat_app_launcher"
 mode "$chat_app_launcher" {
   bindsym s exec run-or-raise 'class = "Slack"' slack; mode "default"
-  bindsym t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram; mode "default"
-  bindsym v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
-  bindsym f exec run-or-raise 'class = \"Caprine\"' caprine; exec i3-msg workspace 10; mode "default"
+  # bindsym t exec run-or-raise 'class = "TelegramDesktop"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram; mode "default"
+  bindsym t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram; mode "default"
+  # bindsym v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
+  bindsym v exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
+  bindsym f exec run-or-raise 'class = "Caprine"' caprine; mode "default"
   bindsym z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome; mode "default"
   bindsym Return mode "default"
   bindsym Escape mode "default"
