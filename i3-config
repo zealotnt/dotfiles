@@ -91,12 +91,6 @@ bindsym $mod+Mod1+Ctrl+j move workspace to output down
 bindsym $mod+Mod1+Ctrl+k move workspace to output up
 bindsym $mod+Mod1+Ctrl+l move workspace to output right
 
-# split in horizontal orientation
-# bindsym $mod+V split h
-
-# split in vertical orientation
-# bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+F12 fullscreen toggle
 
@@ -112,9 +106,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+t focus mode_toggle
-
-# focus the parent container
-# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -153,6 +144,8 @@ bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
+assign [class="Gpick"] workspace 5
+assign [class="Xfce4-notifyd-config"] workspace 5
 assign [class="Sublime_merge"] workspace 5
 assign [class="Postman"] workspace 5
 assign [class="DB Browser for SQLite"] workspace 5
@@ -254,8 +247,22 @@ mode "$chat_app_launcher" {
   bindsym Escape mode "default"
 }
 
+bindsym $mod+r mode "window-management"
+mode "window-management" {
+  bindsym a focus parent; mode "default"
+  bindsym v split h; mode "default"
+  bindsym h split h; mode "default"
+  bindsym Shift+minus split h; mode "default"
+  bindsym s split v; mode "default"
+  bindsym minus split v; mode "default"
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 # resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+# bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
