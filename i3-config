@@ -38,7 +38,7 @@ set $mouse_focus_center exec /home/zealot/dotfiles/scripts/mouse-move-position-w
 # Screens
 set $big_screen DP-0
 set $work_screen HDMI-0
-set $code_screen DP-4.8
+set $code_screen DP-2.2.8
 set $chat_screen DP-2.1
 set $laptop_screen eDP-1-1
 
@@ -144,6 +144,9 @@ bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
+assign [class="Qalculate-gtk"] workspace 5
+assign [class="Meld"] workspace 5
+assign [class="S3D-Software"] workspace 5
 assign [class="Gpick"] workspace 5
 assign [class="Xfce4-notifyd-config"] workspace 5
 assign [class="Sublime_merge"] workspace 5
@@ -159,6 +162,7 @@ assign [class="Evince"] workspace 5
 assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
 bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
+bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 7 output $chat_screen
 assign [class="demo_fishyy_server"] workspace 7
@@ -175,7 +179,6 @@ assign [class="S3D-Software"] workspace 9
 assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
-assign [class="Qalculate-gtk"] workspace 9
 
 workspace 10 output $chat_screen
 

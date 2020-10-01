@@ -264,10 +264,30 @@ bindkey -M vicmd v z/edit-command-line
 bindkey '^ee' z/edit-command-line
 
 # https://stackoverflow.com/a/3432749
-tmux list-sessions > /dev/null 2>&1 || tmux new -s $(hostname)
+# tmux list-sessions > /dev/null 2>&1 || tmux new -s $(hostname)
 
 # https://superuser.com/questions/479600/how-can-i-prevent-tmux-exiting-with-ctrl-d
 setopt ignoreeof
 setopt globdots # zsh completion to show hidden files/folders also
 
 if [ "$RUN_PROFILING" = true ]; then zprof; fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+conda_init() {
+  __conda_setup="$('/home/zealot/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/home/zealot/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "/home/zealot/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/home/zealot/anaconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+}
+# <<< conda initialize <<<
+export PATH="/usr/local/cuda-10.2/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH"
+
