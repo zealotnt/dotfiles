@@ -239,9 +239,9 @@ stw() {
 # Overide the rsync method, automatically create folder, archive mode, verbose, use relative path name, show progress
 # [Ref1](http://stackoverflow.com/questions/9242135/how-to-force-rsync-to-create-destination-folder)
 # [Ref2](http://stackoverflow.com/questions/12314451/accessing-bash-command-line-args-vs)
-rsync() {
-	/usr/bin/rsync -avRP $*
-}
+# rsync() {
+# 	/usr/bin/rsync -avRP $*
+# }
 
 # Overwrite pwd method, make it always specify the -P flag
 pwd() {
@@ -917,12 +917,33 @@ start/grafana() {
   docker start grafana || docker run -d --user $(id -u) \
          --volume "/home/zealot/dotfiles/applications-config/grafana:/var/lib/grafana" \
          -e "GF_PATHS_CONFIG=/var/lib/grafana/grafana.ini" \
-         -e "GF_RENDERING_SERVER_URL=http://localhost:8081/render" \
-         -e "GF_RENDERING_CALLBACK_URL=http://localhost:2999/" \
          -e "GF_LOG_FILTERS=rendering:debug" \
-         --name=grafana --network=host grafana/grafana:latest \
-         > /dev/null 2>&1
-  xdg-open http://localhost:2999 > /dev/null 2>&1
+         --name=grafana --network=host grafana/grafana:7.2.0-ubuntu
+  # xdg-open http://localhost:2999 > /dev/null 2>&1
+}
+
+get/grafana/dashboard_uid() {
+  DASHBOARD_SLUG=$1
+  DB_UID=$(curl -H "Authorization: Bearer $LOCAL_GRAFANA_API_TOKEN" \
+           http://localhost:2999/api/dashboards/db/$DASHBOARD_SLUG | jq -r '.dashboard.uid')
+  echo $DB_UID
+}
+
+get/grafana/dashboard_titles() {
+  RES=$(curl -H "Authorization: Bearer $LOCAL_GRAFANA_API_TOKEN" \
+  http://localhost:2999/api/search)
+  GRAFANA_TITLES=$(echo $RES | jq -r '.[].title')
+  GRAFANA_UIDS=$(echo $RES | jq -r '.[].uid')
+}
+
+open/grafana/dashboard_uid() {
+  DB_UID=$1
+  xdg-open http://localhost:2999/d/$DB_UID > /dev/null 2>&1
+}
+
+open/grafana/node-exporter() {
+  DB_UID=$(get/grafana/dashboard_uid node-exporter-full)
+  open/grafana/dashboard_uid $DB_UID
 }
 
 start/pgadmin4() {
