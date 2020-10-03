@@ -117,16 +117,16 @@ bindsym $mod+Shift+t focus mode_toggle
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
 workspace 1 output $big_screen
 assign [class="Google-chrome"] workspace 1
-bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
+#bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
 workspace 2 output $work_screen
 assign [class="Alacritty"] workspace 2
-bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
+#bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
 workspace 3 output $code_screen
 assign [class="Emacs"] workspace 3
 assign [class="Code"] workspace 3
-bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
+#bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
 workspace 4 output $chat_screen
 assign [class="TelegramDesktop"] workspace 4
@@ -161,7 +161,7 @@ assign [class="calibre"] workspace 5
 assign [class="Evince"] workspace 5
 assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
-bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
+#bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 7 output $chat_screen
