@@ -239,10 +239,10 @@ end
 Pry.config.hooks.add_hook(:after_session, :say_hi) do
   history_file = Pry.config.history_file
   puts "Cleaning up history file #{history_file}"
-  # puts "\tBefore cleaning: #{`cat #{history_file} | wc -l`}"
-  # `sed --in-place 's/[[:space:]]\+$//' #{history_file}`
-  # `tac #{history_file} | awk '!x[$0]++' | tac | sponge #{history_file}`
-  # puts "\tAfter cleaning: #{`cat #{history_file} | wc -l`}"
+  puts "\tBefore cleaning: #{`cat #{history_file} | wc -l`}"
+  `sed --in-place 's/[[:space:]]\+$//' #{history_file}`
+  `tac #{history_file} | awk '!x[$0]++' | tac | sponge #{history_file}`
+  puts "\tAfter cleaning: #{`cat #{history_file} | wc -l`}"
 end
 # my_hook.exec_hook(:after_session)
 
@@ -251,7 +251,8 @@ begin
   require 'readline'
   if defined?(RbReadline)
     def RbReadline.rl_reverse_search_history(sign, key)
-      rl_insert_text  `cat ~/.pry_history | fzf --tac |  tr '\n' ' '`
+      # rl_insert_text  `cat -n ~/.pry_history | fzf --tac | tr -d '\n' | sed -r 's/\s+[0-9]+\s+//'`
+      rl_insert_text  `cat ~/.pry_history | fzf --tac | tr -d '\n'`
     end
     Readline.basic_word_break_characters = " \t\n`><=.;|&{("
   end
