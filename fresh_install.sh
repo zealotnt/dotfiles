@@ -337,3 +337,6 @@ sudo apt install -y kicad
 mkdir -p ~/.config/mpv
 ln -sf $(realpath mpv.conf) ~/.config/mpv/mpv.conf
 ln -sf $(realpath mpv-input.conf) ~/.config/mpv/input.conf
+# trying to build from source, not work yet
+# sudo apt install -y libass-dev libavutil-dev libavcodec-dev libavformat-dev \
+#     libavfilter-dev libswresample-dev liblcms2-dev libarchive-dev # not use

@@ -40,7 +40,7 @@ set $big_screen DP-0
 set $work_screen HDMI-0
 set $code_screen DP-2.2.8
 set $chat_screen DP-2.1
-set $laptop_screen eDP-1-1
+set $laptop_screen eDP-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
 set $i3_volume_path /usr/local/bin/i3-volume
@@ -144,6 +144,7 @@ bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
+assign [class="QtCreator"] workspace 5
 assign [class="Qalculate-gtk"] workspace 5
 assign [class="Meld"] workspace 5
 assign [class="S3D-Software"] workspace 5
@@ -290,6 +291,9 @@ mode "resize" {
 }
 
 exec --no-startup-id xset r rate 169 80
+# exec --no-startup-id setxkbmap -option altwin:swap_alt_win
+# exec --no-startup-id setxkbmap -option ctrl:nocaps
+# exec --no-startup-id xcape -e 'Control_L=Escape'
 exec --no-startup-id nm-applet # Network
 exec --no-startup-id pasystray # Audio Volume
 exec --no-startup-id blueman-tray # Bluetooth

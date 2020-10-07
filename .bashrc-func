@@ -1061,3 +1061,9 @@ aws_testing_cli() {
          -v ~/.aws:/root/.aws amazon/aws-cli $@
 }
 
+laptop_keyboard_setup() {
+  setxkbmap -option altwin:swap_alt_win
+  setxkbmap -option ctrl:nocaps
+  xcape -e 'Control_L=Escape'
+}
+
