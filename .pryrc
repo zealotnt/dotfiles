@@ -238,11 +238,13 @@ end
 
 Pry.config.hooks.add_hook(:after_session, :say_hi) do
   history_file = Pry.config.history_file
-  puts "Cleaning up history file #{history_file}"
-  puts "\tBefore cleaning: #{`cat #{history_file} | wc -l`}"
-  `sed --in-place 's/[[:space:]]\+$//' #{history_file}`
-  `tac #{history_file} | awk '!x[$0]++' | tac | sponge #{history_file}`
-  puts "\tAfter cleaning: #{`cat #{history_file} | wc -l`}"
+  if !history_file.nil? and File.file?(history_file)
+    puts "Cleaning up history file #{history_file}"
+    puts "\tBefore cleaning: #{`cat #{history_file} | wc -l`}"
+    `sed --in-place 's/[[:space:]]\+$//' #{history_file}`
+    `tac #{history_file} | awk '!x[$0]++' | tac | sponge #{history_file}`
+    puts "\tAfter cleaning: #{`cat #{history_file} | wc -l`}"
+  end
 end
 # my_hook.exec_hook(:after_session)
 
