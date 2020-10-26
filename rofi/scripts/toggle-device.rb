@@ -36,6 +36,16 @@ def off_fan
   `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 0`
 end
 
+def go_to_bed
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh 0`
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_bed.sh 1`
+end
+
+def go_to_desk
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh 1`
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_bed.sh 0`
+end
+
 def room_leave_scenario
   `curl -s http://192.168.31.232/control?relay=off`
   off_air_con
@@ -53,6 +63,8 @@ CONTROL_COMMANDS = [
   "Turn off screen",
   "Turn off air con",
   "Turn off fan",
+  "Go to bed",
+  "Go to desk",
 ]
 
 CONTROL_FUNC = [
@@ -65,6 +77,8 @@ CONTROL_FUNC = [
   method(:off_screen),
   method(:off_air_con),
   method(:off_fan),
+  method(:go_to_bed),
+  method(:go_to_desk),
 ]
 
 # FIRST

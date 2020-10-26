@@ -144,6 +144,7 @@ bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
+assign [class="libreoffice-writer"] workspace 5
 assign [class="QtCreator"] workspace 5
 assign [class="Qalculate-gtk"] workspace 5
 assign [class="Meld"] workspace 5
@@ -176,7 +177,6 @@ assign [class="GParted"] workspace 9
 assign [class="Blueman-manager"] workspace 9
 assign [class="obs"] workspace 9
 assign [class="Gnome-disks"] workspace 9
-assign [class="S3D-Software"] workspace 9
 assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
 assign [class="Nemo"] workspace 9
