@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=calibre
+GenericName=Dark mode E-book library management
+Comment=E-book library management: Convert, view, share, catalogue all your e-books
+Exec=env CALIBRE_USE_DARK_PALETTE=YES calibre --detach %F
+Icon=calibre-gui
+Categories=Office;
+X-GNOME-UsesNotifications=true
+MimeType=text/fb2+xml;image/vnd.djvu;application/vnd.ms-word.document.macroenabled.12;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/x-cbz;application/vnd.oasis.opendocument.text;application/pdf;application/x-mobi8-ebook;application/epub+zip;application/xhtml+xml;text/plain;application/x-mobipocket-subscription;application/x-sony-bbeb;application/x-mobipocket-ebook;application/oebps-package+xml;text/html;text/x-markdown;text/rtf;application/x-cbr;application/ereader;application/x-cbc;
