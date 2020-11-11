@@ -868,6 +868,20 @@ ehssh() {
 
 alias kgnop="kgno | stripK8sIp"
 
+kt_prometheus() {
+    local APP_NAMESPACE=agents
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+    echo -e "prometheus-server:\r\n\t$POD_NAME"
+    kubectl -c prometheus-server --namespace $APP_NAMESPACE exec -i -t $POD_NAME sh
+}
+
+klf_prometheus() {
+    local APP_NAMESPACE=agents
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+    echo -e "prometheus-server:\r\n\t$POD_NAME"
+    kubectl logs -f -c prometheus-server -n $APP_NAMESPACE $POD_NAME --since 5m
+}
+
 pf_pushgateway() {
     local APP_NAMESPACE=agents
     export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
@@ -880,6 +894,18 @@ kt_pushgateway() {
     export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
     echo -e "Pushgateway:\r\n\t$POD_NAME"
     kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME sh
+}
+
+kt_infra_stat() {
+    local GRC_COLOR_OLD=$GRC_COLOR
+    export GRC_COLOR=auto
+    CURRENT_CONTEXT=$(kubectl config current-context)
+    [[ $CURRENT_CONTEXT =~ .*prod.* ]] && local APP_NAMESPACE=application || local APP_NAMESPACE=staging
+    [[ $CURRENT_CONTEXT =~ .*prod.* ]] && local APP_LABELS="app=eh-infra-stat-service-web" || local APP_LABELS="app=eh-infra-stat-web"
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "$APP_LABELS" -o jsonpath="{.items[0].metadata.name}")
+    echo -e "eh-infra-stat-service-web:\r\n\t$POD_NAME"
+    kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME bash
+    export GRC_COLOR=$GRC_COLOR_OLD
 }
 
 kt_db_analytics() {
@@ -902,6 +928,17 @@ kt_am_proxy() {
     export GRC_COLOR=$GRC_COLOR_OLD
 }
 
+kpf_prometheus() {
+    local GRC_COLOR_OLD=$GRC_COLOR
+    export GRC_COLOR=auto
+    CURRENT_CONTEXT=$(kubectl config current-context)
+    local APP_NAMESPACE=agents
+    POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=server,release=prometheus" -o jsonpath="{.items[0].metadata.name}")
+    echo "kong-pod:\r\n\tkubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 9091:9090"
+    kubectl port-forward $POD_NAME --namespace $APP_NAMESPACE 9091:9090
+    export GRC_COLOR=$GRC_COLOR_OLD
+}
+
 kpf_kong() {
     local GRC_COLOR_OLD=$GRC_COLOR
     export GRC_COLOR=auto
@@ -917,6 +954,7 @@ start/grafana() {
   docker start grafana || docker run -d --user $(id -u) \
          --volume "/home/zealot/dotfiles/applications-config/grafana:/var/lib/grafana" \
          -e "GF_PATHS_CONFIG=/var/lib/grafana/grafana.ini" \
+         -e "GF_RENDERER_PLUGIN_VERBOSE_LOGGING=true" \
          -e "GF_LOG_FILTERS=rendering:debug" \
          --name=grafana --network=host grafana/grafana:7.2.0-ubuntu
   # xdg-open http://localhost:2999 > /dev/null 2>&1

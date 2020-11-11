@@ -9,6 +9,10 @@ def toggle_balcony_light
   `curl -s http://192.168.31.159/toggle`
 end
 
+def toggle_bed_fan
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_bed.sh`
+end
+
 def toggle_fan
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh`
 end
@@ -57,6 +61,7 @@ CONTROL_COMMANDS = [
   "Toggle Room Light",
   "Toggle Balcony Light",
   "Toggle Fan",
+  "Toggle Bed (3an)",
   "Toggle Air Con",
   "Enter Room Scenario",
   "Leave Room Scenario",
@@ -71,6 +76,7 @@ CONTROL_FUNC = [
   method(:toggle_room_light),
   method(:toggle_balcony_light),
   method(:toggle_fan),
+  method(:toggle_bed_fan),
   method(:toggle_air_con),
   method(:room_enter_scenario),
   method(:room_leave_scenario),

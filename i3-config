@@ -163,6 +163,7 @@ assign [class="calibre"] workspace 5
 assign [class="Evince"] workspace 5
 assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
+assign [class="Nemo"] workspace 5
 #bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
@@ -179,7 +180,6 @@ assign [class="obs"] workspace 9
 assign [class="Gnome-disks"] workspace 9
 assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
-assign [class="Nemo"] workspace 9
 
 workspace 10 output $chat_screen
 
@@ -310,9 +310,10 @@ bindsym XF86AudioPlay        exec "rofi -show Play-Pause-Media -modi window,Play
 bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
 bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
-bindsym $mod+Mod1+o exec /usr/bin/orage
+# bindsym $mod+Mod1+o exec /usr/bin/orage
 bindsym $mod+Mod1+h exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
+bindsym $mod+Mod1+o exec DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
 for_window [class="copyq"] resize set 1280 720
