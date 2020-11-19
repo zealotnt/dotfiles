@@ -132,7 +132,6 @@ workspace 4 output $chat_screen
 assign [class="TelegramDesktop"] workspace 4
 assign [class="Viber"] workspace 4
 assign [class="Slack"] workspace 4
-assign [class="TeamViewer"] workspace 4
 assign [class="Caprine"] workspace 4
 bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
 # bindsym $mod+Mod1+t exec run-or-raise 'class = \"TelegramDesktop\"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
@@ -143,6 +142,7 @@ bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
 bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
+assign [class="TeamViewer"] workspace 5
 assign [class="zoom"] workspace 5
 assign [class="libreoffice-writer"] workspace 5
 assign [class="QtCreator"] workspace 5
@@ -165,6 +165,9 @@ assign [class="Firefox Developer Edition"] workspace 5
 assign [class="Spotify"] workspace 5
 assign [class="Nemo"] workspace 5
 assign [class="obs"] workspace 5
+# -> Arduino-IDE
+assign [class="processing-app-Base"] workspace 5
+assign [class="Free Download Manager"] workspace 5
 #bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
@@ -266,7 +269,7 @@ mode "window-management" {
 }
 
 # resize window (you can also use the mouse for that)
-# bindsym $mod+r mode "resize"
+bindsym $mod+Mod1+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
