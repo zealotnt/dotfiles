@@ -321,6 +321,8 @@ bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
 for_window [class="copyq"] resize set 1280 720
 bindsym Mod1+c $mouse_focus_center
+# to disable Ctrl+w that accidentially close chrome tab over CKA/CKAD exam
+# bindsym ctrl+w nop
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
