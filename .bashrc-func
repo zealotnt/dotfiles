@@ -1105,3 +1105,7 @@ laptop_keyboard_setup() {
   xcape -e 'Control_L=Escape'
 }
 
+youtube-dl-playlist-numbered() {
+  echo "youtube-dl -cio '%(autonumber)s-%(title)s.%(ext)s' $@"
+  youtube-dl -cio '%(autonumber)s-%(title)s.%(ext)s' $@
+}

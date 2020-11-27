@@ -54,6 +54,7 @@ def room_leave_scenario
   `curl -s http://192.168.31.232/control?relay=off`
   off_air_con
   off_fan
+  `playerctl pause -a`
   `pactl set-sink-mute 0 1`
 end
 
