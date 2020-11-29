@@ -169,7 +169,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   PROMPT='%{$fg[red]%}${HOSTNAME}%{$reset_color%} ⏣${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 else
-  PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%@]%{$reset_color%}
+  PROMPT='${ret_status} %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info) %{$fg[yellow]%}[%D{%y/%m/%f}|%T]%{$reset_color%}
 %{$fg[cyan]%}$%{$reset_color%} '
 fi
 

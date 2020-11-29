@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Toggle imwheel
+Exec=/usr/local/bin/setimwhell.sh
+Terminal=false
+Type=Application
+Icon=/home/zealot/dotfiles/icons/mouse-wheel.png

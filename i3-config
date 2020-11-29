@@ -314,7 +314,7 @@ bindsym XF86MonBrightnessUp    exec "brightnessctl s 10%+"
 bindsym XF86MonBrightnessDown  exec "brightnessctl s 10%-"
 
 # bindsym $mod+Mod1+o exec /usr/bin/orage
-bindsym $mod+Mod1+h exec "rofi -show 'Toggle-Device' -modi window,Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
+bindsym $mod+Mod1+h exec "rofi -show 'Toggle-Device' -modi Toggle-Device:/home/zealot/dotfiles/rofi/scripts/toggle-device.rb"
 bindsym $mod+Ctrl+q exec i3lock --color=000000; exec xset dpms force off; exec setMouse.rb d
 bindsym $mod+Mod1+o exec DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
