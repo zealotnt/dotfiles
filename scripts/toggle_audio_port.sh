@@ -6,6 +6,8 @@ if [[ "$CURRENT_PORT" == "analog-output-headphones" ]]; then
   echo "🔊" > ~/.local/audio_device
 else
   pacmd set-sink-port 0 analog-output-headphones
-  echo "🔊" > ~/.local/audio_device
+  echo "🎧" > ~/.local/audio_device
 fi
+
+pkill -SIGRTMIN+10 i3blocks
 

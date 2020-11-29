@@ -21,6 +21,10 @@ def toggle_air_con
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_air_con.sh`
 end
 
+def toggle_audio_port
+  `/bin/bash /home/zealot/dotfiles/scripts/toggle_audio_port.sh`
+end
+
 def room_enter_scenario
   `curl -s http://192.168.31.232/control?relay=on`
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 1`
@@ -64,6 +68,7 @@ CONTROL_COMMANDS = [
   "Toggle Fan",
   "Toggle Bed (3an)",
   "Toggle Air Con",
+  "Toggle Audio Output",
   "Enter Room Scenario",
   "Leave Room Scenario",
   "Turn off screen",
@@ -79,6 +84,7 @@ CONTROL_FUNC = [
   method(:toggle_fan),
   method(:toggle_bed_fan),
   method(:toggle_air_con),
+  method(:toggle_audio_port),
   method(:room_enter_scenario),
   method(:room_leave_scenario),
   method(:off_screen),

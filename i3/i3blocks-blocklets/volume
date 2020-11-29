@@ -39,6 +39,8 @@ SCONTROL="${BLOCK_INSTANCE:-$(amixer -D $MIXER scontrols |
 # This may be in in % or dB (eg. 5% or 3dB)
 STEP="${1:-5%}"
 
+AUDIO_DEVICE=$(cat /home/zealot/.local/audio_device)
+
 #------------------------------------------------------------------------
 
 capability() { # Return "Capture" if the device is a capture device
