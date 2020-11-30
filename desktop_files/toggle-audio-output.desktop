@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Toggle Audio Output Device
+Exec=/home/zealot/dotfiles/scripts/toggle_audio_port.sh
+Terminal=false
+Type=Application
+Icon=/home/zealot/dotfiles/icons/audio.png

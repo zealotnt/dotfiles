@@ -44,6 +44,10 @@ def off_fan
   `/bin/bash ~/dotfiles/scripts/toggle_fan.sh 0`
 end
 
+def off_media
+  `playerctl pause -a`
+end
+
 def go_to_bed
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh 0`
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_bed.sh 1`
@@ -74,6 +78,7 @@ CONTROL_COMMANDS = [
   "Turn off screen",
   "Turn off air con",
   "Turn off fan",
+  "Turn off media",
   "Go to bed",
   "Go to desk",
 ]
@@ -90,6 +95,7 @@ CONTROL_FUNC = [
   method(:off_screen),
   method(:off_air_con),
   method(:off_fan),
+  method(:off_media),
   method(:go_to_bed),
   method(:go_to_desk),
 ]
