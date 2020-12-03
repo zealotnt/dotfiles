@@ -2,13 +2,15 @@
 
 mkdir ~/bin/
 
-ln -sf $(realpath Old-Home/zealot/workspace_mine) .
-ln -sf $(realpath Old-Home/zealot/workspace_misc) .
-ln -sf $(realpath Old-Home/zealot/workspace_eh) .
+WORKSPACE_FOLDER="Old-Home/zealot"
+ln -sf $(realpath $WORKSPACE_FOLDER/workspace_mine) .
+ln -sf $(realpath $WORKSPACE_FOLDER/workspace_misc) .
+ln -sf $(realpath $WORKSPACE_FOLDER/workspace_eh) .
 
-cp -rp Old-Root/home/zealot/.ssh .
-cp -rp Old-Root/home/zealot/.aws .
-cp -rp Old-Root/home/zealot/.kube .
+CONFIG_FOLDER="Old-Root/home/zealot"
+cp -rp $CONFIG_FOLDER/.ssh .
+cp -rp $CONFIG_FOLDER/.aws .
+cp -rp $CONFIG_FOLDER/.kube .
 
 # migrate google-chrome data
 cp -rp /home/zealot/Old-Root/home/zealot/.config/google-chrome ~/.config/

@@ -5,7 +5,28 @@
 #     - https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/
 # echo 'Defaults        env_reset,timestamp_timeout=-1' | sudo EDITOR='tee -a' visudo
 
+# verbose progress printing
 set -x
+
+CURUSER=$(w | grep gdm | awk '{print $1}')
+RUSER_UID=$(id -u ${CURUSER})
+CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# no dimming, turn off screen when installing
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set com.ubuntu.touch.system auto-brightness "false"
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.desktop.session idle-delay 0
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.settings-daemon.plugins.power idle-dim "false"
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled "true"
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 3600
+sudo -u ${CURUSER} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
+
+# disable auto update first
+sudo systemctl disable apt-daily.service
+sudo systemctl disable apt-daily.timer
+sudo systemctl disable apt-daily-upgrade.timer
+sudo systemctl disable apt-daily-upgrade.service
+
 sudo apt update
 sudo apt install -y git curl zsh
 
@@ -53,7 +74,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nodejs nnn alacritty spotify-client ubuntu-make \
+     copyq minicom neofetch nodejs npm nodejs nnn alacritty ubuntu-make \
      libdbus-1-dev `# requires for mpris-control` \
      python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
