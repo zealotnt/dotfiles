@@ -166,7 +166,7 @@ assign [class="Spotify"] workspace 5
 assign [class="Nemo"] workspace 5
 assign [class="obs"] workspace 5
 assign [class="Opera"] workspace 5
-assign [class="Firefox"] workspace 5
+assign [class="Firefox$"] workspace 5
 # -> Arduino-IDE
 assign [class="processing-app-Base"] workspace 5
 assign [class="Free Download Manager"] workspace 5
@@ -186,10 +186,11 @@ assign [class="Gnome-disks"] workspace 9
 assign [class="Pavucontrol"] workspace 9
 assign [class="Gnome-power-statistics"] workspace 9
 
+workspace 10 output $chat_screen
+
 assign [class="Firefox Developer Edition"] workspace 11
 assign [class="libreoffice-calc"] workspace 11
-
-workspace 10 output $chat_screen
+workspace 11 output $big_screen
 
 # switch to workspace
 bindsym $mod+1 workspace 1; $mouse_focus_center
