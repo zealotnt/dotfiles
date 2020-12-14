@@ -8,6 +8,12 @@
 # verbose progress printing
 set -x
 
+# disable auto update first
+sudo systemctl disable apt-daily.service
+sudo systemctl disable apt-daily.timer
+sudo systemctl disable apt-daily-upgrade.timer
+sudo systemctl disable apt-daily-upgrade.service
+
 CURUSER=$(w | grep gdm | awk '{print $1}')
 RUSER_UID=$(id -u ${CURUSER})
 CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -35,7 +41,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # insstall oh-my-tmux: gpakosz/.tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f ~/.tmux/.tmux.conf ~/
-cp ~/.tmux/.tmux.conf.local .
+touch ~/.tmux.conf.local
 ln -sf $HOME/dotfiles/.tmux.conf.local  ~/
 
 # install tpm for tmux
@@ -85,7 +91,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
-     libpq-dev i3 compton feh yad
+     libpq-dev i3 compton feh yad xcape
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -97,6 +103,31 @@ curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
 | wget -i -
 sudo gdebi -n bat-musl*.deb
 rm bat-musl*.deb
+
+# install fd-find
+curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
+| grep "browser_download_url.*musl.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi -n fd-musl*.deb
+rm fd-musl*.deb
+
+# install playerctl
+curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
+| grep "browser_download_url.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi -n playerctl*.deb
+rm playerctl*.deb
+
+# install mpris-control
+curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
+| grep "browser_download_url.*mpris-control" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
 
 # install rustup
 ## install rust compiler
@@ -121,6 +152,9 @@ git -C ~/workspace_misc/ clone https://github.com/vivien/i3blocks &&
     ./configure &&
     make &&
     sudo make install
+sudo mkdir /usr/share/i3blocks
+sudo cp ~/dotfiles/i3/i3blocks-blocklets/* /usr/share/i3blocks
+ln -sf $(realpath ~/dotfiles/i3blocks.conf) ~/.config/i3/i3blocks.conf
 
 # install alacritty
 mkdir -p ~/.config/alacritty/

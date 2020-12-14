@@ -192,7 +192,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="/home/zealot/.cask/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+[ -f home/linuxbrew/.linuxbrew/bin/brew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

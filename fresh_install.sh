@@ -186,13 +186,6 @@ go get github.com/wrouesnel/postgres_exporter && cd ${GOPATH-$HOME/go}/src/githu
     go run mage.go binary && sudo cp postgres_exporter /usr/local/bin
 ## then isntall systemd service
 
-# install mpris-control
-curl -s https://api.github.com/repos/BlackDex/mpris-control/releases/latest \
-| grep "browser_download_url.*mpris-control" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i - && chmod 777 mpris-control && sudo mv mpris-control /usr/local/bin/
-
 # install goldendict config file
 ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
@@ -263,22 +256,6 @@ curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 # install arandr
 git -C ~/workspace_misc/ clone https://gitlab.com/arandr/arandr
 cd ~/workspace_misc/arandr && sudo ./setup.py install
-
-# install fd-find
-curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
-| grep "browser_download_url.*musl.*amd64.*deb" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-sudo gdebi -n fd-musl*.deb
-
-# install playerctl
-curl -s https://api.github.com/repos/altdesktop/playerctl/releases/latest \
-| grep "browser_download_url.*amd64.*deb" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-sudo gdebi -n playerctl*.deb
 
 # install smartmontools
 curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
