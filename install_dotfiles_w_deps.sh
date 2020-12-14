@@ -91,7 +91,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
-     libpq-dev i3 compton feh yad xcape
+     libpq-dev i3 compton feh yad xcape wireguard imwheel
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -146,8 +146,8 @@ sudo curl https://raw.githubusercontent.com/hastinbe/i3-volume/master/volume -o 
 sudo chmod 777 /usr/local/bin/i3-volume
 
 # install i3blocks
-git -C ~/workspace_misc/ clone https://github.com/vivien/i3blocks &&
-    cd ~/workspace_misc/i3blocks &&
+git -C /tmp/ clone https://github.com/vivien/i3blocks &&
+    cd /tmp/i3blocks &&
     ./autogen.sh &&
     ./configure &&
     make &&
@@ -186,6 +186,46 @@ for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packag
 rm -rf ~/.config/copyq
 ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
 
+# install goldendict config file
+ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
+
+# add mpv config files
+mkdir -p ~/.config/mpv
+ln -sf $(realpath mpv.conf) ~/.config/mpv/mpv.conf
+ln -sf $(realpath mpv-input.conf) ~/.config/mpv/input.conf
+
+# install calibre https://calibre-ebook.com/download_linux
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
+| sudo sh /dev/stdin
+
+# install ruby/rbenv/bundle
+# ref: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
+sudo apt install autoconf bison build-essential libssl-dev libyaml-dev \
+     libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+rbenv install 2.4.4
+rbenv install 2.6.6
+gem install bundler
+
+# intall helm3
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+# install kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
+    chmod 777 kubectl && sudo mv kubectl /usr/local/bin
+# install kubectl-krew
+(
+  set -x; cd "$(mktemp -d)" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/download/v0.3.2/krew.{tar.gz,yaml}" &&
+  tar zxvf krew.tar.gz &&
+  ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install \
+    --manifest=krew.yaml --archive=krew.tar.gz
+)
+# kubectl, kubens
+kubectl krew install ctx
+kubectl krew install ns
+
 # install exa
 # ref https://ourcodeworld.com/articles/read/832/how-to-install-and-use-exa-a-modern-replacement-for-the-ls-command-in-ubuntu-16-04
 ## TODO: find a way to fetch latest binary
@@ -223,4 +263,10 @@ Section "InputClass"
         Option "ScrollMethod" "twofinger"
 EndSection
 EOF
+
+# pip packages
+pip install aws-mfa
+pip install awscli
+pip install aws-shell
+
 

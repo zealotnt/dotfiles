@@ -103,38 +103,14 @@ mkdir -p ~/.local/share/gnome-shell/extensions
 # install linux-brew
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
-# install ruby/rbenv/bundle
-# ref: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
-sudo apt install autoconf bison build-essential libssl-dev libyaml-dev \
-     libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-rbenv install 2.4.4
-gem install bundler
-
 # install grc
 git clone git@github.com:zealotnt/grc.git && mv grc ~/workspace_misc/ && cd ~/workspace_misc/grc && sudo ./install.sh && cd
 
 # intall helm
-wget https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
-tar -xvf helm*.tar.gz
-sudo mv linux-amd64/helm linux-amd64/tiller /usr/local/bin
-
-# install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
-    chmod 777 kubectl && sudo mv kubectl /usr/local/bin
-
-# install kubectl-krew
-(
-  set -x; cd "$(mktemp -d)" &&
-  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/download/v0.3.2/krew.{tar.gz,yaml}" &&
-  tar zxvf krew.tar.gz &&
-  ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install \
-    --manifest=krew.yaml --archive=krew.tar.gz
-)
-# kubectl, kubens
-kubectl krew install ctx
-kubectl krew install ns
+# helm2 is deprecated
+# wget https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
+# tar -xvf helm*.tar.gz
+# sudo mv linux-amd64/helm linux-amd64/tiller /usr/local/bin
 
 # install prometheus
 cd /tmp
@@ -186,9 +162,6 @@ go get github.com/wrouesnel/postgres_exporter && cd ${GOPATH-$HOME/go}/src/githu
     go run mage.go binary && sudo cp postgres_exporter /usr/local/bin
 ## then isntall systemd service
 
-# install goldendict config file
-ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
-
 # install figlet-fonts
 git -C ~/workspace_misc/ clone https://github.com/xero/figlet-fonts &&
     sudo mkdir -p /usr/share/figlet/fonts/ &&
@@ -197,11 +170,6 @@ git -C ~/workspace_misc/ clone https://github.com/xero/figlet-fonts &&
 # install jsonnet
 git -C ~/workspace_misc/ clone https://github.com/google/jsonnet &&
     cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
-
-
-# install calibre https://calibre-ebook.com/download_linux
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
-| sudo sh /dev/stdin
 
 # install firefox-dev
 umake web firefox-dev --lang en-US
@@ -222,10 +190,6 @@ sudo dpkg -i *.deb
 # TODO: install golang
 google-chrome https://golang.org/dl/
 sudo tar -C /usr/local -xzf go*-amd64.tar.gz
-
-pip install aws-mfa
-pip install awscli
-pip install aws-shell
 
 ## install govendor
 go get -u github.com/kardianos/govendor
