@@ -191,8 +191,8 @@ ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
 # add mpv config files
 mkdir -p ~/.config/mpv
-ln -sf $(realpath mpv.conf) ~/.config/mpv/mpv.conf
-ln -sf $(realpath mpv-input.conf) ~/.config/mpv/input.conf
+ln -sf $(realpath ~/dotfiles/mpv.conf) ~/.config/mpv/mpv.conf
+ln -sf $(realpath ~/dotfiles/mpv-input.conf) ~/.config/mpv/input.conf
 
 # install calibre https://calibre-ebook.com/download_linux
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
@@ -269,4 +269,6 @@ pip install aws-mfa
 pip install awscli
 pip install aws-shell
 
+mkdir -p ~/.config/gtk-3.0/
+cp ~/dotfiles/gtk/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/
 
