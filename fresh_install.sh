@@ -69,7 +69,7 @@ sudo gdebi -n viber.deb
 
 # install telegram
 google-chrome https://telegram.org/dl/desktop/linux
-tar -xvf tsetup.1.8.15.tar.xz
+tar -xvf tsetup.*.tar.xz
 mv Telegram ~/bin/
 
 # install skype
@@ -259,6 +259,8 @@ sudo install minikube /usr/local/bin/
 ~/dotfiles/autostart/install.sh
 
 # Emacs
+# install emacs config
+ln -sf $(realpath workspace_mine/w_emacs_dotfiles/init.el) .emacs.d
 ## install all-the-icons
 emacsclient --eval "(all-the-icons-install-fonts t)"
 ## for go-imenu
