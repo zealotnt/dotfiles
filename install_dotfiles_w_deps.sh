@@ -35,6 +35,7 @@ sudo systemctl disable apt-daily-upgrade.service
 
 sudo apt update
 sudo apt install -y git curl zsh
+sudo chsh -s /usr/bin/zsh $USER
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -91,7 +92,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
-     libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi
+     libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -141,11 +142,7 @@ cargo install run-or-raise
 mkdir -p ~/.config/i3
 ln -sf $(realpath ~/dotfiles/i3-config) ~/.config/i3/config
 
-# install i3 dependancies
-sudo curl https://raw.githubusercontent.com/hastinbe/i3-volume/master/volume -o /usr/local/bin/i3-volume
-sudo chmod 777 /usr/local/bin/i3-volume
-
-# install i3blocks
+# install i3blocks and i3 dependancies
 git -C /tmp/ clone https://github.com/vivien/i3blocks &&
     cd /tmp/i3blocks &&
     ./autogen.sh &&
@@ -222,6 +219,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s http
   ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install \
     --manifest=krew.yaml --archive=krew.tar.gz
 )
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # kubectl, kubens
 kubectl krew install ctx
 kubectl krew install ns
