@@ -2,12 +2,15 @@
 
 mkdir ~/bin/
 
+# manually mount Old-Home folder
+mkdir ~/Old-Home
+sudo mount $(sudo blkid | grep Old-Home | sed -r -n 's/(.*)\:.*/\1/p') ~/Old-Home
 WORKSPACE_FOLDER="Old-Home/zealot"
 ln -sf $(realpath $WORKSPACE_FOLDER/workspace_mine) .
 ln -sf $(realpath $WORKSPACE_FOLDER/workspace_misc) .
 ln -sf $(realpath $WORKSPACE_FOLDER/workspace_eh) .
 
-CONFIG_FOLDER="Old-Root/home/zealot"
+CONFIG_FOLDER="Old-Home/zealot"
 cp -rp $CONFIG_FOLDER/.ssh .
 cp -rp $CONFIG_FOLDER/.aws .
 cp -rp $CONFIG_FOLDER/.kube .
@@ -206,11 +209,6 @@ go get -u go.mozilla.org/sops/cmd/sops
 cd $GOPATH/src/go.mozilla.org/sops/
 make install
 
-
-# some usefull nodejs tools
-sudo npm install --global public-ip-cli
-sudo npm install -g tldr
-
 # install noti
 curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 | awk '/browser_download_url/ { print $2 }' \
@@ -247,11 +245,6 @@ git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
     cd ~/workspace_misc/ncdu &&
     autoreconf -i && ./configure &&
     make && sudo make install
-
-# install minikube https://kubernetes.io/docs/tasks/tools/install-minikube/
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-  && chmod +x minikube
-sudo install minikube /usr/local/bin/
 
 # install sound-use-both-headphone-and-lineout
 ~/dotfiles/pulseaudio/install.sh

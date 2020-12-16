@@ -197,7 +197,7 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
 
 # install ruby/rbenv/bundle
 # ref: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
-sudo apt install autoconf bison build-essential libssl-dev libyaml-dev \
+sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev \
      libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
@@ -223,6 +223,11 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # kubectl, kubens
 kubectl krew install ctx
 kubectl krew install ns
+
+# install minikube https://kubernetes.io/docs/tasks/tools/install-minikube/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+sudo install minikube /usr/local/bin/
 
 # install exa
 # ref https://ourcodeworld.com/articles/read/832/how-to-install-and-use-exa-a-modern-replacement-for-the-ls-command-in-ubuntu-16-04
@@ -267,6 +272,29 @@ pip install aws-mfa
 pip install awscli
 pip install aws-shell
 
+# some usefull nodejs tools
+sudo npm install --global public-ip-cli
+sudo npm install -g tldr
+
+# config for gtk
 mkdir -p ~/.config/gtk-3.0/
 cp ~/dotfiles/gtk/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/
+
+# install old packages
+OLD_HOME_DEV=$(sudo blkid | grep Old-Home | sed -r -n 's/(.*)\:.*/\1/p')
+[ ! -z "$OLD_HOME_DEV" ] &&
+(
+  mkdir ~/Old-Home
+  sudo mount $OLD_HOME_DEV ~/Old-Home
+
+  WORKSPACE_FOLDER=~/Old-Home/zealot
+  ln -sf $(realpath $WORKSPACE_FOLDER/workspace_mine) $HOME
+  ln -sf $(realpath $WORKSPACE_FOLDER/workspace_misc) $HOME
+  ln -sf $(realpath $WORKSPACE_FOLDER/workspace_eh) $HOME
+
+  # install nerd-fonts
+  ~/workspace_misc/nerd-fonts/install.sh
+
+  ln -sf $(realpath $WORKSPACE_FOLDER/.emacs.d) $HOME
+)
 
