@@ -189,6 +189,7 @@ assign [class="mpv"] workspace 8
 
 workspace 10 output $chat_screen
 
+assign [class="Binance"] workspace 11
 assign [class="Firefox Developer Edition"] workspace 11
 assign [class="libreoffice-calc"] workspace 11
 assign [class="Binance"] workspace 11
