@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Qalculate Local!
 Comment=Powerful and easy to use calculator
-Exec=qalculate.gtk
+Exec=env GTK_THEME=Adwaita:dark qalculate.gtk
 Icon=/snap/qalculate/current/meta/gui/qalculate.png
 Terminal=false
 Type=Application
