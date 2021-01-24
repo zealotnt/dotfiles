@@ -122,6 +122,7 @@ assign [class="Google-chrome"] workspace 1
 
 workspace 2 output $work_screen
 assign [class="Alacritty"] workspace 2
+assign [class="Qalculate-gtk"] workspace 2
 #bindsym Mod1+2 exec run-or-raise 'class = "Alacritty"' alacritty
 
 workspace 3 output $code_screen
@@ -147,7 +148,6 @@ assign [class="TeamViewer"] workspace 5
 assign [class="zoom"] workspace 5
 assign [class="libreoffice-writer"] workspace 5
 assign [class="QtCreator"] workspace 5
-assign [class="Qalculate-gtk"] workspace 5
 assign [class="Meld"] workspace 5
 assign [class="S3D-Software"] workspace 5
 assign [class="Gpick"] workspace 5
@@ -166,8 +166,13 @@ assign [class="Spotify"] workspace 5
 assign [class="Nemo"] workspace 5
 assign [class="obs"] workspace 5
 assign [class="Opera"] workspace 5
-assign [class="Firefox$"] workspace 5
 assign [class="Synergy"] workspace 5
+assign [class="GParted"] workspace 5
+assign [class="Blueman-manager"] workspace 5
+assign [class="Gnome-disks"] workspace 5
+assign [class="Pavucontrol"] workspace 5
+assign [class="Gnome-power-statistics"] workspace 5
+
 # -> Arduino-IDE
 assign [class="processing-app-Base"] workspace 5
 assign [class="Free Download Manager"] workspace 5
@@ -177,20 +182,17 @@ bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 workspace 6 output $chat_screen
 assign [class="demo_fishyy_server"] workspace 6
 
-workspace 7 output $work_screen
-assign [class="GParted"] workspace 7
-assign [class="Blueman-manager"] workspace 7
-assign [class="Gnome-disks"] workspace 7
-assign [class="Pavucontrol"] workspace 7
-assign [class="Gnome-power-statistics"] workspace 7
+workspace 7 output $code_screen
+assign [class="Firefox$"] workspace 7
 
 workspace 8 output $chat_screen
 assign [class="mpv"] workspace 8
 
 workspace 10 output $chat_screen
 
-assign [class="Binance"] workspace 11
 assign [class="Firefox Developer Edition"] workspace 11
+# duplicate this cause the above will overwrite normal firefox
+assign [class="Firefox$"] workspace 7
 assign [class="libreoffice-calc"] workspace 11
 assign [class="Binance"] workspace 11
 workspace 11 output $big_screen
