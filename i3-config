@@ -145,18 +145,14 @@ bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chro
 
 workspace 5 output $code_screen
 assign [class="TeamViewer"] workspace 5
-assign [class="zoom"] workspace 5
 assign [class="libreoffice-writer"] workspace 5
 assign [class="QtCreator"] workspace 5
 assign [class="Meld"] workspace 5
 assign [class="S3D-Software"] workspace 5
-assign [class="Gpick"] workspace 5
 assign [class="Xfce4-notifyd-config"] workspace 5
 assign [class="Sublime_merge"] workspace 5
 assign [class="Postman"] workspace 5
 assign [class="DB Browser for SQLite"] workspace 5
-assign [class="Eog"] workspace 5
-assign [class="Gimp*"] workspace 5
 assign [class="jetbrains-pycharm-ce"] workspace 5
 assign [class="calibre-ebook-viewer"] workspace 5
 assign [class="calibre-gui"] workspace 5
@@ -186,7 +182,11 @@ workspace 7 output $code_screen
 assign [class="Firefox$"] workspace 7
 
 workspace 8 output $chat_screen
+assign [class="Gpick"] workspace 8
 assign [class="mpv"] workspace 8
+assign [class="zoom"] workspace 8
+assign [class="Eog"] workspace 8
+assign [class="Gimp*"] workspace 8
 
 workspace 10 output $chat_screen
 
