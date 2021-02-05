@@ -117,7 +117,7 @@ bindsym $mod+Shift+t focus mode_toggle
 # TIPS_2 for command criteria, ref: https://i3wm.org/docs/userguide.html#command_criteria
 # TIPS_3 for run-or-raise condition, read more at ref: https://crates.io/crates/run-or-raise
 workspace 1 output $big_screen
-assign [class="Google-chrome"] workspace 1
+assign [class="Google-chrome" window_role="browser"] workspace 1
 #bindsym Mod1+1 exec run-or-raise 'name ~ ".*Google Chrome" && class = "Google-chrome"' google-chrome
 
 workspace 2 output $work_screen
@@ -140,8 +140,6 @@ bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
 bindsym $mod+Mod1+t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
 # bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
 bindsym $mod+Mod1+v exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
-bindsym $mod+Mod1+f exec run-or-raise 'class = "Caprine"' caprine
-bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 5 output $code_screen
 assign [class="TeamViewer"] workspace 5
@@ -177,6 +175,10 @@ bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 6 output $work_screen
 assign [class="demo_fishyy_server"] workspace 6
+assign [class="Google-chrome" title="Zalo Web" window_role="pop-up"] workspace 6
+assign [class="Google-chrome" title="Messenger" window_role="pop-up"] workspace 6
+bindsym $mod+Mod1+f exec run-or-raise 'name ~ "Messenger" && class = "Google-chrome"' google-chrome; mode "default"
+bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome
 
 workspace 7 output $code_screen
 assign [class="Firefox$"] workspace 7
@@ -188,7 +190,8 @@ assign [class="zoom"] workspace 8
 assign [class="Eog"] workspace 8
 assign [class="Gimp*"] workspace 8
 
-workspace 10 output $chat_screen
+workspace 9 output $code_screen
+workspace 10 output $code_screen
 
 assign [class="Firefox Developer Edition"] workspace 11
 # duplicate this cause the above will overwrite normal firefox
@@ -261,7 +264,7 @@ mode "$chat_app_launcher" {
   bindsym t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram; mode "default"
   # bindsym v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
   bindsym v exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber; mode "default"
-  bindsym f exec run-or-raise 'class = "Caprine"' caprine; mode "default"
+  bindsym f exec run-or-raise 'name ~ "Messenger" && class = "Google-chrome"' google-chrome; mode "default"
   bindsym z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chrome"' google-chrome; mode "default"
 
   bindsym q mode "default"
