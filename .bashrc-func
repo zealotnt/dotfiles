@@ -71,6 +71,7 @@ unalias l
 alias l='lr'
 alias ls='/bin/ls --color=always -1 -t --group-directories-first '
 
+alias libreoffice='libreoffice6.3'
 
 # https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
 alias curfull='date +"%Y%m%d-%H%M%S"'
@@ -1103,9 +1104,15 @@ laptop_keyboard_setup() {
   setxkbmap -option altwin:swap_alt_win
   setxkbmap -option ctrl:nocaps
   xcape -e 'Control_L=Escape'
+  xset r rate 169 80
 }
 
 youtube-dl-playlist-numbered() {
   echo "youtube-dl -cio '%(autonumber)s-%(title)s.%(ext)s' $@"
   youtube-dl -cio '%(autonumber)s-%(title)s.%(ext)s' $@
+}
+
+convert_xls_to_csv() {
+  libreoffice --headless --convert-to csv $1
+  # libreoffice --headless --convert-to csv --outdir output_csv $1
 }
