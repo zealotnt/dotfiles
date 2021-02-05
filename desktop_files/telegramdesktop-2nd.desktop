@@ -1,10 +1,11 @@
+# https://askubuntu.com/questions/981841/how-can-i-run-multiple-instances-of-telegram
 [Desktop Entry]
-Name=Telegram Desktop Qt
+Name=Telegram Desktop Qt 2nd
 Comment=Official desktop application for the Telegram messaging service
-Exec=env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -many -- %u
+Exec=env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram -many -workdir /home/zealot/TelegramDesktop2nd -- %u
 Icon=telegram
 Terminal=false
-StartupWMClass=TelegramDesktop
+StartupWMClass=2ndTelegramDesktop
 Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
 MimeType=x-scheme-handler/tg;
