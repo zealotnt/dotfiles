@@ -17,6 +17,22 @@ def toggle_fan
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh`
 end
 
+def toggle_fan_aircon_only
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh fan`
+end
+
+def turn_on_air_con_comfort27
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 27`
+end
+
+def turn_on_air_con_comfort28
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 28`
+end
+
+def turn_on_air_con_comfort29
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 29`
+end
+
 def toggle_air_con
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_air_con.sh`
 end
@@ -75,6 +91,10 @@ CONTROL_COMMANDS = [
   "Toggle Audio Output",
   "Enter Room Scenario",
   "Leave Room Scenario",
+  "Turn on aircon fan only",
+  "Turn on aircon comfort 27",
+  "Turn on aircon comfort 28",
+  "Turn on aircon comfort 29",
   "Turn off screen",
   "Turn off air con",
   "Turn off fan",
@@ -92,6 +112,10 @@ CONTROL_FUNC = [
   method(:toggle_audio_port),
   method(:room_enter_scenario),
   method(:room_leave_scenario),
+  method(:toggle_fan_aircon_only),
+  method(:turn_on_air_con_comfort27),
+  method(:turn_on_air_con_comfort28),
+  method(:turn_on_air_con_comfort29),
   method(:off_screen),
   method(:off_air_con),
   method(:off_fan),
