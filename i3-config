@@ -344,7 +344,7 @@ bindsym $mod+Mod1+o exec DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}'
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
 for_window [class="copyq"] resize set 1280 720
-bindsym Mod1+c $mouse_focus_center
+bindsym Mod1+Shift+c $mouse_focus_center
 # to disable Ctrl+w that accidentially close chrome tab over CKA/CKAD exam
 # bindsym ctrl+w nop
 
