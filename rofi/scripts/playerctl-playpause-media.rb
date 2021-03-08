@@ -21,7 +21,9 @@ if ARGV.length != 1
   if status_media_arr.count("Playing") == 1
     media = list_media_arr[status_media_arr.index("Playing")]
     `playerctl play-pause -p #{media}`
-    puts "Just toggle #{media} to Paused"
+    # dont output through rofi board, cause it will make us take 1 more keystroke, through notification instead
+    # puts "Just toggle #{media} to Paused"
+    `notify-send "Just toggle #{media} to Paused"`
     exit 0
   else
     ret = ""
@@ -35,6 +37,7 @@ else
   # after choose a player, toggle it
   app = parse_app(ARGV[0])
   `playerctl play-pause -p #{app}`
+  `notify-send "Just play #{app}"`
   exit 0
 end
 
