@@ -142,7 +142,7 @@ cargo install run-or-raise
 mkdir -p ~/.config/i3
 ln -sf $(realpath ~/dotfiles/i3-config) ~/.config/i3/config
 
-# install i3blocks and i3 dependancies
+# install i3blocks and i3 dependancies/utils
 git -C /tmp/ clone https://github.com/vivien/i3blocks &&
     cd /tmp/i3blocks &&
     ./autogen.sh &&
@@ -152,6 +152,8 @@ git -C /tmp/ clone https://github.com/vivien/i3blocks &&
 sudo mkdir /usr/share/i3blocks
 sudo cp ~/dotfiles/i3/i3blocks-blocklets/* /usr/share/i3blocks
 ln -sf $(realpath ~/dotfiles/i3blocks.conf) ~/.config/i3/i3blocks.conf
+## i3-utils
+sudo cp ~/dotfiles/i3/i3-utils/* /usr/local/bin
 
 # install alacritty
 mkdir -p ~/.config/alacritty/
