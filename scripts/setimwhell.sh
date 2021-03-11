@@ -30,6 +30,7 @@ fi
 CURRENT_STATUS=$(pidof imwheel)
 if [[ $CURRENT_STATUS != "" ]]; then
   killall imwheel
+  notify-send "Disable imwheel"
 else
   CURRENT_VALUE=$(awk -F 'Button4,' '{print $2}' ~/.imwheelrc)
   # NEW_VALUE=$(zenity --scale --window-icon=info --ok-label=Apply --title="Wheelies" --text "Mouse wheel speed:" --min-value=1 --max-value=100 --value="$CURRENT_VALUE" --step 1)
@@ -39,5 +40,6 @@ else
   sed -i "s/\($TARGET_KEY *Button5, *\).*/\1$NEW_VALUE/" ~/.imwheelrc # find the string Button5, and write new value.
   cat ~/.imwheelrc
   imwheel -kill
+  notify-send "Enable imwheel, accelerated !!!"
 fi
 

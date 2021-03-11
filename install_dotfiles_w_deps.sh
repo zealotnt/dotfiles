@@ -282,6 +282,9 @@ sudo npm install -g tldr
 mkdir -p ~/.config/gtk-3.0/
 cp ~/dotfiles/gtk/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/
 
+# install scripts
+# TODO: loop through files in dotfiles/scripts, symlink to /usr/local/bin
+
 # install old packages
 OLD_HOME_DEV=$(sudo blkid | grep Old-Home | sed -r -n 's/(.*)\:.*/\1/p')
 [ ! -z "$OLD_HOME_DEV" ] &&
