@@ -876,6 +876,13 @@ kt_prometheus() {
     kubectl -c prometheus-server --namespace $APP_NAMESPACE exec -i -t $POD_NAME sh
 }
 
+kt_am() {
+    local APP_NAMESPACE=agents
+    export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=alertmanager" -o jsonpath="{.items[0].metadata.name}")
+    echo -e "prometheus-alertmanager:\r\n\t$POD_NAME"
+    kubectl --namespace $APP_NAMESPACE exec -i -t $POD_NAME sh
+}
+
 klf_prometheus() {
     local APP_NAMESPACE=agents
     export POD_NAME=$(kubectl get pods --namespace $APP_NAMESPACE -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
