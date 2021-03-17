@@ -13,6 +13,7 @@ sudo systemctl disable apt-daily.service
 sudo systemctl disable apt-daily.timer
 sudo systemctl disable apt-daily-upgrade.timer
 sudo systemctl disable apt-daily-upgrade.service
+sudo systemctl mask unattended-upgrade.service
 
 CURUSER=$(w | grep gdm | awk '{print $1}')
 RUSER_UID=$(id -u ${CURUSER})
