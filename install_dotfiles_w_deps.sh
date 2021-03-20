@@ -284,7 +284,11 @@ mkdir -p ~/.config/gtk-3.0/
 cp ~/dotfiles/gtk/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/
 
 # install scripts
-# TODO: loop through files in dotfiles/scripts, symlink to /usr/local/bin
+# TODO: loop through files in dotfiles/scripts, symlink to /usr/local/bin, cause we change these file content regularly
+for f in *.sh
+do
+  sudo ln -sf $(realpath $f) /usr/local/bin
+done
 
 # install old packages
 OLD_HOME_DEV=$(sudo blkid | grep Old-Home | sed -r -n 's/(.*)\:.*/\1/p')
