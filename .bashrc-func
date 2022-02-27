@@ -859,11 +859,11 @@ alias cissh='ssh -i ~/.ssh/keys/git@bit@git.pri'
 ehssh() {
   chars=$(xput | wc -c)
   if [[ $chars -lt 15 ]]; then # 3*4+3 ~ 15
-    echo "ssh -i $EH_SSH_KEY -l admin $(xput)"
-    ssh -i $EH_SSH_KEY -l admin $(xput)
+    echo "ssh -i $EH_SSH_KEY -l ubuntu $(xput)"
+    ssh -i $EH_SSH_KEY -l ubuntu $(xput)
   else
-    echo "ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)"
-    ssh -i $EH_SSH_KEY -l admin $(k8sGetIp)
+    echo "ssh -i $EH_SSH_KEY -l ubuntu $(k8sGetIp)"
+    ssh -i $EH_SSH_KEY -l ubuntu $(k8sGetIp)
   fi
 }
 
