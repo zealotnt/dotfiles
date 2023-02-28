@@ -1,0 +1,24 @@
+evdev:input:b0011v0001p0001eAB41* # AT Translated Set 2 keyboard
+ KEYBOARD_KEY_3a=leftctrl # bind capslock to leftctrl
+ KEYBOARD_KEY_38=leftmeta # bind leftalt to leftmeta
+ KEYBOARD_KEY_db=leftalt  # bind leftmeta to leftalt
+
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
+ KEYBOARD_KEY_3a=leftctrl # bind capslock to leftctrl
+ KEYBOARD_KEY_38=leftmeta # bind leftalt to leftmeta
+ KEYBOARD_KEY_db=leftalt  # bind leftmeta to leftalt
+
+evdev:input:b*v*p*e*
+ keyboard_key_3a=leftctrl # bind capslock to leftctrl
+ keyboard_key_38=leftmeta # bind leftalt to leftmeta
+ keyboard_key_db=leftalt  # bind leftmeta to leftalt
+
+evdev:atkbd:dmi:*            # built-in keyboard: match all AT keyboards for now
+ keyboard_key_3a=leftctrl # bind capslock to leftctrl
+ keyboard_key_38=leftmeta # bind leftalt to leftmeta
+ keyboard_key_db=leftalt  # bind leftmeta to leftalt
+
+evdev:input:* # AT Translated Set 2 keyboard
+ KEYBOARD_KEY_3a=leftctrl # bind capslock to leftctrl
+ KEYBOARD_KEY_38=leftmeta # bind leftalt to leftmeta
+ KEYBOARD_KEY_db=leftalt  # bind leftmeta to leftalt
