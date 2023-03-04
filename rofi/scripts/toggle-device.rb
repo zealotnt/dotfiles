@@ -14,7 +14,8 @@ def toggle_bed_fan
 end
 
 def toggle_fan
-  `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh`
+  # `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh` # move to new home, no fan yet, use light as fan
+  `curl -s http://192.168.31.232/toggle`
 end
 
 def toggle_fan_aircon_only
@@ -83,8 +84,8 @@ def room_leave_scenario
 end
 
 CONTROL_COMMANDS = [
-  "Toggle Room Light",
-  "Toggle Balcony Light",
+  # "Toggle Room Light",
+  # "Toggle Balcony Light",
   "Toggle Fan",
   "Toggle Bed (3an)",
   "Toggle Air Con",
@@ -104,8 +105,8 @@ CONTROL_COMMANDS = [
 ]
 
 CONTROL_FUNC = [
-  method(:toggle_room_light),
-  method(:toggle_balcony_light),
+  # method(:toggle_room_light),
+  # method(:toggle_balcony_light),
   method(:toggle_fan),
   method(:toggle_bed_fan),
   method(:toggle_air_con),
