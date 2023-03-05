@@ -22,6 +22,18 @@ def toggle_fan_aircon_only
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh fan`
 end
 
+def toggle_air_con_olddaikin_26
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 26OldDaikin`
+end
+
+def toggle_air_con_olddaikin_27
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 27OldDaikin`
+end
+
+def toggle_air_con_olddaikin_28
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 28OldDaikin`
+end
+
 def turn_on_air_con_comfort27
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 27`
 end
@@ -87,42 +99,48 @@ CONTROL_COMMANDS = [
   # "Toggle Room Light",
   # "Toggle Balcony Light",
   "Toggle Fan",
-  "Toggle Bed (3an)",
-  "Toggle Air Con",
+  "Toggle Old Daikin 26",
+  "Toggle Old Daikin 27",
+  "Toggle Old Daikin 28",
+  # "Toggle Bed (3an)",
+  # "Toggle Air Con",
   "Toggle Audio Output",
-  "Enter Room Scenario",
-  "Leave Room Scenario",
-  "Turn on aircon fan only",
-  "Turn on aircon comfort 27",
-  "Turn on aircon comfort 28",
-  "Turn on aircon comfort 29",
+  # "Enter Room Scenario",
+  # "Leave Room Scenario",
+  # "Turn on aircon fan only",
+  # "Turn on aircon comfort 27",
+  # "Turn on aircon comfort 28",
+  # "Turn on aircon comfort 29",
   "Turn off screen",
-  "Turn off air con",
-  "Turn off fan",
+  # "Turn off air con",
+  # "Turn off fan",
   "Turn off media",
-  "Go to bed",
-  "Go to desk",
+  # "Go to bed",
+  # "Go to desk",
 ]
 
 CONTROL_FUNC = [
   # method(:toggle_room_light),
   # method(:toggle_balcony_light),
   method(:toggle_fan),
-  method(:toggle_bed_fan),
-  method(:toggle_air_con),
+  method(:toggle_air_con_olddaikin_26),
+  method(:toggle_air_con_olddaikin_27),
+  method(:toggle_air_con_olddaikin_28),
+  # method(:toggle_bed_fan),
+  # method(:toggle_air_con),
   method(:toggle_audio_port),
-  method(:room_enter_scenario),
-  method(:room_leave_scenario),
-  method(:toggle_fan_aircon_only),
-  method(:turn_on_air_con_comfort27),
-  method(:turn_on_air_con_comfort28),
-  method(:turn_on_air_con_comfort29),
+  # method(:room_enter_scenario),
+  # method(:room_leave_scenario),
+  # method(:toggle_fan_aircon_only),
+  # method(:turn_on_air_con_comfort27),
+  # method(:turn_on_air_con_comfort28),
+  # method(:turn_on_air_con_comfort29),
   method(:off_screen),
-  method(:off_air_con),
-  method(:off_fan),
+  # method(:off_air_con),
+  # method(:off_fan),
   method(:off_media),
-  method(:go_to_bed),
-  method(:go_to_desk),
+  # method(:go_to_bed),
+  # method(:go_to_desk),
 ]
 
 # FIRST

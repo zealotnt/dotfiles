@@ -36,10 +36,10 @@ floating_modifier $mod
 set $mouse_focus_center exec /home/zealot/dotfiles/scripts/mouse-move-position-window.rb
 
 # Screens
-set $big_screen DP-0
-set $work_screen HDMI-0
-set $code_screen DP-2.1
-set $chat_screen DP-2.2.8
+set $big_screen DP-2
+set $work_screen DP-4.2.8
+set $code_screen DP-4.1
+set $chat_screen DP-4.2.8
 set $laptop_screen eDP-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
