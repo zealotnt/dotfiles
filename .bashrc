@@ -234,3 +234,4 @@ export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 complete -C aws_completer aws
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"

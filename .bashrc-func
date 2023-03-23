@@ -817,6 +817,7 @@ heroprod() {
 	hero $@ --context $PRODUCTION_CLUSTER
 }
 alias herocliprod='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PRD herocli --server hero2.ehrocks.com:443'
+alias herocliint='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_INT herocli --server hero2.integration.ehrocks.com:443'
 
 ##################
 ### K8s scripts
@@ -1123,3 +1124,8 @@ convert_xls_to_csv() {
   libreoffice --headless --convert-to csv $1
   # libreoffice --headless --convert-to csv --outdir output_csv $1
 }
+
+find_desktop_file_location() {
+  fd $@ /usr/local/share/applications /usr/share/applications/ ~/.local/share/applications/
+}
+

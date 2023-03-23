@@ -39,7 +39,8 @@ set $mouse_focus_center exec /home/zealot/dotfiles/scripts/mouse-move-position-w
 set $big_screen DP-2
 set $work_screen DP-4.2.8
 set $code_screen DP-4.1
-set $chat_screen DP-4.2.8
+#set $chat_screen DP-4.2.8
+set $chat_screen DP-0
 set $laptop_screen eDP-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
@@ -134,18 +135,16 @@ assign [class="Emacs"] workspace 3
 assign [class="Code"] workspace 3
 #bindsym Mod1+3 exec run-or-raise 'class = "Emacs"' emacs26
 
-workspace 4 output $chat_screen
+workspace 4 output $work_screen
 assign [class="TelegramDesktop"] workspace 4
-assign [class="Viber"] workspace 4
 assign [class="Slack"] workspace 4
-assign [class="Caprine"] workspace 4
 bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
 # bindsym $mod+Mod1+t exec run-or-raise 'class = \"TelegramDesktop\"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
 bindsym $mod+Mod1+t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
 # bindsym $mod+Mod1+v exec run-or-raise 'class = "ViberPC"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
 bindsym $mod+Mod1+v exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /opt/viber/Viber
 
-workspace 5 output $code_screen
+workspace 5 output $chat_screen
 assign [class="TeamViewer"] workspace 5
 assign [class="libreoffice-writer"] workspace 5
 assign [class="QtCreator"] workspace 5
@@ -178,6 +177,8 @@ assign [class="Free Download Manager"] workspace 5
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
 workspace 6 output $work_screen
+assign [class="Viber"] workspace 4
+assign [class="Caprine"] workspace 4
 assign [class="discord"] workspace 6
 assign [class="demo_fishyy_server"] workspace 6
 assign [class="Google-chrome" title="Zalo Web" window_role="pop-up"] workspace 6
@@ -195,6 +196,7 @@ assign [class="mpv"] workspace 8
 assign [class="zoom"] workspace 8
 assign [class="Eog"] workspace 8
 assign [class="Gimp*"] workspace 8
+assign [class="org.remmina.Remmina"] workspace 8
 
 workspace 9 output $code_screen
 workspace 10 output $code_screen
