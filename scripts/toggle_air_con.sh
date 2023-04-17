@@ -14,12 +14,14 @@ else
   if [[ "$1" == "0" ]]; then
     python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c TurnOffAirCon
     echo 0 > ~/.local_air_con
-  elif  [[ "$1" == "26OldDaikin" ]]; then
+  elif  [[ "$1" == "t26OldDaikin" ]]; then
     python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleAirConOldDaikin26
+  elif  [[ "$1" == "26OldDaikin" ]]; then
+    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c SetAirConOldDaikin26
   elif  [[ "$1" == "27OldDaikin" ]]; then
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleAirConOldDaikin27
+    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c SetAirConOldDaikin27
   elif  [[ "$1" == "28OldDaikin" ]]; then
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleAirConOldDaikin28
+    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c SetAirConOldDaikin28
   elif  [[ "$1" == "27" ]]; then
     python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c TurnOnAirConComfort27
     echo 1 > ~/.local_air_con

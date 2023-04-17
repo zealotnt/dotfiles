@@ -1,22 +1,13 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-if [[ $# == 0 ]]; then
-  LOCAL_BED_FAN=$(cat ~/.local_bed_fan)
-  if [[ "$LOCAL_BED_FAN" == "0" ]]; then
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleBedFan
-    echo 1 > ~/.local_fan
-  else
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleBedFan
-    echo 0 > ~/.local_fan
-  fi
+if [[ "$1" == "toggle" ]]; then
+    broadlink_cli --type 0x520d --host <host> --mac <mac> --send @/home/zealot/Old-Home/zealot/workspace_misc/python-broadlink/fan-toggle.ircode
+elif [[ "$1" == "1" ]]; then
+    broadlink_cli --type 0x520d --host <host> --mac <mac> --send @/home/zealot/Old-Home/zealot/workspace_misc/python-broadlink/fan-1.ircode
+elif [[ "$1" == "2" ]]; then
+    broadlink_cli --type 0x520d --host <host> --mac <mac> --send @/home/zealot/Old-Home/zealot/workspace_misc/python-broadlink/fan-2.ircode
+elif [[ "$1" == "3" ]]; then
+    broadlink_cli --type 0x520d --host <host> --mac <mac> --send @/home/zealot/Old-Home/zealot/workspace_misc/python-broadlink/fan-3.ircode
 else
-  if [[ "$1" == "0" ]]; then
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c TurnOnBedFan
-    sleep 2
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c ToggleBedFan
-    echo 0 > ~/.local_fan
-  else
-    python /home/zealot/workspace_misc/rm3_mini_controller/BlackBeanControl.py -c TurnOnBedFan
-    echo 1 > ~/.local_fan
-  fi
+  echo 'no action, ignore'
 fi

@@ -23,14 +23,18 @@ def toggle_fan_aircon_only
 end
 
 def toggle_air_con_olddaikin_26
+  `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh t26OldDaikin`
+end
+
+def set_air_con_olddaikin_26
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 26OldDaikin`
 end
 
-def toggle_air_con_olddaikin_27
+def set_air_con_olddaikin_27
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 27OldDaikin`
 end
 
-def toggle_air_con_olddaikin_28
+def set_air_con_olddaikin_28
   `/bin/bash ~/dotfiles/scripts/toggle_air_con.sh 28OldDaikin`
 end
 
@@ -96,12 +100,13 @@ def room_leave_scenario
 end
 
 CONTROL_COMMANDS = [
-  # "Toggle Room Light",
+  "Toggle Work Room Light",
   # "Toggle Balcony Light",
-  "Toggle Fan",
+  # "Toggle Fan",
   "Toggle Old Daikin 26",
-  "Toggle Old Daikin 27",
-  "Toggle Old Daikin 28",
+  "Set Old Daikin 26",
+  "Set Old Daikin 27",
+  "Set Old Daikin 28",
   # "Toggle Bed (3an)",
   # "Toggle Air Con",
   "Toggle Audio Output",
@@ -120,12 +125,13 @@ CONTROL_COMMANDS = [
 ]
 
 CONTROL_FUNC = [
-  # method(:toggle_room_light),
+  method(:toggle_room_light),
   # method(:toggle_balcony_light),
-  method(:toggle_fan),
+  # method(:toggle_fan),
   method(:toggle_air_con_olddaikin_26),
-  method(:toggle_air_con_olddaikin_27),
-  method(:toggle_air_con_olddaikin_28),
+  method(:set_air_con_olddaikin_26),
+  method(:set_air_con_olddaikin_27),
+  method(:set_air_con_olddaikin_28),
   # method(:toggle_bed_fan),
   # method(:toggle_air_con),
   method(:toggle_audio_port),
