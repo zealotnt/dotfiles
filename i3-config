@@ -196,6 +196,7 @@ assign [class="mpv"] workspace 8
 assign [class="zoom"] workspace 8
 assign [class="Eog"] workspace 8
 assign [class="Gimp*"] workspace 8
+assign [class="vlc"] workspace 8
 assign [class="org.remmina.Remmina"] workspace 8
 
 workspace 9 output $code_screen
@@ -207,6 +208,7 @@ assign [class="Firefox$"] workspace 7
 assign [class="libreoffice-calc"] workspace 11
 assign [class="Binance"] workspace 11
 workspace 11 output $big_screen
+workspace 12 output $chat_screen
 
 # switch to workspace
 bindsym $mod+1 workspace 1; $mouse_focus_center
@@ -220,6 +222,7 @@ bindsym $mod+8 workspace 8; $mouse_focus_center
 bindsym $mod+9 workspace 9; $mouse_focus_center
 bindsym $mod+0 workspace 10; $mouse_focus_center
 bindsym $mod+grave workspace 11; $mouse_focus_center
+bindsym $mod+Tab workspace 12; $mouse_focus_center
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -233,6 +236,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+grave move container to workspace 11
+bindsym $mod+Shift+Tab move container to workspace 12
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload
