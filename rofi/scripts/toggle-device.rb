@@ -2,7 +2,7 @@
 # require 'pry-byebug'
 
 def toggle_room_light
-  `curl -s http://192.168.31.232/toggle`
+  `curl 'http://192.168.31.232/switch/work_room_light_switch/toggle' -X POST`
 end
 
 def toggle_balcony_light
@@ -15,7 +15,7 @@ end
 
 def toggle_fan
   # `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh` # move to new home, no fan yet, use light as fan
-  `curl -s http://192.168.31.232/toggle`
+  `curl 'http://192.168.31.232/switch/work_room_light_switch/toggle' -X POST`
 end
 
 def toggle_fan_aircon_only
