@@ -13,9 +13,8 @@ def toggle_bed_fan
   `/bin/bash /home/zealot/dotfiles/scripts/toggle_bed.sh`
 end
 
-def toggle_fan
-  # `/bin/bash /home/zealot/dotfiles/scripts/toggle_fan.sh` # move to new home, no fan yet, use light as fan
-  `curl 'http://192.168.31.232/switch/work_room_light_switch/toggle' -X POST`
+def toggle_workroom_fan
+  `curl 'http://192.168.31.164/switch/sonoff_basic_relay/toggle' -X POST`
 end
 
 def toggle_fan_aircon_only
@@ -102,7 +101,7 @@ end
 CONTROL_COMMANDS = [
   "Toggle Work Room Light",
   # "Toggle Balcony Light",
-  # "Toggle Fan",
+  "Toggle Workroom Fan",
   "Toggle Old Daikin 26",
   "Set Old Daikin 26",
   "Set Old Daikin 27",
@@ -127,7 +126,7 @@ CONTROL_COMMANDS = [
 CONTROL_FUNC = [
   method(:toggle_room_light),
   # method(:toggle_balcony_light),
-  # method(:toggle_fan),
+  method(:toggle_workroom_fan),
   method(:toggle_air_con_olddaikin_26),
   method(:set_air_con_olddaikin_26),
   method(:set_air_con_olddaikin_27),
