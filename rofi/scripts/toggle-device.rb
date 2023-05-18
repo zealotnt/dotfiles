@@ -5,6 +5,10 @@ def toggle_room_light
   `curl 'http://192.168.31.232/switch/work_room_light_switch/toggle' -X POST`
 end
 
+def toggle_room_light2
+  `curl 'http://192.168.31.209/switch/work_room_light_switch/toggle' -X POST`
+end
+
 def toggle_balcony_light
   `curl -s http://192.168.31.159/toggle`
 end
@@ -100,6 +104,7 @@ end
 
 CONTROL_COMMANDS = [
   "Toggle Work Room Light",
+  "Toggle Work Room Light 2",
   # "Toggle Balcony Light",
   "Toggle Workroom Fan",
   "Toggle Old Daikin 26",
@@ -125,6 +130,7 @@ CONTROL_COMMANDS = [
 
 CONTROL_FUNC = [
   method(:toggle_room_light),
+  method(:toggle_room_light2),
   # method(:toggle_balcony_light),
   method(:toggle_workroom_fan),
   method(:toggle_air_con_olddaikin_26),

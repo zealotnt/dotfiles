@@ -357,6 +357,7 @@ bindsym $mod+Mod1+w exec "/usr/local/bin/setimwhell.sh"
 bindsym $mod+Ctrl+q exec setMouse.rb d; exec xset dpms force off;
 bindsym $mod+Mod1+o exec DISPLAY=$(w | grep zealot | grep gdm | awk '{print $3}') xset dpms force off
 bindsym $mod+Shift+Ctrl+4 exec /usr/bin/flameshot gui
+bindsym --release F4 exec /bin/bash "/home/zealot/dotfiles/scripts/copy-open-url.sh"
 for_window [class="copyq"] floating enable border pixel $floating_border_pixel
 for_window [class="copyq"] resize set 1280 720
 bindsym Mod1+Shift+c $mouse_focus_center
