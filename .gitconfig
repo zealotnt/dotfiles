@@ -1,6 +1,6 @@
 [user]
-	name = Tran Tam
-	email = tam.tran@employmenthero.com
+	name = zealot
+  email = tranminhtam.10192@gmail.com
 [alias]
     # @see https://git.wiki.kernel.org/index.php/Aliases
     aliases = config --get-regexp alias

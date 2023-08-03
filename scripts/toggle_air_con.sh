@@ -1,6 +1,7 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 BLACKBEAN_CONTROL_PATH=/home/zealot/workspace_misc/rm3_mini_controller
+HA_SCRIPT_PATH=/home/zealot/dotfiles/scripts/trigger_homeassistant_script.sh
 #BLACKBEAN_CONTROL_PATH=/root/dev/rm3_mini_controller
 
 if [[ $# == 0 ]]; then
@@ -17,13 +18,17 @@ else
     python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c TurnOffAirCon
     echo 0 > ~/.local_air_con
   elif  [[ "$1" == "t26OldDaikin" ]]; then
-    python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c ToggleAirConOldDaikin26
+    # python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c ToggleAirConOldDaikin26
+    $HA_SCRIPT_PATH office_toggle_aircon_26
   elif  [[ "$1" == "26OldDaikin" ]]; then
-    python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin26
+    # python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin26
+    notify-send 'not supported'
   elif  [[ "$1" == "27OldDaikin" ]]; then
-    python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin27
+    # python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin27
+    $HA_SCRIPT_PATH office_set_aircon_27
   elif  [[ "$1" == "28OldDaikin" ]]; then
-    python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin28
+    # python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c SetAirConOldDaikin28
+    $HA_SCRIPT_PATH office_set_aircon_28
   elif  [[ "$1" == "27" ]]; then
     python $BLACKBEAN_CONTROL_PATH/BlackBeanControl.py -c TurnOnAirConComfort27
     echo 1 > ~/.local_air_con
