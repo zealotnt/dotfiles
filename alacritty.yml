@@ -144,22 +144,6 @@ font:
     x: 0
     y: 0
 
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  use_thin_strokes: true
-
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
@@ -271,7 +255,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+# background_opacity: 1.0 TODO: use windows.opacity instead
 
 # Mouse bindings
 #
@@ -303,7 +287,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
 
-  url:
+  # url: TODO: use hints instead
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
@@ -323,7 +307,7 @@ mouse:
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
+    # modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
@@ -382,7 +366,7 @@ working_directory: None
 enable_experimental_conpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
+# alt_send_esc: true, new ver: this options removed, its now always has to true
 
 debug:
   # Display the time it takes to redraw each frame.
@@ -508,12 +492,12 @@ key_bindings:
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
   - { key: Equals,   mods: Control, chars: "\x01\x0a" } # C-a,C-j
-  - { key: Subtract, mods: Control, chars: "\x01\x0b" } # C-a,C-k
+  - { key: Minus, mods: Control, chars: "\x01\x0b" } # C-a,C-k
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
   - { key: Equals,    mods: Control|Alt, chars: "\x01\x0c" } # C-a,C-l
-  - { key: Subtract,  mods: Control|Alt,  chars: "\x01\x08" } # C-a,C-h
+  - { key: Minus,  mods: Control|Alt,  chars: "\x01\x08" } # C-a,C-h
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
@@ -552,7 +536,7 @@ key_bindings:
   # - { key: W,        mods: Command|Shift, action: Quit}
   # - { key: Q,        mods: Command|Shift,
   #                                   command: {program: "/usr/bin/killall", args: ["alacritty"]}}
-  - { key: Subtract, mods: Command, chars: "\x01\x2d"} # open tmux pane below
+  - { key: Minus, mods: Command, chars: "\x01\x2d"} # open tmux pane below
   # -> everything relate to Underline is not working
   # some references to all key bindings
   # https://github.com/jwilm/alacritty/blob/master/alacritty/src/config/bindings.rs
