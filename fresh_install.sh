@@ -54,14 +54,6 @@ git clone https://github.com/arp242/find-cursor.git && cd find-cursor &&
 wget --content-disposition https://discordapp.com/api/download\?platform\=linux\&format\=deb
 sudo gdebi -n discord*.deb
 
-# install caprine
-curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest \
-| grep "browser_download_url.*deb" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-sudo gdebi -n caprine*.deb
-
 # install slack
 google-chrome https://slack.com/intl/en-vn/downloads/instructions/ubuntu
 sudo gdebi -n slack-desktop*amd64.deb
@@ -109,73 +101,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 # install grc
 git clone git@github.com:zealotnt/grc.git && mv grc ~/workspace_misc/ && cd ~/workspace_misc/grc && sudo ./install.sh && cd
 
-# intall helm
-# helm2 is deprecated
-# wget https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
-# tar -xvf helm*.tar.gz
-# sudo mv linux-amd64/helm linux-amd64/tiller /usr/local/bin
-
-# install prometheus
-cd /tmp
-curl -s https://api.github.com/repos/prometheus/prometheus/releases/latest \
-| grep "browser_download_url.*linux-amd64.tar.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-prome_folder=$(tar -xvf prometheu*linux-amd64.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
-# cd to folder
-cd $prome_folder
-sudo cp prometheus promtool tsdb /usr/bin
-
-# install process-exporter
-curl -s https://api.github.com/repos/ncabatoff/process-exporter/releases/latest \
-| grep "browser_download_url.*linux_amd64.deb" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-sudo gdebi -n process-exporter*_linux_amd64.deb
-
-# install cadvisor
-curl -s https://api.github.com/repos/google/cadvisor/releases/latest \
-| grep "browser_download_url.*cadvisor" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-chmod 777 cadvisor
-sudo mv cadvisor /usr/local/sbin/
-
-# download node-exporter
-# install step https://devopscube.com/monitor-linux-servers-prometheus-node-exporter/
-cd /tmp
-curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest \
-| grep "browser_download_url.*linux-amd64.tar.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-node_exporter_folder=$(extract node_exporter* | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
-sudo mv $node_exporter_folder/node_exporter /usr/local/bin
-sudo useradd -rs /bin/false node_exporter
-
-# install nvidia-prometheus-exporter
-go get github.com/mindprince/nvidia_gpu_prometheus_exporter
-## then install systemd service (in this repo)
-
-# install postgres exporter
-go get github.com/wrouesnel/postgres_exporter && cd ${GOPATH-$HOME/go}/src/github.com/wrouesnel/postgres_exporter &&
-    go run mage.go binary && sudo cp postgres_exporter /usr/local/bin
-## then isntall systemd service
 
 # install figlet-fonts
 git -C ~/workspace_misc/ clone https://github.com/xero/figlet-fonts &&
     sudo mkdir -p /usr/share/figlet/fonts/ &&
     sudo cp ~/workspace_misc/figlet-fonts/* /usr/share/figlet/fonts/
-
-# install jsonnet
-git -C ~/workspace_misc/ clone https://github.com/google/jsonnet &&
-    cd ~/workspace_misc/jsonnet/ && make && sudo make install && cd
-
-# install firefox-dev
-umake web firefox-dev --lang en-US
 
 # vietnamese typing
 # basically, dconf already setup the neccessary configuration for vietnamese typing
@@ -197,18 +127,6 @@ sudo tar -C /usr/local -xzf go*-amd64.tar.gz
 ## install govendor
 go get -u github.com/kardianos/govendor
 
-## install stern
-mkdir -p $GOPATH/src/github.com/wercker
-cd $GOPATH/src/github.com/wercker
-git clone https://github.com/wercker/stern.git && cd stern
-govendor sync
-go install
-
-## install sops https://github.com/mozilla/sops
-go get -u go.mozilla.org/sops/cmd/sops
-cd $GOPATH/src/go.mozilla.org/sops/
-make install
-
 # install noti
 curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 | awk '/browser_download_url/ { print $2 }' \
@@ -218,27 +136,6 @@ curl -s https://api.github.com/repos/variadico/noti/releases/latest \
 # install arandr
 git -C ~/workspace_misc/ clone https://gitlab.com/arandr/arandr
 cd ~/workspace_misc/arandr && sudo ./setup.py install
-
-# install smartmontools
-curl -s https://api.github.com/repos/smartmontools/smartmontools/releases/latest \
-| grep "browser_download_url.*tar.gz\"" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -i -
-extract_folder=$(tar -xvf smartmontools-*.tar.gz | sed -r -n 's/(.*)\/.*$/\1/p' | sed -n 1p)
-cd $extract_folder && ./configure && make && sudo make install
-
-# intall smartctl_exporter
-go get github.com/Sheridan/smartctl_exporter &&
-    cd $GOPATH/src/github.com/Sheridan/smartctl_exporter &&
-    go build . &&
-    sudo cp smartctl_exporter /usr/local/sbin/
-
-# install openvpn-exporter
-go get github.com/kumina/openvpn_exporter &&
-    cd $GOPATH/src/github.com/kumina/openvpn_exporter &&
-    go build . &&
-    sudo cp openvpn_exporter /usr/local/sbin/
 
 # clone, compile and install ncdu
 git -C ~/workspace_misc/ clone git://g.blicky.net/ncdu.git/ &&
@@ -278,3 +175,11 @@ ln -sf $(realpath mpv-input.conf) ~/.config/mpv/input.conf
 # trying to build from source, not work yet
 # sudo apt install -y libass-dev libavutil-dev libavcodec-dev libavformat-dev \
 #     libavfilter-dev libswresample-dev liblcms2-dev libarchive-dev # not use
+
+
+cat <<EOT >> /etc/fstab
+UUID=2f74c552-3ebb-4e63-91e2-94a53c4ddc20 /home/zealot/Media-Sharing          ext4    errors=remount-ro 0       1
+#UUID=cdd634b1-1ba8-4096-a405-638759f718ce /home/zealot/Old-Root               ext4    errors=remount-ro 0       1
+#UUID=beecf8ae-61c0-44be-9a03-4a684d7e41c5 /home/zealot/Old-Home2              ext4    errors=remount-ro 0       1
+UUID=5bdab27b-6c4b-44c8-a96a-ef8d33c1424c /home/zealot/Old-Home               ext4    errors=remount-ro 0       1
+EOT

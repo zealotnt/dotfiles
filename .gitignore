@@ -2,6 +2,7 @@
 *.cache
 *.res
 .goldendict/index/*
+applications-config/grafana/png/*
 
 copyq/copyq*.bak
 copyq/copyq-*bak.conf

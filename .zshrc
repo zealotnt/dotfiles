@@ -235,7 +235,7 @@ source ~/.bashrc-func
 [ -f ~/dotfiles/cloud-helper.sh ] && source ~/dotfiles/cloud-helper.sh
 source ~/dotfiles/.custom_completions.sh # install https://github.com/fnando/gem-open
 source ~/dotfiles/sandboxd/sandboxd
-source ~/.helmenv/helmenv.sh
+# source ~/.helmenv/helmenv.sh
 [ -f ~/google-cloud-sdk/path.zsh.inc ] && . ~/google-cloud-sdk/path.zsh.inc # updates PATH for the Google Cloud SDK.
 [ -f ~/google-cloud-sdk/completion.zsh.inc ] && . ~/google-cloud-sdk/completion.zsh.inc # enables shell command completion for gcloud.
 

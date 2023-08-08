@@ -78,22 +78,30 @@ git submodule update
 sudo apt update
 
 # install apt-package
-sudo apt install -y moreutils jq tmux google-chrome-stable emacs26 rofi ruby \
-     gdebi apt-transport-https sublime-merge dconf-editor gnome-tweak-tool code \
+sudo apt install -y moreutils jq tmux google-chrome-stable rofi ruby \
+     gdebi apt-transport-https dconf-editor \
      xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
-     copyq minicom neofetch nodejs npm nodejs nnn alacritty ubuntu-make \
+     copyq minicom neofetch nodejs npm nodejs nnn \
      libdbus-1-dev `# requires for mpris-control` \
-     python-dev python-pip python3-dev python3-pip `# requies for neovim related` \
+     python2 python2-dev python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
-     vlc gnupg-agent docker-ce docker-ce-cli containerd.io nemo keychain postgresql \
+     vlc gnupg-agent nemo keychain postgresql \
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
      openssh-server gparted iotop libpam-google-authenticator libnss3-tools \
-     python-docutils python3-docutils `# requires for arandr` \
+     python3-docutils `# requires for arandr` \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
-     system-config-samba samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
-     yarn socat libsqlite3-dev dialog guvcview ethtool ofono ofono-phonesim ofono-phonesim-autostart \
+     samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
+     yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
      libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv
+
+# install docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo usermod -aG docker ${USER}
 
 ############################################################################
 # install editor tools so that we can effectively follow fresh_install.sh
@@ -138,6 +146,9 @@ source $HOME/.cargo/env
 
 # i3 dependancies
 cargo install run-or-raise
+
+cargo install alacritty
+# TODO: install desktop/iconf file
 
 # install i3 config
 mkdir -p ~/.config/i3
@@ -201,7 +212,7 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
 # install ruby/rbenv/bundle
 # ref: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04
 sudo apt install -y autoconf bison build-essential libssl-dev libyaml-dev \
-     libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev rbenv
+     libreadline-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 rbenv install 2.4.4
@@ -253,6 +264,10 @@ sudo snap install qalculate
 
 # install snap packages
 sudo snap install hub --classic
+
+sudo snap install tradingview
+
+sudo snap install code --classic
 
 # user related things
 sudo usermod -aG bluetooth pulse
