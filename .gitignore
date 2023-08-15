@@ -2,7 +2,9 @@
 *.cache
 *.res
 .goldendict/index/*
+.goldendict/history
 applications-config/grafana/png/*
+applications-config/prometheus-testing.*
 
 copyq/copyq*.bak
 copyq/copyq-*bak.conf

@@ -1,5 +1,5 @@
 configuration {
-  modi: "github:~/dotfiles/rofi/scripts/github.sh,circleci:~/dotfiles/rofi/scripts/circleci.sh";
+/*  modi: "github:~/dotfiles/rofi/scripts/github.sh,circleci:~/dotfiles/rofi/scripts/circleci.sh"; */
 	width: 85;
 /*	lines: 15;*/
 /*	columns: 1;*/

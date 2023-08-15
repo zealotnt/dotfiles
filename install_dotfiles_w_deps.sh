@@ -93,7 +93,9 @@ sudo apt install -y moreutils jq tmux google-chrome-stable rofi ruby \
      libavcodec-dev pulseaudio-module-bluetooth `# install bluetooth aptx,etc...` \
      samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
-     libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv
+     libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv libfuse2 flatpak \
+     winehq-stable ffmpeg obs-studio \
+     libpolkit-qt5-1-1 policykit-1-gnome ` # teamviewer assignment to account
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -323,3 +325,5 @@ OLD_HOME_DEV=$(sudo blkid | grep Old-Home | sed -r -n 's/(.*)\:.*/\1/p')
   ln -sf $(realpath $WORKSPACE_FOLDER/.emacs.d) $HOME
 )
 
+# https://askubuntu.com/questions/712517/how-to-switch-between-headphones-and-speakers-without-unplugging-headphones/1005967
+amixer -c 0 set 'Auto-Mute Mode' Disabled

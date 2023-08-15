@@ -176,9 +176,6 @@ alias more='less'
 export PRY_SHORT=true
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
-export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
-export FZF_DEFAULT_COMMAND="fd ."
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 export EDITOR="emacsclient -create-frame"
 export GOPATH=~/go
@@ -194,6 +191,13 @@ export PATH="/home/zealot/.cask/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f home/linuxbrew/.linuxbrew/bin/brew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
+
+# fzf config
+export FZF_DEFAULT_OPTS='--bind ctrl-d:page-down,ctrl-u:page-up'
+export FZF_DEFAULT_COMMAND="fd ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_COMPLETION_TRIGGER='**' # https://github.com/junegunn/fzf/issues/2716
+export FZF_PER_CMD_COMPLETION_TRIGGERS=(kill)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/Cellar/findutils/4.6.0/bin:$PATH"

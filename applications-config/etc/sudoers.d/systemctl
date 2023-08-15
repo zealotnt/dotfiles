@@ -1,0 +1,1 @@
+zealot        ALL=(ALL:ALL) NOPASSWD: /bin/systemctl suspend
