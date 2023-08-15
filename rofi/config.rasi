@@ -12,7 +12,7 @@ bw: 1;
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
 show-icons: true;
-terminal: "kitty";
+terminal: "alacritty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host}";*/
 /*	run-command: "{cmd}";*/
@@ -46,13 +46,13 @@ matching: "fuzzy";
 /*	dpi: -1;*/
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
-/*	scroll-method: 0;*/
+scroll-method: 1; /* alwways keep cursor center */
 /*	fake-background: "screenshot";*/
 /*	window-format: "{w}    {i}{c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
 /* theme: "/usr/share/rofi/themes/Arc-Dark.rasi"; */
-theme: "~/.config/rofi/themes/denvit.rasi";
+/* theme: "~/.config/rofi/themes/denvit.rasi"; */
 /*	color-normal: "#510231, #FEE8DA, #510231, #FF974E, #510231";
   	color-urgent: "#510231, #FA6E43, #510231, #FA6E43, #FEE8DA";
   	color-active: "#510231, #FEE8DA, #510231, #FF974E, #510231";
@@ -68,18 +68,21 @@ combi-hide-mode-prefix: true;
 /*	display-drun: ;*/
 /*	display-combi: ;*/
 /*	display-keys: ;*/
+	kb-primary-paste: "Super+V,Control+V,Shift+Insert";
+	kb-secondary-paste: "Super+v,Control+v,Insert";
+	kb-clear-line: "Control+t";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
-/*	kb-clear-line: "Control+w";*/
+    kb-clear-line: "Control+d";
 /*	kb-move-front: "Control+a";*/
 /*	kb-move-end: "Control+e";*/
 /*	kb-move-word-back: "Alt+b";*/
 /*	kb-move-word-forward: "Alt+f";*/
 /*	kb-move-char-back: "Left,Control+b";*/
 /*	kb-move-char-forward: "Right,Control+f";*/
-/*	kb-remove-word-back: "Control+Alt+h,Control+BackSpace";*/
+    kb-remove-word-back: "Control+w,Control+Alt+h,Control+BackSpace";
 /*	kb-remove-word-forward: "Control+Alt+d";*/
-/*	kb-remove-char-forward: "Delete,Control+d";*/
+    kb-remove-char-forward: "Delete";
 /*	kb-remove-char-back: "BackSpace,Control+h";*/
 /*	kb-remove-to-eol: "Control+k";*/
 /*	kb-remove-to-sol: "Control+u";*/
@@ -94,8 +97,8 @@ combi-hide-mode-prefix: true;
 /*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
 /*	kb-row-down: "Down,Control+n";*/
 /*	kb-row-tab: "Tab";*/
-/*	kb-page-prev: "Page_Up";*/
-/*	kb-page-next: "Page_Down";*/
+	kb-page-prev: "Control+u,Page_Up";
+	kb-page-next: "Control+d,Page_Down";
 /*	kb-row-first: "Home,KP_Home";*/
 /*	kb-row-last: "End,KP_End";*/
 /*	kb-row-select: "Control+space";*/
