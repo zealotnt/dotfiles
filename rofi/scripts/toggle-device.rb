@@ -101,6 +101,7 @@ def room_leave_scenario
   `playerctl pause -a`
   `pactl set-sink-mute 0 1`
 end
+def cmp_suspend
 
 CONTROL_COMMANDS = [
   "Toggle Work Room Light",
@@ -126,6 +127,7 @@ CONTROL_COMMANDS = [
   "Turn off media",
   # "Go to bed",
   # "Go to desk",
+  "Suspend/Sleep CMP machine"
 ]
 
 CONTROL_FUNC = [
@@ -152,6 +154,7 @@ CONTROL_FUNC = [
   method(:off_media),
   # method(:go_to_bed),
   # method(:go_to_desk),
+  method(:cmp_suspend),
 ]
 
 # FIRST

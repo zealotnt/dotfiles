@@ -22,8 +22,8 @@ terminal: "alacritty";
 /*	window-match-fields: "all";*/
 /*	drun-icon-theme: ;*/
 drun-match-fields: "name,generic,exec,categories";
-/*	disable-history: false;*/
-/*	sort: false;*/
+disable-history: false;
+sort: true;
 levenshtein-sort: true;
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
@@ -32,7 +32,7 @@ sidebar-mode: true;
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-combi-modi: "drun,run,ssh";
+combi-modi: "drun,ssh";
 matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
@@ -73,7 +73,7 @@ combi-hide-mode-prefix: true;
 	kb-clear-line: "Control+t";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
-    kb-clear-line: "Control+d";
+    kb-clear-line: "";
 /*	kb-move-front: "Control+a";*/
 /*	kb-move-end: "Control+e";*/
 /*	kb-move-word-back: "Alt+b";*/
@@ -84,9 +84,9 @@ combi-hide-mode-prefix: true;
 /*	kb-remove-word-forward: "Control+Alt+d";*/
     kb-remove-char-forward: "Delete";
 /*	kb-remove-char-back: "BackSpace,Control+h";*/
-/*	kb-remove-to-eol: "Control+k";*/
-/*	kb-remove-to-sol: "Control+u";*/
-/*	kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";*/
+    kb-remove-to-eol: "";
+    kb-remove-to-sol: "";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
 /*	kb-accept-custom: "Control+Return";*/
 /*	kb-accept-alt: "Shift+Return";*/
 /*	kb-delete-entry: "Shift+Delete";*/
@@ -94,8 +94,8 @@ combi-hide-mode-prefix: true;
 /*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
-/*	kb-row-down: "Down,Control+n";*/
+    kb-row-up: "Ctrl+k,Up,Control+p,ISO_Left_Tab";
+    kb-row-down: "Ctrl+j,Down,Control+n";
 /*	kb-row-tab: "Tab";*/
 	kb-page-prev: "Control+u,Page_Up";
 	kb-page-next: "Control+d,Page_Down";

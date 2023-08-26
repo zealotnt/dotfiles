@@ -1,6 +1,9 @@
 *.tar.gz
 *.cache
 *.res
+*.bak
+test.*
+history
 .goldendict/index/*
 .goldendict/history
 applications-config/grafana/png/*

@@ -353,3 +353,6 @@ bind -n M-j run "($is_vim_emacs && tmux send-keys M-j) || tmux select-pane -D"
 bind -n M-k run "($is_vim_emacs && tmux send-keys M-k) || tmux select-pane -U"
 bind -n M-l run "($is_vim_emacs && tmux send-keys M-l) || tmux select-pane -R"
 
+# maximize / pop out current pane, copy from oh-my-tmux
+bind C-m run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
+bind M run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
