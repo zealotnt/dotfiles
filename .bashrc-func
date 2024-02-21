@@ -69,7 +69,11 @@ lr() {
 }
 unalias l
 alias l='lr'
-alias ls='/bin/ls --color=always -1 -t --group-directories-first '
+if [[ "$OSTYPE" == linux-gnu ]]; then  # Is this the Ubuntu system?
+    alias ls='/bin/ls --color=always -1 -t --group-directories-first '
+else
+    alias ll='gls -Flh --group-directories-first'
+fi
 
 alias libreoffice='libreoffice6.3'
 
@@ -1127,5 +1131,13 @@ convert_xls_to_csv() {
 
 find_desktop_file_location() {
   fd $@ /usr/local/share/applications /usr/share/applications/ ~/.local/share/applications/
+}
+
+vscodeUser() {
+    if [[ "$OSTYPE" == linux-gnu ]]; then  # Is this the Ubuntu system?
+        cd $HOME/.config/Code/User
+    else
+        cd $HOME/Library/Application\ Support/Code/User
+    fi
 }
 
