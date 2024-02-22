@@ -36,11 +36,12 @@ floating_modifier $mod
 set $mouse_focus_center exec /home/zealot/dotfiles/scripts/mouse-move-position-window.rb
 
 # Screens
-set $big_screen DP-2
-set $work_screen DP-4.2.8
-set $code_screen DP-4.1
-#set $chat_screen DP-4.2.8
-set $chat_screen DP-0
+set $big_screen DP-4
+set $work_screen DP-0.1
+set $code_screen DP-0.1
+set $chat_screen DP-2.8
+#set $tools_screen DP-0.1
+set $tools_screen HDMI-0
 set $laptop_screen eDP-1
 
 # i3-volume config, from: https://github.com/hastinbe/i3-volume
@@ -140,6 +141,7 @@ assign [class="Code"] workspace 3
 workspace 4 output $work_screen
 assign [class="TelegramDesktop"] workspace 4
 assign [class="Slack"] workspace 4
+assign [class="zoom"] workspace 4
 bindsym $mod+Mod1+s exec run-or-raise 'class = "Slack"' slack
 # bindsym $mod+Mod1+t exec run-or-raise 'class = \"TelegramDesktop\"' env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
 bindsym $mod+Mod1+t exec env QT_ACCESSIBILITY=1 QT_IM_MODULE=ibus /home/zealot/bin/Telegram/Telegram
@@ -178,7 +180,7 @@ assign [class="Free Download Manager"] workspace 5
 #bindsym Mod1+5 exec run-or-raise 'class = "Spotify"' spotify
 bindsym $mod+Mod1+q exec run-or-raise 'class = "Qalculate-gtk"' qalculate.gtk
 
-workspace 6 output $work_screen
+workspace 6 output $chat_screen
 assign [class="Viber"] workspace 4
 assign [class="Caprine"] workspace 4
 assign [class="discord"] workspace 6
@@ -192,11 +194,10 @@ bindsym $mod+Mod1+z exec run-or-raise 'name ~ "Zalo Web" && class = "Google-chro
 workspace 7 output $code_screen
 assign [class="Firefox$"] workspace 7
 
-workspace 8 output $chat_screen
+workspace 8 output $tools_screen
 assign [class="Gpick"] workspace 8
 assign [class="mpv"] workspace 8
 assign [class="Totem"] workspace 8
-assign [class="zoom"] workspace 8
 assign [class="Eog"] workspace 8
 assign [class="Gimp*"] workspace 8
 assign [class="vlc"] workspace 8
@@ -388,6 +389,7 @@ bar {
         output $code_screen
         output $chat_screen
         output $laptop_screen
+        output $tools_screen
         tray_output primary
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         font pango:DejaVuSansMono 8
