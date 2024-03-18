@@ -67,18 +67,18 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  bundler
+  # bundler
   dotenv
   osx
-  rake
+  # rake
   # rbenv
-  ruby
+  # ruby
   docker
   docker-compose
-  encode64
-  iterm2
-  postgres
-  tmuxinator
+  # encode64
+  # iterm2
+  # postgres
+  # tmuxinator
   command-time
   git-open
   zsh-completions
@@ -86,12 +86,11 @@ plugins=(
   zsh-syntax-highlighting
   kubectl
   alias-tips
-  jira
-  z
-  web-search
-  urltools
-  rake
-  rake-fast
+  # jira
+  # z
+  # web-search
+  # urltools
+  # rake-fast
   systemd
   sudo
   ubuntu
@@ -119,7 +118,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='nvim'
+#   export EDITOR='mvim'
 # fi
 
 # Compilation flags
@@ -178,18 +177,21 @@ export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
 #export EDITOR="emacsclient -create-frame"
-export EDITOR=nvim
+export EDITOR="nvim"
 export GOPATH=~/go
 export GOBIN=~/go/bin
+export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/bin # fix alacrity PATH issue
 export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.bin:$PATH"
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="/home/zealot/.cask/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="/Users/enlabdev/.gem/ruby/2.6.0/bin:$PATH"
 [ -f home/linuxbrew/.linuxbrew/bin/brew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 
@@ -298,3 +300,25 @@ conda_init() {
 export PATH="/usr/local/cuda-10.2/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH"
 
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(rbenv init - zsh)"
+unalias kns
+alias kd='kubectl describe'
+
+
+kpf_prometheus(){
+export POD_NAME=$(kubectl get pods --namespace devops -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus-server" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace devops port-forward $POD_NAME 9090
+}
+kpf_grafana(){
+export POD_NAME=$(kgp -n devops -l "app.kubernetes.io/instance=grafana"  -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace devops port-forward $POD_NAME 8080:3000
+}
+keti_ubuntu(){
+export POD_NAME=$(kgp -n default -l "app=ubuntu"  -o jsonpath="{.items[0].metadata.name}")
+kubectl exec -t -i --namespace default $POD_NAME bash
+}

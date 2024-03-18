@@ -59,13 +59,13 @@ alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; [ -s "$NVM_DIR/b
 
 unalias ll
 ll() {
-  EXA=$(which exa)
-  $EXA --colour=always -alh $@
+  EZA=$(which eza)
+  $EZA --colour=always -alh $@
 }
 
 lr() {
-  EXA=$(which exa)
-  $EXA --colour=always -t=modified -l -snew $@
+  EZA=$(which eza)
+  $EZA --colour=always -t=modified -l -snew $@
 }
 unalias l
 alias l='lr'
