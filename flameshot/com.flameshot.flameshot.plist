@@ -1,0 +1,13 @@
+[General]
+contrastOpacity=188
+startupLaunch=true
+
+[Shortcuts]
+TAKE_SCREENSHOT=
+TYPE_COPY=Meta+C
+TYPE_EXIT=Meta+W
+TYPE_REDO=Meta+Y
+TYPE_SAVE=Meta+S
+TYPE_SELECT_ALL=Meta+A
+TYPE_SIZEDECREASE=Ctrl+Shift+4
+TYPE_UNDO=Meta+Z
