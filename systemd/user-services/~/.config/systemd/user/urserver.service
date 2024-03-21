@@ -1,0 +1,18 @@
+[Unit]
+Description=Unified remote server %i
+After=grapical.target network.target systemd-logind.service
+
+[Service]
+ExecStartPre=/usr/bin/sleep 5
+Environment=DISPLAY=:1
+Environment=XAUTHORITY=/home/zealot/.Xauthority
+Environment=HOME=/home/zealot/
+RemainAfterExit=true
+ExecStart=/opt/urserver/urserver-start
+Type=oneshot
+; TimeoutStartSec=0
+; Type=forking
+
+[Install]
+WantedBy=default.target
+
