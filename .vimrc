@@ -2,6 +2,8 @@
 " INSTALL PLUGINS
 "========================================================
 filetype off
+set clipboard=unnamedplus
+
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
@@ -201,7 +203,7 @@ map <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), {'options': '--exact'})<cr>
 "========================================================
 map <silent> <leader>ls <ESC>:NERDTreeToggle<CR>
 map <silent> <leader>rev :NERDTreeFind<CR>
-let NERDTreeMapOpenSplit = 'x'
+let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
 let NERDTreeShowHidden=1
 "========================================================

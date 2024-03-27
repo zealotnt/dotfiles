@@ -119,7 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -177,7 +177,8 @@ export PRY_SHORT=true
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto
 export LANG=en_US.UTF-8 # fix alacrity UTF font issue
-export EDITOR="emacsclient -create-frame"
+#export EDITOR="emacsclient -create-frame"
+export EDITOR=nvim
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:/usr/local/go/bin

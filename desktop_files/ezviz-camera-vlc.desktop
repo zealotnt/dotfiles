@@ -1,0 +1,15 @@
+# gen from https://www.ispyconnect.com/camera/ezviz
+# more info
+#  https://www.effe1.info/come-abilitare-modalita-avanzata-ezviz-studio/
+#  https://github.com/home-assistant/core/issues/86204
+
+[Desktop Entry]
+Version=1.0
+Name=Ezviz camera streaming
+Type=Application
+Categories=AudioVideo;Player;Recorder;
+Exec=/usr/bin/vlc rtsp://<username>:<password>@<rtsp-url> %U
+TryExec=/usr/bin/vlc
+Icon=vlc
+Terminal=false
+Type=Application

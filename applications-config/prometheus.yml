@@ -13,6 +13,7 @@ alerting:
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
+  #- /home/zealot/dotfiles/applications-config/test.rules
   # - "first_rules.yml"
   # - "second_rules.yml"
 
@@ -110,3 +111,15 @@ scrape_configs:
   #     regex: '(.*)'
   #     replacement: '$1'
   #     target_label: owner
+  #   - source_labels: [__name__, service]
+  #     action: replace
+  #     regex: 'kong_http_status;.*\.(.*)\..*'
+  #     replacement: '$1'
+  #     target_label: deployment
+  #   - source_labels: [__name__, service]
+  #     action: replace
+  #     regex: 'kong_latency_bucket;.*\.(.*)\..*'
+  #     replacement: '$1'
+  #     target_label: deployment
+
+  # https://www.robustperception.io/life-of-a-label

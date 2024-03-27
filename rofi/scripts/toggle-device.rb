@@ -101,7 +101,10 @@ def room_leave_scenario
   `playerctl pause -a`
   `pactl set-sink-mute 0 1`
 end
+
 def cmp_suspend
+  `sudo systemctl suspend`
+end
 
 CONTROL_COMMANDS = [
   "Toggle Work Room Light",

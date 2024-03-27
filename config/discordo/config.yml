@@ -6,21 +6,24 @@ editor: default
 keys:
     cancel: Esc
     guilds_tree:
-        focus: Alt+Rune[g]
+        focus: Alt+Rune[p]
+          #focus: Ctrl+p
         toggle: Alt+Rune[b]
     messages_text:
-        focus: Alt+Rune[m]
+        focus: Alt+Rune[o]
+          #focus: Ctrl+o
         show_image: Rune[i]
         copy_content: Rune[c]
         reply: Rune[r]
         reply_mention: Rune[R]
         select_reply: Rune[s]
-        select_previous: Up
-        select_next: Down
+        select_previous: k
+        select_next: j
         select_first: Home
         select_last: End
     message_input:
         focus: Alt+Rune[i]
+      #focus: Ctrl+i
         send: Enter
         launch_editor: Ctrl+E
 theme:

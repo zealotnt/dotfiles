@@ -37,9 +37,9 @@ set $mouse_focus_center exec /home/zealot/dotfiles/scripts/mouse-move-position-w
 
 # Screens
 set $big_screen DP-4
-set $work_screen DP-0.1
-set $code_screen DP-0.1
-set $chat_screen DP-2.8
+set $work_screen DP-2.8
+set $code_screen DP-2.8
+set $chat_screen DP-0
 #set $tools_screen DP-0.1
 set $tools_screen HDMI-0
 set $laptop_screen eDP-1
