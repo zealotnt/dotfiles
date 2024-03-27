@@ -37,6 +37,7 @@ Plug 'brooth/far.vim'
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'majutsushi/tagbar'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 "========================================================
 " EDITOR CONFIGS

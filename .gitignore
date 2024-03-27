@@ -1,3 +1,7 @@
+# git update-index --assume-unchanged <list below>
+# .gitconfig
+
+.DS_Store
 *.tar.gz
 *.cache
 *.res

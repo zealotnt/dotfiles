@@ -1141,3 +1141,12 @@ vscodeUser() {
     fi
 }
 
+ndjsongen() {
+	if [[ $# != 2 ]]; then
+		echo "Usage:"
+    echo " $FUNCNAME <input json file> <output ndjson file>"
+		return
+	fi
+
+  cat $1 | jq -c '.[]' > $2
+}
