@@ -40,8 +40,7 @@
 [pull]
   rebase = true
 [core]
-    excludesfile = /Users/zealot/.gitignore_global
-    # pager = sed 's/\\t/    /g' | less
+    excludesfile = ~/.gitignore_global
 [color]
     ui = true
     branch = auto
