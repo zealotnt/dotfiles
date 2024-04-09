@@ -288,6 +288,7 @@ bind -T prefix s split-window -v -c "#{pane_current_path}"
 
 # TODO: fix this
 # bind -T copy-mode-vi $ send-keys -X previous-matching-bracket
+set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
 bind -T copy-mode-vi d send-keys -X halfpage-down
 bind -T copy-mode-vi u send-keys -X halfpage-up
 bind -T copy-mode-vi J send-keys -X bottom-line
