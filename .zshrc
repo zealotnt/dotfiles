@@ -66,6 +66,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  auto-notify
   git
   # bundler
   dotenv
@@ -172,6 +173,7 @@ alias more='less'
 %{$fg[cyan]%}$%{$reset_color%} '
 # fi
 
+export AUTO_NOTIFY_THRESHOLD=10
 export PRY_SHORT=true
 export BAT_CONFIG_PATH="/home/zealot/dotfiles/.batrc"
 export GRC_COLOR=auto

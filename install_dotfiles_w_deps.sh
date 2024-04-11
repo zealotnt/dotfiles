@@ -62,6 +62,7 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 git clone https://github.com/wulfgarpro/history-sync.git ~/.oh-my-zsh/plugins/history-sync
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
+git clone https://github.com/MichaelAquilina/zsh-auto-notify.git $ZSH_CUSTOM/plugins/auto-notify
 
 # other utils
 git clone https://github.com/alexppg/helmenv.git ~/.helmenv
