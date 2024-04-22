@@ -36,11 +36,22 @@
 [http]
     postBuffer = 524288000
 [diff]
-    tool = bc3
+    #tool = bc3
+    colorMoved = default
 [pull]
   rebase = true
 [core]
     excludesfile = ~/.gitignore_global
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    dark = true
+    side-by-side = true
+    line-numbers = true
+[merge]
+    conflictstyle = diff3
 [color]
     ui = true
     branch = auto
@@ -72,3 +83,7 @@
 # 	clean = "sed '/#gitignore$/d'"
 # [url "ssh://git@github.com/"]
 # 	insteadOf = https://github.com/
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
