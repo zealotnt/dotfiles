@@ -1,6 +1,7 @@
 [user]
 	name = zealot
   email = tranminhtam.10192@gmail.com
+	signingkey = D1F422E2D3B6AD4B58D8C5F71C84DE991D9F1273
 [alias]
     # @see https://git.wiki.kernel.org/index.php/Aliases
     aliases = config --get-regexp alias
@@ -83,7 +84,7 @@
 # 	clean = "sed '/#gitignore$/d'"
 # [url "ssh://git@github.com/"]
 # 	insteadOf = https://github.com/
-[commit]
-	gpgSign = true
 [tag]
 	forceSignAnnotated = true
+[commit]
+	gpgSign = true
