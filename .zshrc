@@ -310,17 +310,5 @@ export LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH"
 eval "$(rbenv init - zsh)"
 unalias kns
 alias kd='kubectl describe'
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
-kpf_prometheus(){
-export POD_NAME=$(kubectl get pods --namespace devops -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus-server" -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace devops port-forward $POD_NAME 9090
-}
-kpf_grafana(){
-export POD_NAME=$(kgp -n devops -l "app.kubernetes.io/instance=grafana"  -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace devops port-forward $POD_NAME 8080:3000
-}
-keti_ubuntu(){
-export POD_NAME=$(kgp -n default -l "app=ubuntu"  -o jsonpath="{.items[0].metadata.name}")
-kubectl exec -t -i --namespace default $POD_NAME bash
-}

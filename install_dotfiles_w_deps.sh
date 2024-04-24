@@ -225,6 +225,15 @@ gem install bundler
 # intall helm3
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
+# install delta
+curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
+| grep "browser_download_url.*musl.*amd64.*deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -i -
+sudo gdebi -n git-delta-musl*.deb
+rm git-delta-musl*.deb
+
 # install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&
     chmod 777 kubectl && sudo mv kubectl /usr/local/bin
