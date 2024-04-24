@@ -96,7 +96,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable rofi ruby \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
      libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv libfuse2 flatpak \
      winehq-stable ffmpeg obs-studio \
-     libpolkit-qt5-1-1 policykit-1-gnome ` # teamviewer assignment to account
+     libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools` # teamviewer assignment to account
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
