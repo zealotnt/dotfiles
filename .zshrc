@@ -312,3 +312,13 @@ unalias kns
 alias kd='kubectl describe'
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+
+restart_pulse() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew services restart pulseaudio
+  else
+    pulseaudio -k
+    pulseaudio --start
+  fi
+}
