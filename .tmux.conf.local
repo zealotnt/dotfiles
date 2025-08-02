@@ -246,10 +246,22 @@ set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
 #set -g status-keys vi
 set -g mode-keys vi
 
-# replace C-b by C-a instead of using both prefixes
-unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+# Conditionally set the prefix key based on a list of hostnames.
+# The `grep -qE` command uses an extended regular expression to match any of
+# the hostnames separated by a pipe `|`.
+#
+# Replace the example hostnames with your actual server hostnames.
+if-shell "hostname | grep -qE 'UM790|orangepi5b'" {
+  # --- Settings for your Servers (C-b prefix) ---
+  set -g prefix C-b
+  bind C-b send-prefix
+  unbind C-a
+} {
+  # --- Settings for your Laptop and other machines (C-a prefix) ---
+  set -g prefix C-a
+  bind C-a send-prefix
+  unbind C-b
+}
 
 # move status line to top
 set -g status-position top
