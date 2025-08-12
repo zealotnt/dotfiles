@@ -170,11 +170,11 @@ ln -sf $(realpath ~/dotfiles/i3blocks.conf) ~/.config/i3/i3blocks.conf
 ## i3-utils
 sudo cp ~/dotfiles/i3/i3-utils/* /usr/local/bin
 
-# install alacritty
+# config alacritty
 mkdir -p ~/.config/alacritty/
-ln -sf $(realpath ~/dotfiles/alacritty.yml) ~/.config/alacritty/
+ln -sf $(realpath ~/dotfiles/alacritty.toml) ~/.config/alacritty/
 
-# install vimrc, vim-plug
+# config vimrc, vim-plug
 mkdir -p ~/.config/nvim/
 ln -sf $(realpath ~/dotfiles/.vimrc) ~/.config/nvim/init.vim
 sudo chmod -R 777 ~/.local/share/nvim
@@ -188,25 +188,25 @@ sudo cp /usr/bin/rofi /usr/local/bin/rofi
 mkdir -p ~/.config/rofi/
 ln -sf $(realpath ~/dotfiles/rofi/config.rasi) ~/.config/rofi/
 
-# install vlc config
+# config vlc
 mkdir -p ~/.config/vlc
 ln -sf $(realpath ~/dotfiles/vlc/vlcrc) ~/.config/vlc/vlcrc
 
-# install sublime-merge config
+# config sublime-merge
 mkdir -p ~/.config/sublime-merge/Packages/User
 for i in ~/dotfiles/sublime-merge/*; do ln -sf $i ~/.config/sublime-merge/Packages/User ; done
 
-# install copyq config
+# config copyq
 rm -rf ~/.config/copyq
 ln -sf $(realpath ~/dotfiles/copyq) ~/.config/copyq
 
-# install goldendict config file
+# config goldendict
 ln -sf $(realpath ~/dotfiles/goldendict/) ~/.goldendict
 
-# add mpv config files
+# config mpv // or using ~/dotfiles/mpv/install_mpv.sh
 mkdir -p ~/.config/mpv
-ln -sf $(realpath ~/dotfiles/mpv.conf) ~/.config/mpv/mpv.conf
-ln -sf $(realpath ~/dotfiles/mpv-input.conf) ~/.config/mpv/input.conf
+ln -sf $(realpath ~/dotfiles/mpv/mpv.conf) ~/.config/mpv/mpv.conf
+ln -sf $(realpath ~/dotfiles/mpv/mpv-input.conf) ~/.config/mpv/input.conf
 
 # install calibre https://calibre-ebook.com/download_linux
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh \
