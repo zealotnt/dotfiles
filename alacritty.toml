@@ -186,7 +186,9 @@ key = "Minus"
 mods = "Command"
 
 [[keyboard.bindings]]
-action = "SpawnNewInstance"
+command = { program = "/Applications/Alacritty.app/Contents/MacOS/alacritty", args = ["msg", "create-window"] }
+# action = "SpawnNewInstance"
+# https://github.com/alacritty/alacritty/issues/7990
 key = "N"
 mods = "Command|Shift"
 
