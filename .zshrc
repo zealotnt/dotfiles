@@ -322,3 +322,5 @@ restart_pulse() {
     pulseaudio --start
   fi
 }
+
+export PATH="$PATH:/Applications/Sublime Merge.app/Contents/SharedSupport/bin"
