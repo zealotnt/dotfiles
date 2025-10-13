@@ -12,7 +12,7 @@ set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-open'
-set -g @plugin 'tmux-plugins/tmux-logging'
+set -g @plugin 'zealotnt/tmux-logging'
 
 # -- navigation ----------------------------------------------------------------
 
@@ -229,6 +229,8 @@ bind C-n next-window     # select next window
 
 # increase history size
 set -g history-limit 100000
+set -g @save-complete-history-path "$HOME/tmux-history"
+
 
 # remove the waiting time of after C-hjkl
 # UPDATE: should not disable this, just remove the -r in the binding that no need to repeatable
