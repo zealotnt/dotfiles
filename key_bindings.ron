@@ -1,3 +1,6 @@
+// Installation:
+// ln -sf $(realpath key_bindings.ron) ~/.config/gitui
+//
 // Note:
 // If the default key layout is lower case,
 // and you want to use `Shift + q` to trigger the exit event,
