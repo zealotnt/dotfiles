@@ -9,7 +9,7 @@ fi
 # 2. Tạo .gitignore để chỉ giữ lại manifest và script này
 cat <<EOF > .gitignore
 *
-!manifest.sha256
+!manifest.xxh128
 !git_checkin.sh
 !git_integrity.sh
 !.gitignore
@@ -23,7 +23,8 @@ echo "Đang quét file bằng $HASHER..."
 find . -type f -not -path '*/.*' -not -name "$MANIFEST" -not -name ".gitignore" -not -name "*.sh" -exec $HASHER {} + > "$MANIFEST"
 
 # 4. Git commit nếu có thay đổi
-git add "$MANIFEST" .gitignore *.sh
+git add "$MANIFEST" .gitignore
+git add *.sh 2>/dev/null || true
 if git diff --cached --quiet; then
     echo "Không có thay đổi nào trong manifest."
 else

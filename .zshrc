@@ -329,9 +329,5 @@ restart_pulse() {
 }
 
 export PATH="$PATH:/Applications/Sublime Merge.app/Contents/SharedSupport/bin"
-
-# Amazon Q post block. Keep at the bottom of this file.
-# [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
 # Added by Antigravity
 export PATH="/Volumes/mac-mini-m4-disk/zealot/.antigravity/antigravity/bin:$PATH"
