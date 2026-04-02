@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# git clone https://github.com/zealotnt/dotfiles.git
+
 # if network is slow, and we dont want to pass sudoers password many times
 # ref - https://stackoverflow.com/questions/323957/how-do-i-edit-etc-sudoers-from-a-script
 #     - https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/
@@ -35,7 +37,7 @@ sudo systemctl disable apt-daily-upgrade.timer
 sudo systemctl disable apt-daily-upgrade.service
 
 sudo apt update
-sudo apt install -y git curl zsh
+sudo apt install -y git curl zsh tmux
 sudo chsh -s /usr/bin/zsh $USER
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -72,16 +74,24 @@ source ~/dotfiles/install_dotfiles.sh
 git submodule init
 git submodule update
 
+# homebrew pre-requisites
+sudo apt install -y build-essential procps file
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# claude
+curl -fsSL https://claude.ai/install.sh | bash
+
+# gemini
+brew install gemini-cli
 ############################################################################
 # install keyring, pgp things
 . ~/dotfiles/apt-clone/import_sources.sh
 sudo apt update
 
 # install apt-package
-sudo apt install -y moreutils jq tmux google-chrome-stable rofi ruby \
+sudo apt install -y moreutils jq tmux rofi ruby \
      gdebi apt-transport-https dconf-editor \
-     xdotool tree p7zip-full pavucontrol indicator-sound-switcher ibus-unikey \
+     xdotool tree p7zip-full pavucontrol ibus-unikey \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
      copyq minicom neofetch nodejs npm nodejs nnn \
      libdbus-1-dev `# requires for mpris-control` \
@@ -96,7 +106,7 @@ sudo apt install -y moreutils jq tmux google-chrome-stable rofi ruby \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
      libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv libfuse2 flatpak \
      winehq-stable ffmpeg obs-studio \
-     libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools` # teamviewer assignment to account
+     libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools `# teamviewer assignment to account`
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -110,7 +120,7 @@ sudo usermod -aG docker ${USER}
 # install editor tools so that we can effectively follow fresh_install.sh
 # install bat
 curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
-| grep "browser_download_url.*musl.*deb" \
+| grep "browser_download_url.*amd64.*deb" \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
