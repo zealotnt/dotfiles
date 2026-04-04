@@ -193,6 +193,7 @@ export PATH=$PATH:/Users/zealot/Library/Python/2.7/bin
 export PATH="$HOME/.bin:$PATH"
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/dotfiles/scripts
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export PATH="/home/zealot/.cask/bin:$PATH"
