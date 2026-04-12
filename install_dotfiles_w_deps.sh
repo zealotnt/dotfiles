@@ -95,7 +95,7 @@ sudo apt install -y moreutils jq tmux rofi ruby \
      blueman neovim network-manager-openvpn figlet goldendict silversearcher-ag \
      copyq minicom neofetch nodejs npm nodejs nnn \
      libdbus-1-dev `# requires for mpris-control` \
-     python2 python2-dev python3-dev python3-pip `# requies for neovim related` \
+     python3-dev python3-pip `# requies for neovim related` \
      libx11-dev apt-file libxdamage-dev libxrender-dev libxext-dev `# requires to compile find-cursor` \
      vlc gnupg-agent nemo keychain postgresql \
      redis-tools redis-server htop sqlitebrowser libusb-dev exuberant-ctags detox \
@@ -105,7 +105,7 @@ sudo apt install -y moreutils jq tmux rofi ruby \
      samba samba-common-bin cmake grsync libtool libnemo-extension-dev \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
      libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv libfuse2 flatpak \
-     winehq-stable ffmpeg obs-studio \
+     ffmpeg obs-studio \
      libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools `# teamviewer assignment to account`
 
 # install docker
