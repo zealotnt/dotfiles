@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# tcl — tail a /tmp/claude-*.log file.
+# Default action: tail in current pane. Optional: tmux split-window side or top/bottom.
+
+set -eu
+
+LIST=$(ls -1t /tmp/claude-*.log 2>/dev/null | head -10)
+[ -z "$LIST" ] && { echo "tcl: no /tmp/claude-*.log found" >&2; exit 1; }
+
+# Annotate each log: <path> <size> <mtime> <writer-or-idle>
+ANNOTATED=$(while IFS= read -r f; do
+  W=$(lsof "$f" 2>/dev/null | awk 'NR>1 {print $1"("$2")"; exit}')
+  S=$(du -h "$f" 2>/dev/null | cut -f1)
+  M=$(stat -f '%Sm' -t '%H:%M' "$f" 2>/dev/null)
+  printf "%-55s %6s %s %s\n" "$f" "$S" "$M" "${W:-(idle)}"
+done <<< "$LIST")
+
+# Pick log
+N=$(printf '%s\n' "$LIST" | wc -l | tr -d ' ')
+if [ "$N" -eq 1 ]; then
+  FILE=$(printf '%s' "$LIST")
+else
+  PICKED=$(printf '%s\n' "$ANNOTATED" | \
+    fzf --prompt='log> ' --height=40% --reverse \
+        --header='which log to tail? (active writers show pid)')
+  [ -z "$PICKED" ] && { echo "tcl: cancelled"; exit 1; }
+  FILE=$(printf '%s' "$PICKED" | awk '{print $1}')
+fi
+
+# Pick pane: default is current pane (just tail). Optional tmux split.
+read -rn 1 -p 'pane [⏎=current, s=side-split, t=top/bottom-split]: ' DIR
+echo
+case "$DIR" in
+  ''|c|C)
+    exec tail -f "$FILE"
+    ;;
+  s|S)
+    [ -z "${TMUX:-}" ] && { echo "tcl: split needs tmux session" >&2; exit 1; }
+    tmux split-window -h -p 30 "tail -f '$FILE'"
+    echo "tcl: side-by-side → $FILE"
+    ;;
+  t|T|v|V)
+    [ -z "${TMUX:-}" ] && { echo "tcl: split needs tmux session" >&2; exit 1; }
+    tmux split-window -v -p 30 "tail -f '$FILE'"
+    echo "tcl: stacked → $FILE"
+    ;;
+  *)
+    echo "tcl: invalid choice" >&2
+    exit 1
+    ;;
+esac

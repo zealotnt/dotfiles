@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias ccdr="claude --dangerously-skip-permissions -r"
+alias ccd="claude --dangerously-skip-permissions"
 alias bfg='java -jar ~/bin/bfg.jar'
 alias cdc='cd ~/claude/'
 
@@ -1164,4 +1166,7 @@ function displaytime {
   [[ $D > 0 || $H > 0 || $M > 0 ]] && printf 'and '
   printf '%d seconds\n' $S
 }
+
+# `tcl` is now an external script at ~/dotfiles/scripts/tcl (on PATH).
+# fzf log picker + tmux split-window. See script for usage.
 
