@@ -106,7 +106,7 @@ sudo apt install -y moreutils jq tmux rofi ruby \
      yarn socat libsqlite3-dev dialog guvcview ethtool ofono \
      libpq-dev i3 compton feh yad xcape wireguard imwheel acpitool acpi mpv libfuse2 flatpak \
      ffmpeg obs-studio \
-     libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools `# teamviewer assignment to account`
+     libpolkit-qt5-1-1 policykit-1-gnome v4l-utils net-tools eza `# teamviewer assignment to account`
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -124,8 +124,8 @@ curl -s https://api.github.com/repos/sharkdp/bat/releases/latest \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -i -
-sudo gdebi -n bat-musl*.deb
-rm bat-musl*.deb
+sudo gdebi -n bat*amd64*.deb
+rm bat*amd64*.deb
 
 # install fd-find
 curl -s https://api.github.com/repos/sharkdp/fd/releases/latest \
